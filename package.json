@@ -1,14 +1,14 @@
 {
   "name": "greenwood-demo-adapter-vercel",
   "version": "1.0.0",
-  "description": "A demonstration repo for deploying a full-stack Greenwood app with Vercel static hosting and Serverless + Edge functions",
+  "description": "A demonstration repo for deploying a full-stack Greenwood app with Lit SSR, Vercel static hosting and Serverless + Edge functions",
   "homepage": "https://github.com/ProjectEvergreen/greenwood-demo-adapter-vercel#readme",
   "author": "Owen Buckley <owen@thegreenhouse.io>",
   "license": "ISC",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ProjectEvergreen/greenwood-demo-adapter-vercel.git"
+    "url": "git+https://github.com/thescientist13/greenwood-demo-adapter-vercel.git"
   },
   "keywords": [
     "Greenwood",
@@ -17,18 +17,23 @@
     "Web Components",
     "Serverless",
     "Edge",
-    "SSR"
+    "SSR",
+    "Lit"
   ],
   "scripts": {
     "clean": "rimraf public .greenwood .vercel",
     "dev": "greenwood develop",
-    "build": "greenwood build",
+    "build": "mkdir -p public/api/assets && greenwood build",
     "serve": "greenwood build && greenwood serve",
     "start": "npm run serve"
+  },
+  "dependencies": {
+    "lit": "^2.8.0"
   },
   "devDependencies": {
     "@greenwood/cli": "~0.29.0-alpha.4",
     "@greenwood/plugin-adapter-vercel": "~0.29.0-alpha.4",
+    "@greenwood/plugin-renderer-lit": "^0.29.0-alpha.4",
     "rimraf": "^5.0.0"
   }
 }

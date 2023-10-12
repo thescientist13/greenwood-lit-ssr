@@ -1,5 +1,9 @@
-import { renderFromHTML } from 'wc-compiler';
+import { render } from '@lit-labs/ssr/lib/render-with-global-dom-shim.js';
+import { html } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getProducts } from '../services/products.js';
+import { renderFromHTML } from '../services/render-to-string.js';
+import '../components/card.js';
 
 export async function handler(request) {
   const formData = await request.formData();
@@ -13,9 +17,9 @@ export async function handler(request) {
   if (products.length === 0) {
     body = 'No results found.';
   } else {
-    const { html } = await renderFromHTML(`
+    body = await renderFromHTML(render(html`
       ${
-        products.map((item, idx) => {
+        unsafeHTML(products.map((item, idx) => {
           const { title, thumbnail } = item;
 
           return `
@@ -24,13 +28,9 @@ export async function handler(request) {
               thumbnail="${thumbnail}"
             ></app-card>
           `;
-        }).join('')
+        }).join(''))
       }
-    `, [
-      new URL('../components/card.js', import.meta.url)
-    ]);
-
-    body = html;
+    `));
   }
 
   return new Response(body, {
