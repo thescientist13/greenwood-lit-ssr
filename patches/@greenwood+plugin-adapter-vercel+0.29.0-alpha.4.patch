@@ -1,0 +1,24 @@
+diff --git a/node_modules/@greenwood/plugin-adapter-vercel/src/index.js b/node_modules/@greenwood/plugin-adapter-vercel/src/index.js
+index 00ee579..fb15afb 100644
+--- a/node_modules/@greenwood/plugin-adapter-vercel/src/index.js
++++ b/node_modules/@greenwood/plugin-adapter-vercel/src/index.js
+@@ -144,11 +144,14 @@ async function vercelAdapter(compilation) {
+       new URL(`./${id}.js`, outputRoot),
+       { recursive: true }
+     );
+-    await fs.cp(
+-      new URL('./api/assets/', outputDir),
+-      new URL('./assets/', outputRoot),
+-      { recursive: true }
+-    );
++
++    if (await checkResourceExists(new URL('./api/assets/', outputDir))) {
++      await fs.cp(
++        new URL('./api/assets/', outputDir),
++        new URL('./assets/', outputRoot),
++        { recursive: true }
++      );
++    }
+ 
+     const ssrApiAssets = (await fs.readdir(new URL('./api/', outputDir)))
+       .filter(file => new RegExp(/^[\w][\w-]*\.[a-zA-Z0-9]{4,20}\.[\w]{2,4}$/).test(path.basename(file)));
