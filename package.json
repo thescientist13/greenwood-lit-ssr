@@ -23,7 +23,7 @@
   "scripts": {
     "clean": "rimraf public .greenwood .vercel",
     "dev": "greenwood develop",
-    "build": "mkdir -p public/api/assets && greenwood build",
+    "build": "greenwood build",
     "serve": "greenwood build && greenwood serve",
     "start": "npm run serve"
   },
@@ -31,8 +31,8 @@
     "lit": "^2.8.0"
   },
   "devDependencies": {
-    "@greenwood/cli": "~0.29.0-alpha.4",
-    "@greenwood/plugin-adapter-vercel": "~0.29.0-alpha.4",
+    "@greenwood/cli": "~0.29.0-alpha.5",
+    "@greenwood/plugin-adapter-vercel": "~0.29.0-alpha.5",
     "@greenwood/plugin-renderer-lit": "^0.29.0-alpha.4",
     "rimraf": "^5.0.0"
   }
