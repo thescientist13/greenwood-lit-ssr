@@ -31,9 +31,9 @@
     "lit": "^2.8.0"
   },
   "devDependencies": {
-    "@greenwood/cli": "~0.29.0-alpha.5",
-    "@greenwood/plugin-adapter-vercel": "~0.29.0-alpha.5",
-    "@greenwood/plugin-renderer-lit": "^0.29.0-alpha.4",
+    "@greenwood/cli": "~0.29.0",
+    "@greenwood/plugin-adapter-vercel": "~0.29.0",
+    "@greenwood/plugin-renderer-lit": "~0.29.0",
     "rimraf": "^5.0.0"
   }
 }
