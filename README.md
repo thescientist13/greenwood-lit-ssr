@@ -23,8 +23,8 @@ You can now run these npm scripts
 |Feature    |Greenwood |Serverless|Edge|
 |---------- |----------|----------|----|
 |API Routes |   ✅     |  ✅       | ❓ |
-|SSR Pages  |   🚫     |  ❓       | ❓ |
+|SSR Pages  |   ⚠️      |  ⚠️       | ❓ |
 
 ### Known Issues
 1. [ ] [Lit SSR does not support `async`` component work](https://github.com/thescientist13/greenwood-demo-adapter-vercel-lit/issues/3)
-1. [ ] [Declarative Shadow DOM support](https://github.com/thescientist13/greenwood-demo-adapter-vercel-lit/issues/4)
+1. [x] [Declarative Shadow DOM support](https://github.com/thescientist13/greenwood-demo-adapter-vercel-lit/issues/4)
