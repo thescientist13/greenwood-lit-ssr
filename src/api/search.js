@@ -1,8 +1,8 @@
-import { render } from '@lit-labs/ssr/lib/render-with-global-dom-shim.js';
+import { render } from '@lit-labs/ssr';
+import { collectResultSync } from '@lit-labs/ssr/lib/render-result.js'
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getProducts } from '../services/products.js';
-import { renderFromHTML } from '../services/render-to-string.js';
 import '../components/card.js';
 
 export async function handler(request) {
@@ -17,7 +17,7 @@ export async function handler(request) {
   if (products.length === 0) {
     body = 'No results found.';
   } else {
-    body = await renderFromHTML(render(html`
+    body = collectResultSync(render(html`
       ${
         unsafeHTML(products.map((item, idx) => {
           const { title, thumbnail } = item;
