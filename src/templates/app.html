@@ -9,27 +9,7 @@
     <link rel="icon" href="/favicon.ico"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
     <link rel="stylesheet" href="../styles/main.css">
-    <!-- TODO see if we can bundle this file -->
-    <script type="module" src="/node_modules/@lit-labs/ssr-client/lit-element-hydrate-support.js"></script>
-    <!-- TODO double customElement.define issue when combined with getBody for hydration -->
-    <!-- <script type="module" src="../components/card.js"></script> -->
-    <!-- TODO this should come from the render plugin -->
-    <!-- TODO this should only run on the products page, not all pages -->
-    <script type="module">
-      // https://lit.dev/docs/ssr/client-usage/
-      import { render } from 'lit';
-      import { hydrate } from '@lit-labs/ssr-client'; // this will need to be in users package.json and / or import map
-      import { getBody } from '../src/pages/products.js';
-
-      globalThis.document.addEventListener('DOMContentLoaded', () => {
-        const hydrationData = JSON.parse(document.getElementById('__GWD_HYDRATION_DATA__')?.textContent || '{"__noData__": true}')
-        console.log('lets get hydrated!', { hydrationData });
-
-        if(!hydrationData.__noData__) {
-          hydrate(getBody({}, {}, hydrationData), window.document.body);
-        }
-      });
-    </script>
+    <script type="module" src="../components/card.js"></script>
   </head>
 
   <body>
