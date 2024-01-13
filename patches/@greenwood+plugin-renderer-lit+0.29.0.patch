@@ -83,10 +83,10 @@ index 5e73f75..2deef38 100644
  
      if (getFrontmatter) {
 diff --git a/node_modules/@greenwood/plugin-renderer-lit/src/index.js b/node_modules/@greenwood/plugin-renderer-lit/src/index.js
-index e4e190b..c96d74f 100755
+index e4e190b..cf65488 100755
 --- a/node_modules/@greenwood/plugin-renderer-lit/src/index.js
 +++ b/node_modules/@greenwood/plugin-renderer-lit/src/index.js
-@@ -1,14 +1,75 @@
+@@ -1,14 +1,74 @@
 +
 +// import { checkResourceExists } from '../../lib/resource-utils.js';
 +// import fs from 'fs/promises';
@@ -114,16 +114,15 @@ index e4e190b..c96d74f 100755
 +    console.log('SHOULD intercept', { url });
 +    let body = await response.text();
 +
-+    // need to find a better way to insert this into the DOM, top of head, bottom of head?
++    // TODO have to manually set module-shim?
 +    body = body.replace('<head>', `
 +      <head>
-+        <!-- this needs to come first before userland code -->
++        <!-- this needs to come first before any userland code -->
 +        <script type="module-shim" src="/node_modules/@lit-labs/ssr-client/lit-element-hydrate-support.js"></script>
 +    `);
 +
-+    // <script type="module" src="/node_modules/@lit-labs/ssr-client/lit-element-hydrate-support.js"></script>
-+    // <!-- TODO this should come from the render plugin -->
-+    // <!-- TODO this should only run on the products page, not all pages -->
++
++    // TODO full hydration implementation?
 +    // <script type="module" defer>
 +    //   // https://lit.dev/docs/ssr/client-usage/
 +    //   import { render } from 'lit';
