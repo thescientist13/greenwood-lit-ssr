@@ -42,9 +42,8 @@ import '../components/card.js';
 // customElements.define('products-page', ProductsPage);
 // export const tagName = 'products-page';
 
-export function getBody() {
-  // TODO this needs to be shared with the client side since Lit depends on a runtime hydration solution
-  const products = [{ title: 'TODO', thumbnail: 'https://www.greenwoodjs.io/assets/greenwood-logo-og.png' }];
+export function getBody(compilation, page, data) {
+  const { products } = data;
 
   return html`
     ${
@@ -60,3 +59,11 @@ export function getBody() {
     }
   `;
 }
+
+export async function loader(request = null) {
+  return {
+    products: [{ title: 'TODO', thumbnail: 'https://www.greenwoodjs.io/assets/greenwood-logo-og.png' }]
+  };
+}
+
+export const hydration = true;

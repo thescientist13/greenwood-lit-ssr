@@ -18,13 +18,12 @@
       import { render } from 'lit';
       import { hydrate } from '@lit-labs/ssr-client'; // TODO this needs to be in users package.json and / or import map
       import { getBody } from '../src/pages/products.js';
-      // TODO obviously we need to get this from the server-side
-      const products = [{ title: 'TODO', thumbnail: 'https://www.greenwoodjs.io/assets/greenwood-logo-og.png' }];
 
       globalThis.document.addEventListener('DOMContentLoaded', () => {
-        console.log('lets get hydrated!');
+        const hydrationData = JSON.parse(document.getElementById('__GWD_HYDRATION_DATA__').textContent || '{}')
+        console.log('lets get hydrated!', { hydrationData });
         // TODO this should only run on the products page, not all pages
-        hydrate(getBody(products), window.document.body);
+        hydrate(getBody({}, {}, hydrationData), window.document.body);
       });
     </script>
   </head>

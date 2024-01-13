@@ -1,0 +1,40 @@
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
+index 8f06225..9cc2fd9 100644
+--- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
+@@ -115,6 +115,14 @@ class StandardHtmlResource extends ResourceInterface {
+           if (result.template) {
+             ssrTemplate = result.template;
+           }
++
++          if (result.hydrate) {
++            matchingRoute.hydrate = result.hydrate;
++            matchingRoute.pageData = result.pageData;
++
++            console.log('Update Page', this.compilation.graph.find((node) => node.route === pathname));
++          }
++
+           if (result.body) {
+             ssrBody = result.body;
+           }
+@@ -201,6 +209,20 @@ class StandardHtmlResource extends ResourceInterface {
+       }
+     }
+ 
++    if (matchingRoute.hydrate && matchingRoute.pageData) {
++      const id = '__GWD_HYDRATION_DATA__';
++      const { pageData } = matchingRoute;
++      
++      console.log('hydrate with page data =>', { pageData });
++
++      body = body.replace('</head>', `
++        <script type="application/json" id="${id}">
++          ${JSON.stringify(pageData)}
++        </script>
++        </head>
++      `);
++    }
++
+     // give the user something to see so they know it works, if they have no content
+     if (body.indexOf('<content-outlet></content-outlet>') > 0) {
+       body = body.replace('<content-outlet></content-outlet>', `

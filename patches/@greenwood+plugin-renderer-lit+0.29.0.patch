@@ -1,8 +1,8 @@
 diff --git a/node_modules/@greenwood/plugin-renderer-lit/src/execute-route-module.js b/node_modules/@greenwood/plugin-renderer-lit/src/execute-route-module.js
-index 5e73f75..ae88202 100644
+index 5e73f75..2deef38 100644
 --- a/node_modules/@greenwood/plugin-renderer-lit/src/execute-route-module.js
 +++ b/node_modules/@greenwood/plugin-renderer-lit/src/execute-route-module.js
-@@ -1,25 +1,10 @@
+@@ -1,30 +1,17 @@
 -// this needs to come first
 -import { render } from '@lit-labs/ssr/lib/render-with-global-dom-shim.js';
 -import { Buffer } from 'buffer';
@@ -27,11 +27,19 @@ index 5e73f75..ae88202 100644
 -}
  
  async function executeRouteModule({ moduleUrl, compilation, page, prerender, htmlContents, scripts }) {
-+  await import('@lit-labs/ssr/lib/install-global-dom-shim.js');
++  // TODO await import('@lit-labs/ssr/lib/install-global-dom-shim.js');
    const data = {
      template: null,
      body: null,
-@@ -35,31 +20,24 @@ async function executeRouteModule({ moduleUrl, compilation, page, prerender, htm
+     frontmatter: null,
+-    html: null
++    html: null,
++    hydrate: false,
++    pageData: {},
+   };
+ 
+   // prerender static content
+@@ -35,28 +22,30 @@ async function executeRouteModule({ moduleUrl, compilation, page, prerender, htm
  
      const templateResult = html`${unsafeHTML(htmlContents)}`;
  
@@ -39,18 +47,28 @@ index 5e73f75..ae88202 100644
 +    data.html = await collectResult(render(templateResult));
    } else {
      const module = await import(moduleUrl).then(module => module);
-     const { getTemplate = null, getBody = null, getFrontmatter = null } = module;
+-    const { getTemplate = null, getBody = null, getFrontmatter = null } = module;
++    const { getTemplate = null, getBody = null, getFrontmatter = null, hydration = false, loader } = module;
  
 -    if (module.default && module.tagName) {
 -      const { tagName } = module;
 -      const templateResult = html`
 -        ${unsafeHTML(`<${tagName}></${tagName}>`)}
 -      `;
--
++    if (hydration) {
++      data.hydrate = true;
++    }
++
++    if (loader) {
++      data.pageData = await loader(); // request, compilation, etc can go here
++      console.log(data.pageData);
++    }
+ 
 -      data.body = await getTemplateResultString(templateResult);
 -    } else if (getBody) {
+-      const templateResult = await getBody(compilation, page);
 +    if (getBody) {
-       const templateResult = await getBody(compilation, page);
++      const templateResult = await getBody(compilation, page, data.pageData);
  
 -      data.body = await getTemplateResultString(templateResult);
 +      data.body = await collectResult(render(templateResult));
@@ -63,8 +81,4 @@ index 5e73f75..ae88202 100644
 +      data.template = await collectResult(render(templateResult));
      }
  
--    if (getFrontmatter) {
-+    if (getFrontmatter) {s
-       data.frontmatter = await getFrontmatter(compilation, page);
-     }
-   }
+     if (getFrontmatter) {
