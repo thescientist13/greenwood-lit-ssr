@@ -2,8 +2,8 @@
 // import { html } from '@lit-labs/ssr';
 import { LitElement, html } from 'lit';
 import '../components/card.js';
-// // import { unsafeStatic, withStatic } from 'lit/static-html.js';
-// // import { getProducts } from '../services/products.js';
+// import { unsafeStatic, withStatic } from 'lit/static-html.js';
+import { getProducts } from '../services/products.js';
 
 // export default class ProductsPage extends LitElement {
 
@@ -61,9 +61,9 @@ export function getBody(compilation, page, data) {
 }
 
 export async function loader(request = null) {
-  return {
-    products: [{ title: 'TODO', thumbnail: 'https://www.greenwoodjs.io/assets/greenwood-logo-og.png' }]
-  };
+  const products = await getProducts();
+
+  return { products };
 }
 
 export const hydration = true;

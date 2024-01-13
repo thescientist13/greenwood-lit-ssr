@@ -13,17 +13,21 @@
     <script type="module" src="/node_modules/@lit-labs/ssr-client/lit-element-hydrate-support.js"></script>
     <!-- TODO double customElement.define issue when combined with getBody for hydration -->
     <!-- <script type="module" src="../components/card.js"></script> -->
+    <!-- TODO this should come from the render plugin -->
+    <!-- TODO this should only run on the products page, not all pages -->
     <script type="module">
       // https://lit.dev/docs/ssr/client-usage/
       import { render } from 'lit';
-      import { hydrate } from '@lit-labs/ssr-client'; // TODO this needs to be in users package.json and / or import map
+      import { hydrate } from '@lit-labs/ssr-client'; // this will need to be in users package.json and / or import map
       import { getBody } from '../src/pages/products.js';
 
       globalThis.document.addEventListener('DOMContentLoaded', () => {
-        const hydrationData = JSON.parse(document.getElementById('__GWD_HYDRATION_DATA__').textContent || '{}')
+        const hydrationData = JSON.parse(document.getElementById('__GWD_HYDRATION_DATA__')?.textContent || '{"__noData__": true}')
         console.log('lets get hydrated!', { hydrationData });
-        // TODO this should only run on the products page, not all pages
-        hydrate(getBody({}, {}, hydrationData), window.document.body);
+
+        if(!hydrationData.__noData__) {
+          hydrate(getBody({}, {}, hydrationData), window.document.body);
+        }
       });
     </script>
   </head>
