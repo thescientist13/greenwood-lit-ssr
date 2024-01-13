@@ -7,10 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/favicon.ico"/>
     <link rel="icon" href="/favicon.ico"/>
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
     <link rel="stylesheet" href="../styles/main.css">
-    <script type="module" src="../components/card.js"></script>
+    <!-- TODO see if we can bundle this file -->
+    <script type="module" src="/node_modules/@lit-labs/ssr-client/lit-element-hydrate-support.js"></script>
+    <!-- TODO double customElement.define issue when combined with getBody for hydration -->
+    <!-- <script type="module" src="../components/card.js"></script> -->
+    <script type="module">
+      // https://lit.dev/docs/ssr/client-usage/
+      import { render } from 'lit';
+      import { hydrate } from '@lit-labs/ssr-client'; // TODO this needs to be in users package.json and / or import map
+      import { getBody } from '../src/pages/products.js';
+      // TODO obviously we need to get this from the server-side
+      const products = [{ title: 'TODO', thumbnail: 'https://www.greenwoodjs.io/assets/greenwood-logo-og.png' }];
+
+      globalThis.document.addEventListener('DOMContentLoaded', () => {
+        console.log('lets get hydrated!');
+        // TODO this should only run on the products page, not all pages
+        hydrate(getBody(products), window.document.body);
+      });
+    </script>
   </head>
 
   <body>
@@ -30,7 +46,10 @@
         <a href="https://github.com/ProjectEvergreen/greenwood-demo-adapter-vercel" title="Link to demonstration repo">Greenwood demonstration repo</a>
         showcasing various features deployed to and running on Vercel serverless functions.
       </p>
-      <page-outlet></page-outlet>
+
+      <section class="products-cards-container">
+        <page-outlet></page-outlet>
+      </section>
     </main>
 
     <footer>

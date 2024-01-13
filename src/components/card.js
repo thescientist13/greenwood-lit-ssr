@@ -52,6 +52,7 @@ export class Card extends LitElement {
   constructor() {
     super();
 
+    console.log('helllo???');
     this.title;
     this.thumbnail;
   }
@@ -62,9 +63,11 @@ export class Card extends LitElement {
 
   render() {
     const { title, thumbnail } = this;
+    console.log('render start', { title, thumbnail })
     if(!title && !thumbnail) {
       return;
     }
+    console.log({ title, thumbnail })
 
     return html`
       <div>
