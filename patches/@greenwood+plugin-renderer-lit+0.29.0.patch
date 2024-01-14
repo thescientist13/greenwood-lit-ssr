@@ -82,10 +82,10 @@ index 5e73f75..ae958dd 100644
  
      if (getFrontmatter) {
 diff --git a/node_modules/@greenwood/plugin-renderer-lit/src/index.js b/node_modules/@greenwood/plugin-renderer-lit/src/index.js
-index e4e190b..cf65488 100755
+index e4e190b..650848e 100755
 --- a/node_modules/@greenwood/plugin-renderer-lit/src/index.js
 +++ b/node_modules/@greenwood/plugin-renderer-lit/src/index.js
-@@ -1,14 +1,74 @@
+@@ -1,14 +1,80 @@
 +
 +// import { checkResourceExists } from '../../lib/resource-utils.js';
 +// import fs from 'fs/promises';
@@ -113,11 +113,17 @@ index e4e190b..cf65488 100755
 +    console.log('SHOULD intercept', { url });
 +    let body = await response.text();
 +
++    // TODO would be nice not to have to do this, but 
++    // this hydrate lib is not showing up in greenwood build / serve
++    const type = process.env.__GWD_COMMAND__ === 'develop'
++      ? 'module-shim'
++      : 'module'
++
 +    // TODO have to manually set module-shim?
 +    body = body.replace('<head>', `
 +      <head>
 +        <!-- this needs to come first before any userland code -->
-+        <script type="module-shim" src="/node_modules/@lit-labs/ssr-client/lit-element-hydrate-support.js"></script>
++        <script type="${type}" src="/node_modules/@lit-labs/ssr-client/lit-element-hydrate-support.js"></script>
 +    `);
 +
 +
