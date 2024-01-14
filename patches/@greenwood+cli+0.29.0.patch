@@ -1,3 +1,63 @@
+diff --git a/node_modules/@greenwood/cli/src/config/rollup.config.js b/node_modules/@greenwood/cli/src/config/rollup.config.js
+index 8aa6f56..3c52b4f 100644
+--- a/node_modules/@greenwood/cli/src/config/rollup.config.js
++++ b/node_modules/@greenwood/cli/src/config/rollup.config.js
+@@ -375,7 +375,9 @@ const getRollupConfigForApis = async (compilation) => {
+     plugins: [
+       greenwoodJsonLoader(),
+       greenwoodResourceLoader(compilation),
+-      nodeResolve(),
++      nodeResolve({
++        exportConditions: ['default', 'module', 'import', 'node']
++      }),
+       commonjs(),
+       greenwoodImportMetaUrl(compilation)
+     ]
+@@ -401,7 +403,8 @@ const getRollupConfigForSsr = async (compilation, input) => {
+       // https://github.com/lit/lit/issues/449
+       // https://github.com/ProjectEvergreen/greenwood/issues/1118
+       nodeResolve({
+-        preferBuiltins: true
++        preferBuiltins: true,
++        exportConditions: ['default', 'module', 'import', 'node']
+       }),
+       commonjs(),
+       greenwoodImportMetaUrl(compilation),
+diff --git a/node_modules/@greenwood/cli/src/lib/resource-utils.js b/node_modules/@greenwood/cli/src/lib/resource-utils.js
+index a3d71e5..e29abc5 100644
+--- a/node_modules/@greenwood/cli/src/lib/resource-utils.js
++++ b/node_modules/@greenwood/cli/src/lib/resource-utils.js
+@@ -124,7 +124,9 @@ async function trackResourcesForRoute(html, compilation, route) {
+   const scripts = await Promise.all(root.querySelectorAll('script')
+     .filter(script => (
+       isLocalLink(script.getAttribute('src')) || script.rawText)
+-      && script.rawAttrs.indexOf('importmap') < 0)
++      && script.rawAttrs.indexOf('importmap') < 0
++      && script.getAttribute('type') !== 'application/json'
++    )
+     .map(async(script) => {
+       const src = script.getAttribute('src');
+       const optimizationAttr = script.getAttribute('data-gwd-opt');
+diff --git a/node_modules/@greenwood/cli/src/lifecycles/bundle.js b/node_modules/@greenwood/cli/src/lifecycles/bundle.js
+index e5a28fd..de7131f 100644
+--- a/node_modules/@greenwood/cli/src/lifecycles/bundle.js
++++ b/node_modules/@greenwood/cli/src/lifecycles/bundle.js
+@@ -205,6 +205,15 @@ async function bundleSsrPages(compilation) {
+         staticHtml = await (await htmlOptimizer.optimize(new URL(`http://localhost:8080${route}`), new Response(staticHtml))).text();
+         staticHtml = staticHtml.replace(/[`\\$]/g, '\\$&'); // https://stackoverflow.com/a/75688937/417806
+ 
++        // TODO prune graph of hydration data
++        const g = [ ...compilation.graph ];
++
++        g.forEach(page => {
++          delete page.pageData;
++        })
++
++        compilation.graph = g;
++
+         // better way to write out this inline code?
+         await fs.writeFile(entryFileUrl, `
+           import { executeRouteModule } from '${normalizePathnameForWindows(executeModuleUrl)}';
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
 index 8f06225..9cc2fd9 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
