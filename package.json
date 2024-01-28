@@ -2,13 +2,13 @@
   "name": "greenwood-demo-adapter-vercel",
   "version": "1.0.0",
   "description": "A demonstration repo for deploying a full-stack Greenwood app with Lit SSR, Vercel static hosting and Serverless + Edge functions",
-  "homepage": "https://github.com/ProjectEvergreen/greenwood-demo-adapter-vercel#readme",
+  "homepage": "https://github.com/ProjectEvergreen/greenwood-lit-ssr#readme",
   "author": "Owen Buckley <owen@thegreenhouse.io>",
   "license": "ISC",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thescientist13/greenwood-demo-adapter-vercel.git"
+    "url": "git+https://github.com/thescientist13/greenwood-lit-ssr.git"
   },
   "keywords": [
     "Greenwood",

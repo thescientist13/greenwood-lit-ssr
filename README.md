@@ -1,8 +1,8 @@
-# greenwood-demo-adapter-vercel
+# greenwood-lit-ssr
 
 A demonstration repo for deploying a full-stack [**Greenwood**](https://www.greenwoodjs.io/) app using [Lit](https://lit.dev/) SSR with Vercel static hosting and Serverless + Edge functions.
 
-You can see the live demo at [https://greenwood-demo-adapter-vercel-lit.vercel.app/](https://greenwood-demo-adapter-vercel-lit.vercel.app/).
+You can see the live demo at [https://greenwood-lit-ssr.vercel.app/](https://greenwood-lit-ssr.vercel.app/).
 
 > _It is based on [this](https://github.com/ProjectEvergreen/greenwood-demo-adapter-vercel) Greenwood demo._
 
