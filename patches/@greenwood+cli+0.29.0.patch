@@ -38,6 +38,41 @@ index a3d71e5..e29abc5 100644
      .map(async(script) => {
        const src = script.getAttribute('src');
        const optimizationAttr = script.getAttribute('data-gwd-opt');
+diff --git a/node_modules/@greenwood/cli/src/lib/templating-utils.js b/node_modules/@greenwood/cli/src/lib/templating-utils.js
+index 9503e6a..97a4841 100644
+--- a/node_modules/@greenwood/cli/src/lib/templating-utils.js
++++ b/node_modules/@greenwood/cli/src/lib/templating-utils.js
+@@ -189,18 +189,18 @@ async function getUserScripts (contents, compilation) {
+   // TODO get rid of lit polyfills in core
+   // https://github.com/ProjectEvergreen/greenwood/issues/728
+   // https://lit.dev/docs/tools/requirements/#polyfills
+-  if (process.env.__GWD_COMMAND__ === 'build') { // eslint-disable-line no-underscore-dangle
+-    const userPackageJson = await getPackageJson(context);
+-    const dependencies = userPackageJson?.dependencies || {};
+-    const litPolyfill = dependencies && dependencies.lit
+-      ? '<script src="/node_modules/lit/polyfill-support.js"></script>\n'
+-      : '';
+-
+-    contents = contents.replace('<head>', `
+-      <head>
+-        ${litPolyfill}
+-    `);
+-  }
++  // if (process.env.__GWD_COMMAND__ === 'build') { // eslint-disable-line no-underscore-dangle
++  //   const userPackageJson = await getPackageJson(context);
++  //   const dependencies = userPackageJson?.dependencies || {};
++  //   const litPolyfill = dependencies && dependencies.lit
++  //     ? '<script src="/node_modules/lit/polyfill-support.js"></script>\n'
++  //     : '';
++
++  //   contents = contents.replace('<head>', `
++  //     <head>
++  //       ${litPolyfill}
++  //   `);
++  // }
+ 
+   return contents;
+ }
 diff --git a/node_modules/@greenwood/cli/src/lifecycles/bundle.js b/node_modules/@greenwood/cli/src/lifecycles/bundle.js
 index e5a28fd..9caf3aa 100644
 --- a/node_modules/@greenwood/cli/src/lifecycles/bundle.js
