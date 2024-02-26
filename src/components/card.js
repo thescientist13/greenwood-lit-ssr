@@ -62,7 +62,7 @@ export class Card extends LitElement {
 
   render() {
     const { title, thumbnail } = this;
-    console.log('render start', { title, thumbnail })
+    // console.log('render start', { title, thumbnail })
     if(!title && !thumbnail) {
       return;
     }

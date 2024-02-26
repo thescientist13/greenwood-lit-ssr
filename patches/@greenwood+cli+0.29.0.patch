@@ -23,6 +23,29 @@ index 8aa6f56..3c52b4f 100644
        }),
        commonjs(),
        greenwoodImportMetaUrl(compilation),
+diff --git a/node_modules/@greenwood/cli/src/lib/execute-route-module.js b/node_modules/@greenwood/cli/src/lib/execute-route-module.js
+index 483696f..2720aa7 100644
+--- a/node_modules/@greenwood/cli/src/lib/execute-route-module.js
++++ b/node_modules/@greenwood/cli/src/lib/execute-route-module.js
+@@ -15,7 +15,7 @@ async function executeRouteModule({ moduleUrl, compilation, page = {}, prerender
+     data.html = html;
+   } else {
+     const module = await import(moduleUrl).then(module => module);
+-    const { prerender = false, getTemplate = null, getBody = null, getFrontmatter = null } = module;
++    const { prerender = false, getTemplate = null, getBody = null, getFrontmatter = null, isolation } = module;
+ 
+     if (module.default) {
+       const { html } = await renderToString(new URL(moduleUrl), false, request);
+@@ -35,7 +35,9 @@ async function executeRouteModule({ moduleUrl, compilation, page = {}, prerender
+       data.frontmatter = await getFrontmatter(compilation, page);
+     }
+ 
++    // TODO cant we get these from just pulling from the file during the graph phase?
+     data.prerender = prerender;
++    data.isolation = isolation;
+   }
+ 
+   return data;
 diff --git a/node_modules/@greenwood/cli/src/lib/resource-utils.js b/node_modules/@greenwood/cli/src/lib/resource-utils.js
 index a3d71e5..e29abc5 100644
 --- a/node_modules/@greenwood/cli/src/lib/resource-utils.js
@@ -38,6 +61,27 @@ index a3d71e5..e29abc5 100644
      .map(async(script) => {
        const src = script.getAttribute('src');
        const optimizationAttr = script.getAttribute('data-gwd-opt');
+diff --git a/node_modules/@greenwood/cli/src/lib/ssr-route-worker-prod.js b/node_modules/@greenwood/cli/src/lib/ssr-route-worker-prod.js
+new file mode 100644
+index 0000000..831fa8e
+--- /dev/null
++++ b/node_modules/@greenwood/cli/src/lib/ssr-route-worker-prod.js
+@@ -0,0 +1,14 @@
++// https://github.com/nodejs/modules/issues/307#issuecomment-858729422
++import { parentPort } from 'worker_threads';
++
++async function executeModule({ routeModuleUrl, request, compilation }) {
++  const { handler } = await import(routeModuleUrl);
++  const response = await handler(request, compilation);
++  const html = await response.text();
++
++  parentPort.postMessage(html);
++}
++
++parentPort.on('message', async (task) => {
++  await executeModule(task);
++});
+\ No newline at end of file
 diff --git a/node_modules/@greenwood/cli/src/lib/templating-utils.js b/node_modules/@greenwood/cli/src/lib/templating-utils.js
 index 9503e6a..97a4841 100644
 --- a/node_modules/@greenwood/cli/src/lib/templating-utils.js
@@ -128,6 +172,100 @@ index e5a28fd..9caf3aa 100644
          // better way to write out this inline code?
          await fs.writeFile(entryFileUrl, `
            import { executeRouteModule } from '${normalizePathnameForWindows(executeModuleUrl)}';
+diff --git a/node_modules/@greenwood/cli/src/lifecycles/graph.js b/node_modules/@greenwood/cli/src/lifecycles/graph.js
+index ae82285..4a9a1b6 100644
+--- a/node_modules/@greenwood/cli/src/lifecycles/graph.js
++++ b/node_modules/@greenwood/cli/src/lifecycles/graph.js
+@@ -49,6 +49,7 @@ const generateGraph = async (compilation) => {
+             let customData = {};
+             let filePath;
+             let prerender = true;
++            let isolation = false;
+ 
+             /*
+              * check if additional nested directories exist to correctly determine route (minus filename)
+@@ -131,6 +132,7 @@ const generateGraph = async (compilation) => {
+ 
+                 worker.on('message', async (result) => {
+                   prerender = result.prerender;
++                  isolation = result.isolation ?? isolation;
+ 
+                   if (result.frontmatter) {
+                     result.frontmatter.imports = result.frontmatter.imports || [];
+@@ -220,7 +222,8 @@ const generateGraph = async (compilation) => {
+               template,
+               title,
+               isSSR: !isStatic,
+-              prerender
++              prerender,
++              isolation
+             });
+           }
+         }
+diff --git a/node_modules/@greenwood/cli/src/lifecycles/serve.js b/node_modules/@greenwood/cli/src/lifecycles/serve.js
+index 6787503..f54a373 100644
+--- a/node_modules/@greenwood/cli/src/lifecycles/serve.js
++++ b/node_modules/@greenwood/cli/src/lifecycles/serve.js
+@@ -2,9 +2,10 @@ import fs from 'fs/promises';
+ import { hashString } from '../lib/hashing-utils.js';
+ import Koa from 'koa';
+ import { koaBody } from 'koa-body';
+-import { checkResourceExists, mergeResponse, transformKoaRequestIntoStandardRequest } from '../lib/resource-utils.js';
++import { checkResourceExists, mergeResponse, transformKoaRequestIntoStandardRequest, requestAsObject } from '../lib/resource-utils.js';
+ import { Readable } from 'stream';
+ import { ResourceInterface } from '../lib/resource-interface.js';
++import { Worker } from 'worker_threads';
+ 
+ async function getDevServer(compilation) {
+   const app = new Koa();
+@@ -294,10 +295,44 @@ async function getHybridServer(compilation) {
+       const request = transformKoaRequestIntoStandardRequest(url, ctx.request);
+ 
+       if (!config.prerender && matchingRoute.isSSR && !matchingRoute.prerender) {
+-        const { handler } = await import(new URL(`./__${matchingRoute.filename}`, outputDir));
+-        const response = await handler(request, compilation);
++        let html;
++
++        if (matchingRoute.isolation) {
++          console.log('run in isolation mode!', { matchingRoute });
++
++          await new Promise(async (resolve, reject) => {
++            const worker = new Worker(new URL('../lib/ssr-route-worker-prod.js', import.meta.url));
++            // TODO "faux" new Request here, a better way?
++            const request = await requestAsObject(new Request(url));
++
++            worker.on('message', async (result) => {
++              html = result;
++
++              resolve();
++            });
++            worker.on('error', reject);
++            worker.on('exit', (code) => {
++              if (code !== 0) {
++                reject(new Error(`Worker stopped with exit code ${code}`));
++              }
++            });
++
++            worker.postMessage({
++              routeModuleUrl: new URL(`./__${matchingRoute.filename}`, outputDir).href,
++              request,
++              compilation: JSON.stringify(compilation),
++            });
++          });
++        } else {
++          const { handler } = await import(new URL(`./__${matchingRoute.filename}`, outputDir));
++          const response = await handler(request, compilation);
+ 
+-        ctx.body = Readable.from(response.body);
++          html = Readable.from(response.body);
++        }
++
++        // console.log({ html });
++
++        ctx.body = html;
+         ctx.set('Content-Type', 'text/html');
+         ctx.status = 200;
+       } else if (isApiRoute) {
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
 index 8f06225..9cc2fd9 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js

@@ -1,5 +1,5 @@
 diff --git a/node_modules/@greenwood/plugin-renderer-lit/src/execute-route-module.js b/node_modules/@greenwood/plugin-renderer-lit/src/execute-route-module.js
-index 5e73f75..ae958dd 100644
+index 5e73f75..2c307fe 100644
 --- a/node_modules/@greenwood/plugin-renderer-lit/src/execute-route-module.js
 +++ b/node_modules/@greenwood/plugin-renderer-lit/src/execute-route-module.js
 @@ -1,30 +1,16 @@
@@ -38,7 +38,7 @@ index 5e73f75..ae958dd 100644
    };
  
    // prerender static content
-@@ -35,28 +21,30 @@ async function executeRouteModule({ moduleUrl, compilation, page, prerender, htm
+@@ -35,28 +21,36 @@ async function executeRouteModule({ moduleUrl, compilation, page, prerender, htm
  
      const templateResult = html`${unsafeHTML(htmlContents)}`;
  
@@ -47,20 +47,26 @@ index 5e73f75..ae958dd 100644
    } else {
      const module = await import(moduleUrl).then(module => module);
 -    const { getTemplate = null, getBody = null, getFrontmatter = null } = module;
-+    const { getTemplate = null, getBody = null, getFrontmatter = null, hydration = false, loader } = module;
++    const { getTemplate = null, getBody = null, getFrontmatter = null, hydration = false, loader, isolation } = module;
++
++    // TODO cant we get these from just pulling from the file during the graph phase?
++    // e.g., hydration, prerender, isolation, etc
++    if (hydration) {
++      data.hydrate = true;
++    }
  
 -    if (module.default && module.tagName) {
 -      const { tagName } = module;
 -      const templateResult = html`
 -        ${unsafeHTML(`<${tagName}></${tagName}>`)}
 -      `;
-+    if (hydration) {
-+      data.hydrate = true;
++    if (isolation) {
++      data.isolation = true;
 +    }
 +
 +    if (loader) {
 +      data.pageData = await loader(); // request, compilation, etc can go here
-+      console.log(data.pageData);
++      // console.log(data.pageData);
 +    }
  
 -      data.body = await getTemplateResultString(templateResult);
@@ -82,7 +88,7 @@ index 5e73f75..ae958dd 100644
  
      if (getFrontmatter) {
 diff --git a/node_modules/@greenwood/plugin-renderer-lit/src/index.js b/node_modules/@greenwood/plugin-renderer-lit/src/index.js
-index e4e190b..650848e 100755
+index e4e190b..66c15a2 100755
 --- a/node_modules/@greenwood/plugin-renderer-lit/src/index.js
 +++ b/node_modules/@greenwood/plugin-renderer-lit/src/index.js
 @@ -1,14 +1,80 @@
@@ -110,7 +116,7 @@ index e4e190b..650848e 100755
 +  }
 +
 +  async intercept(url, request, response) {
-+    console.log('SHOULD intercept', { url });
++    // console.log('SHOULD intercept', { url });
 +    let body = await response.text();
 +
 +    // TODO would be nice not to have to do this, but 

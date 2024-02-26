@@ -5,6 +5,7 @@ import '../components/card.js';
 import { getProducts } from '../services/products.js';
 
 export const hydration = true;
+export const isolation = true;
 
 export async function loader(request = null) {
   const products = await getProducts();
