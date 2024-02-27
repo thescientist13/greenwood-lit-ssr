@@ -173,7 +173,7 @@ index e5a28fd..9caf3aa 100644
          await fs.writeFile(entryFileUrl, `
            import { executeRouteModule } from '${normalizePathnameForWindows(executeModuleUrl)}';
 diff --git a/node_modules/@greenwood/cli/src/lifecycles/graph.js b/node_modules/@greenwood/cli/src/lifecycles/graph.js
-index ae82285..4a9a1b6 100644
+index ae82285..fc6008b 100644
 --- a/node_modules/@greenwood/cli/src/lifecycles/graph.js
 +++ b/node_modules/@greenwood/cli/src/lifecycles/graph.js
 @@ -49,6 +49,7 @@ const generateGraph = async (compilation) => {
@@ -202,8 +202,57 @@ index ae82285..4a9a1b6 100644
              });
            }
          }
+@@ -240,27 +243,31 @@ const generateGraph = async (compilation) => {
+             apis = await walkDirectoryForApis(filenameUrlAsDir, apis);
+           } else {
+             const extension = filenameUrl.pathname.split('.').pop();
+-            const relativeApiPath = filenameUrl.pathname.replace(userWorkspace.pathname, '/');
+-            const route = `${basePath}${relativeApiPath.replace(`.${extension}`, '')}`;
+ 
+             if (extension !== 'js') {
+               console.warn(`${filenameUrl} is not a JavaScript file, skipping...`);
+-            } else {
+-              /*
+-              * API Properties (per route)
+-              *----------------------
+-              * filename: base filename of the page
+-              * outputPath: the filename to write to when generating a build
+-              * path: path to the file relative to the workspace
+-              * route: URL route for a given page on outputFilePath
+-              */
+-              apis.set(route, {
+-                filename: filename,
+-                outputPath: `/api/${filename}`,
+-                path: relativeApiPath,
+-                route
+-              });
++              return;
+             }
++
++            const relativeApiPath = filenameUrl.pathname.replace(userWorkspace.pathname, '/');
++            const route = `${basePath}${relativeApiPath.replace(`.${extension}`, '')}`;
++            const { isolation } = await import(filenameUrl).then(module => module);
++
++            /*
++            * API Properties (per route)
++            *----------------------
++            * filename: base filename of the page
++            * outputPath: the filename to write to when generating a build
++            * path: path to the file relative to the workspace
++            * route: URL route for a given page on outputFilePath
++            */
++            apis.set(route, {
++              filename: filename,
++              outputPath: `/api/${filename}`,
++              path: relativeApiPath,
++              route,
++              isolation
++            });
+           }
+         }
+ 
 diff --git a/node_modules/@greenwood/cli/src/lifecycles/serve.js b/node_modules/@greenwood/cli/src/lifecycles/serve.js
-index 6787503..f54a373 100644
+index 6787503..5054ef8 100644
 --- a/node_modules/@greenwood/cli/src/lifecycles/serve.js
 +++ b/node_modules/@greenwood/cli/src/lifecycles/serve.js
 @@ -2,9 +2,10 @@ import fs from 'fs/promises';
@@ -218,7 +267,7 @@ index 6787503..f54a373 100644
  
  async function getDevServer(compilation) {
    const app = new Koa();
-@@ -294,10 +295,44 @@ async function getHybridServer(compilation) {
+@@ -294,17 +295,92 @@ async function getHybridServer(compilation) {
        const request = transformKoaRequestIntoStandardRequest(url, ctx.request);
  
        if (!config.prerender && matchingRoute.isSSR && !matchingRoute.prerender) {
@@ -227,7 +276,7 @@ index 6787503..f54a373 100644
 +        let html;
 +
 +        if (matchingRoute.isolation) {
-+          console.log('run in isolation mode!', { matchingRoute });
++          console.log('run SSR page in isolation mode!', { matchingRoute });
 +
 +          await new Promise(async (resolve, reject) => {
 +            const worker = new Worker(new URL('../lib/ssr-route-worker-prod.js', import.meta.url));
@@ -266,6 +315,57 @@ index 6787503..f54a373 100644
          ctx.set('Content-Type', 'text/html');
          ctx.status = 200;
        } else if (isApiRoute) {
+         const apiRoute = manifest.apis.get(url.pathname);
+-        const { handler } = await import(new URL(`.${apiRoute.path}`, outputDir));
+-        const response = await handler(request);
+-        const { body, status, headers, statusText } = response;
++        const { isolation } = apiRoute;
++        let body, status, headers, statusText;
++
++        if (isolation) {
++          console.log('run API route in isolation mode!', { matchingRoute });
++
++          await new Promise(async (resolve, reject) => {
++            const worker = new Worker(new URL('../lib/api-route-worker.js', import.meta.url));
++            // TODO "faux" new Request here, a better way?
++            const req = await requestAsObject(request);
++
++            worker.on('message', async (result) => {
++              const responseAsObject = result;
++
++              console.log({ result });
++
++              body = responseAsObject.body;
++              status = responseAsObject.status;
++              headers = new Headers(responseAsObject.headers);
++              statusText = responseAsObject.statusText;  
++
++              resolve();
++            });
++            worker.on('error', reject);
++            worker.on('exit', (code) => {
++              if (code !== 0) {
++                reject(new Error(`Worker stopped with exit code ${code}`));
++              }
++            });
++
++            worker.postMessage({
++              href: new URL(`.${apiRoute.path}`, outputDir).href,
++              request: req
++            });
++          });
++        } else {
++          const { handler } = await import(new URL(`.${apiRoute.path}`, outputDir));
++          const response = await handler(request);
++
++          body = response.body
++          status = response.status
++          headers = response.headers;
++          statusText = response.statusText;  
++        }
+         
+         ctx.body = body ? Readable.from(body) : null;
+         ctx.status = status;
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
 index 8f06225..9cc2fd9 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
