@@ -1,0 +1,13 @@
+diff --git a/node_modules/@greenwood/plugin-adapter-vercel/src/index.js b/node_modules/@greenwood/plugin-adapter-vercel/src/index.js
+index f37e815..f9daaf6 100644
+--- a/node_modules/@greenwood/plugin-adapter-vercel/src/index.js
++++ b/node_modules/@greenwood/plugin-adapter-vercel/src/index.js
+@@ -87,7 +87,7 @@ async function vercelAdapter(compilation) {
+     const { id } = page;
+     const outputRoot = new URL(`./${basePath}/${id}.func/`, adapterOutputUrl);
+     const files = (await fs.readdir(outputDir))
+-      .filter(file => file.startsWith(`${id}.route.chunk.`) && file.endsWith('.js'));
++      .filter(file => file.indexOf(`.route.chunk.`) > 0 && file.endsWith('.js'));
+ 
+     await setupFunctionBuildFolder(id, outputType, outputRoot);
+ 

@@ -4,7 +4,7 @@ import '../components/card.js';
 
 export const isolation = true;
 
-export async function getBody(compilation, page, data) {
+export async function getBody() {
   const products = await getProducts();
 
   return html`
