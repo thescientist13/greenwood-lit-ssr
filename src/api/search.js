@@ -1,9 +1,11 @@
-import { render } from '@lit-labs/ssr/lib/render-with-global-dom-shim.js';
+import { render } from '@lit-labs/ssr';
+import { collectResult } from '@lit-labs/ssr/lib/render-result.js'
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getProducts } from '../services/products.js';
-import { renderFromHTML } from '../services/render-to-string.js';
 import '../components/card.js';
+
+export const isolation = true;
 
 export async function handler(request) {
   const formData = await request.formData();
@@ -17,7 +19,7 @@ export async function handler(request) {
   if (products.length === 0) {
     body = 'No results found.';
   } else {
-    body = await renderFromHTML(render(html`
+    body = await collectResult(render(html`
       ${
         unsafeHTML(products.map((item, idx) => {
           const { title, thumbnail } = item;
