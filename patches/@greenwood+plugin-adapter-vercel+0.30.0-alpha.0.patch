@@ -1,13 +1,29 @@
 diff --git a/node_modules/@greenwood/plugin-adapter-vercel/src/index.js b/node_modules/@greenwood/plugin-adapter-vercel/src/index.js
-index f37e815..e498b8a 100644
+index f37e815..912206e 100644
 --- a/node_modules/@greenwood/plugin-adapter-vercel/src/index.js
 +++ b/node_modules/@greenwood/plugin-adapter-vercel/src/index.js
-@@ -87,7 +87,7 @@ async function vercelAdapter(compilation) {
+@@ -86,8 +86,8 @@ async function vercelAdapter(compilation) {
+     const outputType = 'page';
      const { id } = page;
      const outputRoot = new URL(`./${basePath}/${id}.func/`, adapterOutputUrl);
-     const files = (await fs.readdir(outputDir))
+-    const files = (await fs.readdir(outputDir))
 -      .filter(file => file.startsWith(`${id}.route.chunk.`) && file.endsWith('.js'));
-+      .filter(file => file.startsWith(`${id}.route.`) && file.endsWith('.js'));
++    const chunks = (await fs.readdir(outputDir))
++      .filter(file => file.startsWith(`${id}.route.chunk`) && file.endsWith('.js'));
  
      await setupFunctionBuildFolder(id, outputType, outputRoot);
  
+@@ -99,10 +99,10 @@ async function vercelAdapter(compilation) {
+     );
+ 
+     // and the URL chunk for renderer plugin and executeRouteModule
+-    for (const file of files) {
++    for (const chunk of chunks) {
+       await fs.cp(
+-        new URL(`./${file}`, outputDir),
+-        new URL(`./${file}`, outputRoot),
++        new URL(`./${chunk}`, outputDir),
++        new URL(`./${chunk}`, outputRoot),
+         { recursive: true }
+       );
+     }
