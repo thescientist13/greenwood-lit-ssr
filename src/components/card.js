@@ -57,7 +57,13 @@ export class Card extends LitElement {
   }
 
   selectItem() {
-    alert(`selected item is => ${this.title}!`);
+    const itemSelectedEvent = new CustomEvent("update-modal", {
+      detail: {
+        content: `You selected the "${this.title}"`,
+      },
+    });
+
+    window.dispatchEvent(itemSelectedEvent);
   }
 
   render() {
