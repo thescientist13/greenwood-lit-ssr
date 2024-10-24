@@ -1,5 +1,8 @@
 import { LitElement, html, css } from 'lit';
 
+// https://github.com/shoelace-style/shoelace/discussions/1641
+// import '@shoelace-style/shoelace/dist/components/button/button.js';
+
 export class Card extends LitElement {
   static properties = {
     title: '',
@@ -76,7 +79,7 @@ export class Card extends LitElement {
       <div>
         <h3>${title}</h3>
         <img src="${thumbnail}" alt="${title}" loading="lazy" width="100%">
-        <button @click="${this.selectItem}">View Item Details</button>
+        <sl-button variant="neutral" @click="${this.selectItem}">View Item Details</sl-button>
       </div>
     `;
   }
