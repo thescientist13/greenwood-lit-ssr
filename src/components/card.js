@@ -1,5 +1,8 @@
 import { LitElement, html, css } from 'lit';
 
+// https://github.com/shoelace-style/shoelace/discussions/1641
+// import '@shoelace-style/shoelace/dist/components/button/button.js';
+
 export class Card extends LitElement {
   static properties = {
     title: '',
