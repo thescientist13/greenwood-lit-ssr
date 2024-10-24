@@ -23,8 +23,8 @@
     "clean": "rimraf public .greenwood .vercel",
     "dev": "greenwood develop",
     "build": "greenwood build",
-    "serve": "npm run clean && greenwood build && greenwood serve",
-    "start": "npm run serve"
+    "serve": "pnpm run clean && greenwood build && greenwood serve",
+    "start": "pnpm run serve"
   },
   "dependencies": {
     "lit": "^3.1.0"
