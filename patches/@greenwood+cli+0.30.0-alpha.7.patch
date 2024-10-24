@@ -1,0 +1,36 @@
+diff --git a/node_modules/@greenwood/cli/src/lib/walker-package-ranger.js b/node_modules/@greenwood/cli/src/lib/walker-package-ranger.js
+index a92bb3d..96e7870 100644
+--- a/node_modules/@greenwood/cli/src/lib/walker-package-ranger.js
++++ b/node_modules/@greenwood/cli/src/lib/walker-package-ranger.js
+@@ -173,7 +173,8 @@ async function walkPackageJson(packageJson = {}) {
+ 
+             // use the dependency itself as an entry in the importMap
+             if (entry === '.') {
+-              updateImportMap(dependency, `/node_modules/${path.join(dependency, packageExport)}`);
++              // console.log(dependency, packageExport)
++              updateImportMap(dependency, `/node_modules/${path.join(dependency, packageExport.default ?? packageExport)}`);
+             }
+           } else if (exportMapEntry.endsWith && (exportMapEntry.endsWith('.js') || exportMapEntry.endsWith('.mjs')) && exportMapEntry.indexOf('*') < 0) {
+             // is probably a file, so _not_ an export array, package.json, or wildcard export
+@@ -181,15 +182,16 @@ async function walkPackageJson(packageJson = {}) {
+           }
+ 
+           if (packageExport) {
+-            const packageExportLocation = path.resolve(absoluteNodeModulesLocation, packageExport);
+-
+-            if (packageExport.endsWith('js')) {
+-              updateImportMap(path.join(dependency, entry), `/node_modules/${path.join(dependency, packageExport)}`);
++            const exp = packageExport.default ?? packageExport;
++            const packageExportLocation = path.resolve(absoluteNodeModulesLocation, packageExport.default ?? exp);
++            // console.log({ exp, packageExportLocation });
++            if (exp.endsWith('js')) {
++              updateImportMap(path.join(dependency, entry), `/node_modules/${path.join(dependency, exp)}`);
+             } else if (fs.lstatSync(packageExportLocation).isDirectory()) {
+               fs.readdirSync(packageExportLocation)
+                 .filter(file => file.endsWith('.js') || file.endsWith('.mjs'))
+                 .forEach((file) => {
+-                  updateImportMap(path.join(dependency, packageExport, file), `/node_modules/${path.join(dependency, packageExport, file)}`);
++                  updateImportMap(path.join(dependency, exp, file), `/node_modules/${path.join(dependency, exp, file)}`);
+                 });
+             } else {
+               console.warn('Warning, not able to handle export', path.join(dependency, packageExport));

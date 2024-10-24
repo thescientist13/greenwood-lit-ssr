@@ -56,7 +56,7 @@ export class Modal extends LitElement {
   }
 
   firstUpdated() {
-    const button = this.shadowRoot.querySelector('button')
+    const button = this.shadowRoot.querySelector('sl-button')
     const dialog = this.shadowRoot.querySelector('dialog');
 
     button.addEventListener("click", () => dialog.close());
@@ -68,7 +68,7 @@ export class Modal extends LitElement {
     return html`
       <dialog>
         <h3 id="content">${content}</h3>
-        <button autofocus>Close</button>
+        <sl-button variant="neutral" autofocus>Close</sl-button>
       </dialog>
     `;
   }
