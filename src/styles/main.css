@@ -60,7 +60,7 @@ h2 {
   text-decoration: underline;
 }
 
-button {
+/* button {
   background: var(--color-accent);
   color: var(--color-white);
   padding: 1rem 2rem;
@@ -68,12 +68,13 @@ button {
   font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
-}
+} */
 
-input {
+sl-input {
   padding: 1rem;
   margin: 0 10px;
   font-size: 16px;
+  display: inline-block;
 }
 
 label {
