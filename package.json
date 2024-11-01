@@ -24,17 +24,15 @@
     "dev": "greenwood develop",
     "build": "greenwood build",
     "serve": "npm run clean && greenwood build && greenwood serve",
-    "start": "npm run serve",
-    "postinstall": "patch-package"
+    "start": "npm run serve"
   },
   "dependencies": {
     "lit": "^3.1.0"
   },
   "devDependencies": {
-    "@greenwood/cli": "~0.30.0-alpha.7",
-    "@greenwood/plugin-adapter-vercel": "~0.30.0-alpha.7",
-    "@greenwood/plugin-renderer-lit": "~0.30.0-alpha.7",
-    "patch-package": "^8.0.0",
+    "@greenwood/cli": "~0.30.0-alpha.8",
+    "@greenwood/plugin-adapter-vercel": "~0.30.0-alpha.8",
+    "@greenwood/plugin-renderer-lit": "~0.30.0-alpha.8",
     "rimraf": "^5.0.0"
   }
 }
