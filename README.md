@@ -1,6 +1,6 @@
 # greenwood-lit-ssr
 
-A demonstration repo for deploying a full-stack [**Greenwood**](https://www.greenwoodjs.io/) app using [Lit](https://lit.dev/) SSR with Vercel static hosting and Serverless + Edge functions.
+A demonstration repo for deploying a full-stack [**Greenwood**](https://www.greenwoodjs.dev/) app using [Lit](https://lit.dev/) SSR with Vercel static hosting and Serverless + Edge functions.
 
 You can see the live demo at [https://greenwood-lit-ssr.vercel.app/](https://greenwood-lit-ssr.vercel.app/).
 
@@ -22,7 +22,7 @@ You can now run these npm scripts
 
 |Feature    |Greenwood |Serverless|Edge|
 |---------- |----------|----------|----|
-|API Routes |   ✅     |  ✅       | ❓ |
+|API Routes |   ✅     |  ✅      | ❓ |
 |SSR Pages  |   ⚠️      |  ⚠️       | ❓ |
 
 ### Known Issues
