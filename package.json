@@ -27,6 +27,13 @@
     "start": "pnpm run serve"
   },
   "dependencies": {
+    "@spectrum-web-components/action-menu": "^1.0.1",
+    "@spectrum-web-components/button": "^1.0.1",
+    "@spectrum-web-components/menu": "^1.0.1",
+    "@spectrum-web-components/shared": "^1.0.1",
+    "@spectrum-web-components/styles": "^1.0.1",
+    "@spectrum-web-components/theme": "^1.0.1",
+    "@spectrum-web-components/top-nav": "^1.0.1",
     "lit": "^3.2.1"
   },
   "devDependencies": {
