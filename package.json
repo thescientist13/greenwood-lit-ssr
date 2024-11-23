@@ -27,6 +27,7 @@
     "lint:types": "tsc"
   },
   "dependencies": {
+    "@shoelace-style/shoelace": "^2.18.0",
     "lit": "^3.2.1"
   },
   "devDependencies": {
