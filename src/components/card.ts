@@ -82,7 +82,7 @@ export class Card extends LitElement {
       <div>
         <h3>${title}</h3>
         <img src="${thumbnail}" alt="${title}" loading="lazy" width="100%">
-        <button @click="${this.selectItem}">View Item Details</button>
+        <sl-button variant="neutral" @click="${this.selectItem}">View Item Details</sl-button>
       </div>
     `;
   }
