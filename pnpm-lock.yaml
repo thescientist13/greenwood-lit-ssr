@@ -8,6 +8,27 @@ importers:
 
   .:
     dependencies:
+      '@spectrum-web-components/action-menu':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@spectrum-web-components/button':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@spectrum-web-components/menu':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@spectrum-web-components/shared':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@spectrum-web-components/styles':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@spectrum-web-components/theme':
+        specifier: ^1.0.1
+        version: 1.0.1
+      '@spectrum-web-components/top-nav':
+        specifier: ^1.0.1
+        version: 1.0.1
       lit:
         specifier: ^3.2.1
         version: 3.2.1
@@ -29,6 +50,15 @@ importers:
         version: 6.0.1
 
 packages:
+
+  '@floating-ui/core@1.6.8':
+    resolution: {integrity: sha512-7XJ9cPU+yI2QeLS+FCSlqNFZJq8arvswefkZrYI1yQBbftw6FyrZOxYSh+9S7z7TpeWlRt9zJ5IhM1WIL334jA==}
+
+  '@floating-ui/dom@1.6.12':
+    resolution: {integrity: sha512-NP83c0HjokcGVEMeoStg317VD9W7eDlGK7457dMBANbKA6GJZdc7rjujdgqzTaz93jkGgc5P/jeWbaCHnMNc+w==}
+
+  '@floating-ui/utils@0.2.8':
+    resolution: {integrity: sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==}
 
   '@greenwood/cli@0.31.0-alpha.5':
     resolution: {integrity: sha512-YloZF06a5C3gX/c9R1lXxV9xRxCTN4Uf+sOeEUGTyrooAAU3r9G+i8uuPaPio2PZZ20t9MCeL6mwOWBNDaU2Lw==}
@@ -78,6 +108,9 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@lit-labs/observers@2.0.4':
+    resolution: {integrity: sha512-x95jhDPGb+HtYU3hEdqkcLxb6v2JBP3tcajaiOijs1F/ZmOgRT0pRPn0v+jhhk8mAAbEO12SZJjPCmuysunssQ==}
 
   '@lit-labs/ssr-client@1.1.7':
     resolution: {integrity: sha512-VvqhY/iif3FHrlhkzEPsuX/7h/NqnfxLwVf0p8ghNIlKegRyRqgeaJevZ57s/u/LiFyKgqksRP5n+LmNvpxN+A==}
@@ -229,6 +262,87 @@ packages:
     resolution: {integrity: sha512-Bvno2/aZT6usSa7lRDL2+hMjVAGjuqaymF1ApZm31JXzniR/hvr14jpU+/z4X6Gt5BPlzosscyJZGUvguXIqeQ==}
     cpu: [x64]
     os: [win32]
+
+  '@spectrum-web-components/action-button@1.0.1':
+    resolution: {integrity: sha512-/QYGoDn2PncjJIwInrctjYIusvQ1nbp21ww5Niy9aNNQjm7M2iCnbWFiwIYkC56GMIrN3DTxBlIFPpT3m8DJtQ==}
+
+  '@spectrum-web-components/action-menu@1.0.1':
+    resolution: {integrity: sha512-IJllT3PQyXPq6kjs3AMm6MiAwUYczwj4tdLYvxBaq3dBOFR9/+kud5eARzViCi+9pPN6kDg72nYZC8A5vD4VpA==}
+
+  '@spectrum-web-components/base@1.0.1':
+    resolution: {integrity: sha512-TOlajkkGrHwnxZ4C9v7JiC9IHzqQf0WcvEF+6tACYVkog7eRb03G4AyAZhEtDhwDRsE/bAhEqwRiwB4qpwPW/g==}
+
+  '@spectrum-web-components/button@1.0.1':
+    resolution: {integrity: sha512-UuS3moob0rArZBg/r/fkl9Wsi0ykmsWMTze7mf7GjgPaE2iLUQBAnjRQv6RKPz3ZmFQ4ORzMJPVIrqjhGh/gOg==}
+
+  '@spectrum-web-components/clear-button@1.0.1':
+    resolution: {integrity: sha512-qldbr+v60sbjQhg/SblJ3HA1540nSHuumQfoFcJUpXpeT8QJnqmR2XBEOcEDkb3cjtX/PaxDEy6wcEi5wJwwWg==}
+
+  '@spectrum-web-components/close-button@1.0.1':
+    resolution: {integrity: sha512-jfMHmFmqhUSQBvI5I67ZjzMjr375t8TyGHqEFmZEj6mTyTpKY7qzyrDEBwAsoKvBvhLffh6bkMBWvY3ukWaSgA==}
+
+  '@spectrum-web-components/divider@1.0.1':
+    resolution: {integrity: sha512-knAM3ut2aVpp1ccAqGc6xQnDLv5dcptyZRVVoxsiuZSFiKhb7cok6QNGbIjVsCqA6WDA2Z6XVIbojt6ESdx5Og==}
+
+  '@spectrum-web-components/field-label@1.0.1':
+    resolution: {integrity: sha512-0NHt9VDo4EpRna9WI6XN9fSubwynQavybCx61CBsjR7ZO9eLws0GonW90RQR+o6u2/V+V/95Jcp7ccu3dwcBqg==}
+
+  '@spectrum-web-components/icon@1.0.1':
+    resolution: {integrity: sha512-0Q3rMaQoFIR2ZQfrJQrEGbSAVhqzyFn9Gj+Ij7H9hQGXxlZ+NOZTLdQdUAsnr1mulF1Mf27d+duZxnPprtj2ew==}
+
+  '@spectrum-web-components/icons-ui@1.0.1':
+    resolution: {integrity: sha512-SEfkMtvibo4T04MjapYIQH5BtJNl4wgi85hxXvqYuwm2IEeMYPql+AA67Hx1JmyuuzAvQKO7gaqpsiNMCk+Awg==}
+
+  '@spectrum-web-components/icons-workflow@1.0.1':
+    resolution: {integrity: sha512-HkpOkuvmR45bF0FfRCS04CM06w5IhgB+Sx60p/cAWrgZ/RrHPbIRYGPI6SwOf+617ZKdIF6Yh47EFbnCXpCSbw==}
+
+  '@spectrum-web-components/iconset@1.0.1':
+    resolution: {integrity: sha512-OkT4cIp5lOrifkcintINqUFUPblQYCURFvpZe6RDwsLDP8qVxQvB1GlAN+Nt1HFFvQYMHyONn4HzwOYp3yRmOQ==}
+
+  '@spectrum-web-components/menu@1.0.1':
+    resolution: {integrity: sha512-07h21MheuvzwrMDPJMLPUEd723MNx6mlZZO8mMsC3lFHNk7sMjTRdkzNd0Xa5C7e+mzQX/yPee1b6QDxw9LKWA==}
+
+  '@spectrum-web-components/modal@1.0.1':
+    resolution: {integrity: sha512-VGGUQIHAVHBj/GxRePzCmAi96LHau5UFaNj2tX3teA8y44Iy9ONzQUb1GWdIpArdwHu9cCmr1504Er8JTTbPKA==}
+
+  '@spectrum-web-components/overlay@1.0.1':
+    resolution: {integrity: sha512-cdoygw+3eddb1s87jmnqbvAtzNo5BpdUOYpWZfeAFFdY/gglaDEAkK5mKCH7J+uKGLhE0Kg3bxsM/yxv5t+4zg==}
+
+  '@spectrum-web-components/picker@1.0.1':
+    resolution: {integrity: sha512-iI7HLfJGz1SRv603gPXMrQ/idtZoRHHiteTfhj5RglHS0U7yD1y/llTIOyp/wYA4TjYTt6ZIaZGBAjrqU7C53w==}
+
+  '@spectrum-web-components/popover@1.0.1':
+    resolution: {integrity: sha512-DWmRFwwIpVCNuFqAMTmMqOtoV0UFp9nAOYoJ9PI0TJ/690nxKuSSfmLmkw38nSM3r1hU3jtHWeJ0CW7Rmpx89Q==}
+
+  '@spectrum-web-components/progress-circle@1.0.1':
+    resolution: {integrity: sha512-SvQCKEzxLIALsBjt6lMFhWceR8Gmf/fE7EUm/2vFxgaGCch2YkNP4m4aU5gKGSr6Ca7vJRrLPrGt7ODlHanKLw==}
+
+  '@spectrum-web-components/reactive-controllers@1.0.1':
+    resolution: {integrity: sha512-v24b930ltKaM8WLP6VCh/TYEbb0//lIMrHHuIaBiuR7CmyNbr9Hro+j3grR6OgsBdpjf6zso1Sf1fQbfFTzuVQ==}
+
+  '@spectrum-web-components/shared@1.0.1':
+    resolution: {integrity: sha512-byH2V6ssESmVxoS5WxrO7JmdEnOR89hw/gk9VK8XJRa9EQbJQ9uUEoVKEjf5S37OWNbBd+DTVufNjmEXyvwq1g==}
+
+  '@spectrum-web-components/styles@1.0.1':
+    resolution: {integrity: sha512-lJ/wlrHefhsw5656oNZfxkp0xiWkdWykpfOkra51cgfFcOuWQ3x+daXPnwyxSDaFhdL/erqLH5qzZlVFBOjkvg==}
+
+  '@spectrum-web-components/tabs@1.0.1':
+    resolution: {integrity: sha512-JTaIBvNn1P2Y1PRntplgPVye7PyaygHrslvzWfDmB4OJD5CVIFfVKX2z/bVM2TEmwABi7SDEK/MMUQ43xpRLbw==}
+
+  '@spectrum-web-components/theme@1.0.1':
+    resolution: {integrity: sha512-Av8kMdUaSXNY9NVnodhVLN880NzCIGhBvATvbzswjMl5mwyWvWFyUukZRaPwJ+gmm3Zx5NQ39/m32Srm6c8Keg==}
+
+  '@spectrum-web-components/tooltip@1.0.1':
+    resolution: {integrity: sha512-77X74M7Cr+9qz7Xjb3pZEQtG5Tk3+oa7g71nBq+Y6X5G4SOTJ92p+0/s94SsjKJg1KU1RMZWEgmDHbzfICZdPg==}
+
+  '@spectrum-web-components/top-nav@1.0.1':
+    resolution: {integrity: sha512-7BOetIQsjl/vJ6/xw3e4jXIp+qLz8s5LKSHYXDBBFpBsBIJdkFaeV9slj6Kt5SumkSxg1C6W+RMpnMjznCAc1g==}
+
+  '@spectrum-web-components/tray@1.0.1':
+    resolution: {integrity: sha512-GsNqLfymkHAkKq6N0dL62ozoCoOjElgtbiiw6D6r/TFGLrFRN4mVdPluVxw+n2Gyf7jT2VcBRSg3Nd7XX3Ldxw==}
+
+  '@spectrum-web-components/underlay@1.0.1':
+    resolution: {integrity: sha512-tRVeWzf2ykyzhF49pazTIWnnqK/X6NY70I0kdcAu9yoLTp0zGV1DcOkm3XfNpQToiHO4WbzUL5x8JBLiPlF0oA==}
 
   '@types/accepts@1.3.7':
     resolution: {integrity: sha512-Pay9fq2lM2wXPWbteBsRAGiWH2hig4ZE2asK+mm7kUzlxRTfL961rj89I6zV/E3PcIkDqyuBEcMxFT7rccugeQ==}
@@ -631,6 +745,9 @@ packages:
   fill-range@7.1.1:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
     engines: {node: '>=8'}
+
+  focus-visible@5.2.1:
+    resolution: {integrity: sha512-8Bx950VD1bWTQJEH/AM6SpEk+SU55aVnp4Ujhuuxy3eMEBCRwBnTBnVXr9YAPvZL3/CNjCa8u4IWfNmEO53whA==}
 
   for-in@1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==}
@@ -1481,6 +1598,17 @@ packages:
 
 snapshots:
 
+  '@floating-ui/core@1.6.8':
+    dependencies:
+      '@floating-ui/utils': 0.2.8
+
+  '@floating-ui/dom@1.6.12':
+    dependencies:
+      '@floating-ui/core': 1.6.8
+      '@floating-ui/utils': 0.2.8
+
+  '@floating-ui/utils@0.2.8': {}
+
   '@greenwood/cli@0.31.0-alpha.5':
     dependencies:
       '@rollup/plugin-commonjs': 28.0.1(rollup@4.28.0)
@@ -1558,6 +1686,11 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  '@lit-labs/observers@2.0.4':
+    dependencies:
+      '@lit/reactive-element': 2.0.4
+      lit-html: 3.2.1
 
   '@lit-labs/ssr-client@1.1.7':
     dependencies:
@@ -1687,6 +1820,186 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.28.0':
     optional: true
+
+  '@spectrum-web-components/action-button@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/button': 1.0.1
+      '@spectrum-web-components/icon': 1.0.1
+      '@spectrum-web-components/icons-ui': 1.0.1
+      '@spectrum-web-components/shared': 1.0.1
+
+  '@spectrum-web-components/action-menu@1.0.1':
+    dependencies:
+      '@spectrum-web-components/action-button': 1.0.1
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/icon': 1.0.1
+      '@spectrum-web-components/icons-workflow': 1.0.1
+      '@spectrum-web-components/picker': 1.0.1
+      '@spectrum-web-components/shared': 1.0.1
+
+  '@spectrum-web-components/base@1.0.1':
+    dependencies:
+      lit: 3.2.1
+
+  '@spectrum-web-components/button@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/clear-button': 1.0.1
+      '@spectrum-web-components/close-button': 1.0.1
+      '@spectrum-web-components/icon': 1.0.1
+      '@spectrum-web-components/icons-ui': 1.0.1
+      '@spectrum-web-components/progress-circle': 1.0.1
+      '@spectrum-web-components/shared': 1.0.1
+
+  '@spectrum-web-components/clear-button@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+
+  '@spectrum-web-components/close-button@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+
+  '@spectrum-web-components/divider@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+
+  '@spectrum-web-components/field-label@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/icon': 1.0.1
+      '@spectrum-web-components/icons-ui': 1.0.1
+      '@spectrum-web-components/reactive-controllers': 1.0.1
+      '@spectrum-web-components/shared': 1.0.1
+
+  '@spectrum-web-components/icon@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/iconset': 1.0.1
+
+  '@spectrum-web-components/icons-ui@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/icon': 1.0.1
+      '@spectrum-web-components/iconset': 1.0.1
+
+  '@spectrum-web-components/icons-workflow@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/icon': 1.0.1
+
+  '@spectrum-web-components/iconset@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+
+  '@spectrum-web-components/menu@1.0.1':
+    dependencies:
+      '@lit-labs/observers': 2.0.4
+      '@spectrum-web-components/action-button': 1.0.1
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/divider': 1.0.1
+      '@spectrum-web-components/icon': 1.0.1
+      '@spectrum-web-components/icons-ui': 1.0.1
+      '@spectrum-web-components/overlay': 1.0.1
+      '@spectrum-web-components/popover': 1.0.1
+      '@spectrum-web-components/reactive-controllers': 1.0.1
+      '@spectrum-web-components/shared': 1.0.1
+
+  '@spectrum-web-components/modal@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+
+  '@spectrum-web-components/overlay@1.0.1':
+    dependencies:
+      '@floating-ui/dom': 1.6.12
+      '@floating-ui/utils': 0.2.8
+      '@spectrum-web-components/action-button': 1.0.1
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/reactive-controllers': 1.0.1
+      '@spectrum-web-components/shared': 1.0.1
+      '@spectrum-web-components/theme': 1.0.1
+
+  '@spectrum-web-components/picker@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/button': 1.0.1
+      '@spectrum-web-components/field-label': 1.0.1
+      '@spectrum-web-components/icon': 1.0.1
+      '@spectrum-web-components/icons-ui': 1.0.1
+      '@spectrum-web-components/icons-workflow': 1.0.1
+      '@spectrum-web-components/menu': 1.0.1
+      '@spectrum-web-components/overlay': 1.0.1
+      '@spectrum-web-components/popover': 1.0.1
+      '@spectrum-web-components/progress-circle': 1.0.1
+      '@spectrum-web-components/reactive-controllers': 1.0.1
+      '@spectrum-web-components/shared': 1.0.1
+      '@spectrum-web-components/tooltip': 1.0.1
+      '@spectrum-web-components/tray': 1.0.1
+
+  '@spectrum-web-components/popover@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/overlay': 1.0.1
+
+  '@spectrum-web-components/progress-circle@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/shared': 1.0.1
+
+  '@spectrum-web-components/reactive-controllers@1.0.1':
+    dependencies:
+      lit: 3.2.1
+
+  '@spectrum-web-components/shared@1.0.1':
+    dependencies:
+      '@lit-labs/observers': 2.0.4
+      '@spectrum-web-components/base': 1.0.1
+      focus-visible: 5.2.1
+
+  '@spectrum-web-components/styles@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+      lit: 3.2.1
+
+  '@spectrum-web-components/tabs@1.0.1':
+    dependencies:
+      '@lit-labs/observers': 2.0.4
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/icon': 1.0.1
+      '@spectrum-web-components/icons-ui': 1.0.1
+      '@spectrum-web-components/reactive-controllers': 1.0.1
+      '@spectrum-web-components/shared': 1.0.1
+
+  '@spectrum-web-components/theme@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/styles': 1.0.1
+
+  '@spectrum-web-components/tooltip@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/overlay': 1.0.1
+      '@spectrum-web-components/reactive-controllers': 1.0.1
+      '@spectrum-web-components/shared': 1.0.1
+
+  '@spectrum-web-components/top-nav@1.0.1':
+    dependencies:
+      '@lit-labs/observers': 2.0.4
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/shared': 1.0.1
+      '@spectrum-web-components/tabs': 1.0.1
+
+  '@spectrum-web-components/tray@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
+      '@spectrum-web-components/modal': 1.0.1
+      '@spectrum-web-components/reactive-controllers': 1.0.1
+      '@spectrum-web-components/shared': 1.0.1
+      '@spectrum-web-components/underlay': 1.0.1
+
+  '@spectrum-web-components/underlay@1.0.1':
+    dependencies:
+      '@spectrum-web-components/base': 1.0.1
 
   '@types/accepts@1.3.7':
     dependencies:
@@ -2069,6 +2382,8 @@ snapshots:
   fill-range@7.1.1:
     dependencies:
       to-regex-range: 5.0.1
+
+  focus-visible@5.2.1: {}
 
   for-in@1.0.2: {}
 

@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../styles/main.css">
     <script type="module" src="../components/card.ts"></script>
     <script type="module" src="../components/modal.ts"></script>
+    <script type="module" src="../spectrum.ts"></script>
   </head>
 
   <body>
@@ -26,6 +27,32 @@
     </header>
 
     <main>
+      <sp-theme system="spectrum" color="dark" scale="large">
+        <sp-button size="xl">I'm a button!</sp-button>
+
+        <sp-action-menu size="xl">
+          <span slot="label">More Actions</span>
+          <sp-menu-item>
+              Deselect
+          </sp-menu-item>
+          <sp-menu-item>
+              Select inverse
+          </sp-menu-item>
+          <sp-menu-item>
+              Feather...
+          </sp-menu-item>
+          <sp-menu-item>
+              Select and mask...
+          </sp-menu-item>
+          <sp-menu-divider></sp-menu-divider>
+          <sp-menu-item>
+              Save selection
+          </sp-menu-item>
+          <sp-menu-item disabled>
+              Make work path
+          </sp-menu-item>
+        </sp-action-menu>
+      </sp-theme>
       <h1>Demos</h1>
       <p>This is a
         <a href="https://github.com/ProjectEvergreen/greenwood-demo-adapter-vercel" title="Link to demonstration repo">Greenwood demonstration repo</a>
