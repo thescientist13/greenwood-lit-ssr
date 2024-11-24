@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "es2022",
+    "lib": ["es2022", "DOM", "DOM.Iterable", "esnext"],
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "allowImportingTsExtensions": true,
+    "noEmit": true
+  },
+  "include": [
+    "./src/**/*.ts"
+  ]
+}
