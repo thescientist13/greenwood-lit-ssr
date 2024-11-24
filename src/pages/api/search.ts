@@ -9,7 +9,7 @@ export const isolation = true;
 
 export async function handler(request: Request) {
   const formData = await request.formData();
-  const term: string = formData.has('term') ? formData.get('term') as string : '';
+  const term = formData.has('term') ? formData.get('term') as string : '';
   const products = (await getProducts())
     .filter((product => {
       return term !== '' && product.title.toLowerCase().includes(term.toLowerCase());

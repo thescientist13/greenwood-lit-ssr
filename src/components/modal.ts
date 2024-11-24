@@ -58,7 +58,7 @@ export class Modal extends LitElement {
   }
 
   firstUpdated() {
-    const button = this.shadowRoot.querySelector('button')
+    const button = this.shadowRoot.querySelector('button');
     const dialog = this.shadowRoot.querySelector('dialog');
 
     button.addEventListener("click", () => dialog.close());
