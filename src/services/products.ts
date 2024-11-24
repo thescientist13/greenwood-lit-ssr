@@ -11,4 +11,4 @@ async function getProducts(): Promise<[Product]> {
   return products;
 }
 
-export { getProducts, Product };
+export { getProducts };

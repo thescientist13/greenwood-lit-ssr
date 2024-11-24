@@ -6,6 +6,8 @@ export default {
   plugins: [
     greenwoodPluginRendererLit(),
     greenwoodPluginAdapterVercel(),
-    greenwoodPluginTypeScript()
+    greenwoodPluginTypeScript({
+      extendConfig: true
+    })
   ]
 };
