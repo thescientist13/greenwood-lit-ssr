@@ -1,6 +1,6 @@
 import { html } from 'lit';
-import { getProducts } from '../services/products.js';
-import '../components/card.js';
+import { getProducts } from '../services/products.ts';
+import '../components/card.ts';
 
 export const isolation = true;
 

@@ -1,9 +1,11 @@
 import { LitElement, html, css } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 
+@customElement('app-modal')
 export class Modal extends LitElement {
-  static properties = {
-    content: '',
-  };
+
+  @property()
+  accessor content: string;
 
   static styles = css`
     dialog {
@@ -37,7 +39,7 @@ export class Modal extends LitElement {
     }
   `;
 
-  updateModal(content) {
+  updateModal(content: string) {
     console.log(`selected item is => ${content}`);
     const dialog = this.shadowRoot.querySelector('dialog');
 
@@ -50,7 +52,7 @@ export class Modal extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    window.addEventListener('update-modal', (event) => {
+    window.addEventListener('update-modal', (event: CustomEvent) => {
       this.updateModal(event.detail.content);
     })
   }
@@ -73,5 +75,3 @@ export class Modal extends LitElement {
     `;
   }
 }
-
-customElements.define('app-modal', Modal);

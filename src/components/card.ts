@@ -1,10 +1,15 @@
 import { LitElement, html, css } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 
+@customElement('app-card')
 export class Card extends LitElement {
-  static properties = {
-    title: '',
-    thumbnail: ''
-  };
+
+  @property()
+  accessor title: string;
+
+  @property()
+  accessor thumbnail: string;
+
   static styles = css`
     div {
       display: flex;
@@ -68,6 +73,7 @@ export class Card extends LitElement {
 
   render() {
     const { title, thumbnail } = this;
+
     if(!title && !thumbnail) {
       return;
     }
@@ -81,5 +87,3 @@ export class Card extends LitElement {
     `;
   }
 }
-
-customElements.define('app-card', Card);

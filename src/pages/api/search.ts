@@ -2,14 +2,14 @@ import { render } from '@lit-labs/ssr';
 import { collectResult } from '@lit-labs/ssr/lib/render-result.js'
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { getProducts } from '../../services/products.js';
-import '../../components/card.js';
+import { getProducts } from '../../services/products.ts';
+import '../../components/card.ts';
 
 export const isolation = true;
 
-export async function handler(request) {
+export async function handler(request: Request) {
   const formData = await request.formData();
-  const term = formData.has('term') ? formData.get('term') : '';
+  const term: string = formData.has('term') ? formData.get('term') as string : '';
   const products = (await getProducts())
     .filter((product => {
       return term !== '' && product.title.toLowerCase().includes(term.toLowerCase());
