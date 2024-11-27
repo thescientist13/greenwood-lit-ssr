@@ -27,6 +27,7 @@
     "lint:types": "tsc"
   },
   "dependencies": {
+    "@uswds/web-components": "^0.0.1-alpha",
     "lit": "^3.2.1"
   },
   "devDependencies": {
