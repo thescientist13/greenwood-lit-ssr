@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@spectrum-css/card':
+        specifier: ^9.3.0
+        version: 9.3.0(@spectrum-css/tokens@14.6.0)
       '@spectrum-web-components/action-menu':
         specifier: ^1.0.1
         version: 1.0.1
@@ -262,6 +265,33 @@ packages:
     resolution: {integrity: sha512-Bvno2/aZT6usSa7lRDL2+hMjVAGjuqaymF1ApZm31JXzniR/hvr14jpU+/z4X6Gt5BPlzosscyJZGUvguXIqeQ==}
     cpu: [x64]
     os: [win32]
+
+  '@spectrum-css/card@9.3.0':
+    resolution: {integrity: sha512-uMWwh/kkkcOSf8W5Kz1TyQjaWxKeTKm1Gm5XaAyHu+IHk+mYJPrDeZNoYfyIqZ+x/RgyVcCzx2H3VXA/uUaaeA==}
+    peerDependencies:
+      '@spectrum-css/actionbutton': '>=6'
+      '@spectrum-css/asset': '>=5'
+      '@spectrum-css/checkbox': '>=9'
+      '@spectrum-css/icon': '>=7'
+      '@spectrum-css/quickaction': '>=3'
+      '@spectrum-css/tokens': '>=14.5.0'
+      '@spectrum-css/typography': '>=6'
+    peerDependenciesMeta:
+      '@spectrum-css/actionbutton':
+        optional: true
+      '@spectrum-css/asset':
+        optional: true
+      '@spectrum-css/checkbox':
+        optional: true
+      '@spectrum-css/icon':
+        optional: true
+      '@spectrum-css/quickaction':
+        optional: true
+      '@spectrum-css/typography':
+        optional: true
+
+  '@spectrum-css/tokens@14.6.0':
+    resolution: {integrity: sha512-v/ko2A2i2v4ShHizSdRkOs0fYBVLdiQe5yN/ECFBjpamd0YJHfZGh4uBIGSG+uZjwWpHbKhRusdCRFJKJ+WNYQ==}
 
   '@spectrum-web-components/action-button@1.0.1':
     resolution: {integrity: sha512-/QYGoDn2PncjJIwInrctjYIusvQ1nbp21ww5Niy9aNNQjm7M2iCnbWFiwIYkC56GMIrN3DTxBlIFPpT3m8DJtQ==}
@@ -1784,6 +1814,12 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.28.0':
     optional: true
+
+  '@spectrum-css/card@9.3.0(@spectrum-css/tokens@14.6.0)':
+    dependencies:
+      '@spectrum-css/tokens': 14.6.0
+
+  '@spectrum-css/tokens@14.6.0': {}
 
   '@spectrum-web-components/action-button@1.0.1':
     dependencies:
