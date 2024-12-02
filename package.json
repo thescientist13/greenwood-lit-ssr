@@ -27,18 +27,12 @@
     "start": "pnpm run serve"
   },
   "dependencies": {
-    "lit": "^3.1.0"
+    "lit": "^3.2.1"
   },
   "devDependencies": {
-    "@greenwood/cli": "~0.30.2",
-    "@greenwood/plugin-adapter-vercel": "~0.30.2",
-    "@greenwood/plugin-renderer-lit": "~0.30.2",
-    "@greenwood/plugin-typescript": "^0.30.2",
-    "rimraf": "^5.0.0"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@greenwood/cli": "patches/@greenwood__cli.patch"
-    }
+    "@greenwood/cli": "~0.31.0-alpha.0",
+    "@greenwood/plugin-adapter-vercel": "~0.31.0-alpha.0",
+    "@greenwood/plugin-renderer-lit": "~0.31.0-alpha.0",
+    "rimraf": "^6.0.1"
   }
 }
