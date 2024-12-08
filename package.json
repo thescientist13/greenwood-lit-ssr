@@ -34,5 +34,10 @@
     "@greenwood/plugin-adapter-vercel": "~0.31.0-alpha.0",
     "@greenwood/plugin-renderer-lit": "~0.31.0-alpha.0",
     "rimraf": "^6.0.1"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@greenwood/cli": "patches/@greenwood__cli.patch"
+    }
   }
 }
