@@ -26,6 +26,9 @@ importers:
       '@greenwood/plugin-renderer-lit':
         specifier: ~0.31.0-alpha.0
         version: 0.31.0-alpha.0(@greenwood/cli@0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y))(lit@3.2.1)
+      '@greenwood/plugin-typescript':
+        specifier: ~0.31.0-alpha.0
+        version: 0.31.0-alpha.0(@greenwood/cli@0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y))
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -47,6 +50,11 @@ packages:
     peerDependencies:
       '@greenwood/cli': ^0.30.0
       lit: ^3.1.0
+
+  '@greenwood/plugin-typescript@0.31.0-alpha.0':
+    resolution: {integrity: sha512-O248Q8Lc0iYCjdH6UATgd5K98ahnafe4ScIIKJYd3Prs9FY/OH9QJjQqVqANSuv0e0G98EAt1YlW4qntGbaOsg==}
+    peerDependencies:
+      '@greenwood/cli': ^0.30.0
 
   '@hapi/bourne@3.0.0':
     resolution: {integrity: sha512-Waj1cwPXJDucOib4a3bAISsKJVb15MKi9IvmTI/7ssVEm6sywXGjVJDhl6/umt1pK1ZS7PacXU3A1PmFKHEZ2w==}
@@ -1329,6 +1337,11 @@ packages:
   typedarray@0.0.6:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
 
+  typescript@5.7.2:
+    resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   undici-types@6.20.0:
     resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
 
@@ -1476,6 +1489,11 @@ snapshots:
       '@lit-labs/ssr': 3.2.2
       '@lit-labs/ssr-client': 1.1.7
       lit: 3.2.1
+
+  '@greenwood/plugin-typescript@0.31.0-alpha.0(@greenwood/cli@0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y))':
+    dependencies:
+      '@greenwood/cli': 0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y)
+      typescript: 5.7.2
 
   '@hapi/bourne@3.0.0': {}
 
@@ -2840,6 +2858,8 @@ snapshots:
       mime-types: 2.1.35
 
   typedarray@0.0.6: {}
+
+  typescript@5.7.2: {}
 
   undici-types@6.20.0: {}
 

@@ -21,9 +21,9 @@
   ],
   "scripts": {
     "clean": "rimraf public .greenwood .vercel",
-    "dev": "node --loader @greenwood/cli/src/loader.js @greenwood/cli develop",
-    "build": "node --loader @greenwood/cli/src/loader.js @greenwood/cli build",
-    "serve": "pnpm run clean && pnpm run build && node --loader @greenwood/cli/src/loader.js @greenwood/cli serve",
+    "dev": "node --loader @greenwood/cli/src/loader.js ./node_modules/@greenwood/cli/src/index.js develop",
+    "build": "node --loader @greenwood/cli/src/loader.js ./node_modules/@greenwood/cli/src/index.js build",
+    "serve": "pnpm run clean && pnpm run build && node --loader @greenwood/cli/src/loader.js ./node_modules/@greenwood/cli/src/index.js serve",
     "start": "pnpm run serve"
   },
   "dependencies": {
@@ -33,6 +33,7 @@
     "@greenwood/cli": "~0.31.0-alpha.0",
     "@greenwood/plugin-adapter-vercel": "~0.31.0-alpha.0",
     "@greenwood/plugin-renderer-lit": "~0.31.0-alpha.0",
+    "@greenwood/plugin-typescript": "~0.31.0-alpha.0",
     "rimraf": "^6.0.1"
   },
   "pnpm": {
