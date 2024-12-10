@@ -8,13 +8,14 @@ You can see the live demo at [https://greenwood-lit-ssr.vercel.app/](https://gre
 
 ## Setup
 
-To run locally
+To run locally:
+1. Install [**pnpm**](https://pnpm.io/installation)
 1. Clone the repo
-1. Run `npm ci`
+1. Run `pnpm i`
 
 You can now run these npm scripts
-- `npm run dev` - Start the demo with Greenwood local dev server
-- `npm start` - Start the demo with a production Greenwood build
+- `pnpm dev` - Start the demo with Greenwood local dev server
+- `pnpm start` - Start the demo with a production Greenwood build
 
 > 👉 **Note**: _If deploying to your own Vercel instance, make sure you set the NodeJS version to `18.x` in your Vercel project's General settings_.
 
