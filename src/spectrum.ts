@@ -10,5 +10,6 @@ import '@spectrum-web-components/menu/sp-menu-divider.js';
 import '@spectrum-web-components/menu/sp-menu-group.js';
 
 import SpectrumCard from '@spectrum-css/card' with { type: 'css' };
+import SpectrumTokens from "@spectrum-css/tokens" with { type: "css" };
 
-console.log({ SpectrumCard });
+console.log({ SpectrumCard, SpectrumTokens });
