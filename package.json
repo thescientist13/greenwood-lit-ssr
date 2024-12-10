@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@spectrum-css/card": "^9.3.0",
+    "@spectrum-css/tokens": "^14.6.0",
     "@spectrum-web-components/action-menu": "^1.0.1",
     "@spectrum-web-components/button": "^1.0.1",
     "@spectrum-web-components/menu": "^1.0.1",
