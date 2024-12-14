@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  '@greenwood/cli':
-    hash: sidnbo6ceotdfjxkxr3z3wfv2y
-    path: patches/@greenwood__cli.patch
-
 importers:
 
   .:
@@ -18,41 +13,41 @@ importers:
         version: 3.2.1
     devDependencies:
       '@greenwood/cli':
-        specifier: ~0.31.0-alpha.0
-        version: 0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y)
+        specifier: ~0.31.0-alpha.1
+        version: 0.31.0-alpha.1
       '@greenwood/plugin-adapter-vercel':
-        specifier: ~0.31.0-alpha.0
-        version: 0.31.0-alpha.0(@greenwood/cli@0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y))
+        specifier: ~0.31.0-alpha.1
+        version: 0.31.0-alpha.1(@greenwood/cli@0.31.0-alpha.1)
       '@greenwood/plugin-renderer-lit':
-        specifier: ~0.31.0-alpha.0
-        version: 0.31.0-alpha.0(@greenwood/cli@0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y))(lit@3.2.1)
+        specifier: ~0.31.0-alpha.1
+        version: 0.31.0-alpha.1(@greenwood/cli@0.31.0-alpha.1)(lit@3.2.1)
       '@greenwood/plugin-typescript':
-        specifier: ~0.31.0-alpha.0
-        version: 0.31.0-alpha.0(@greenwood/cli@0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y))
+        specifier: ~0.31.0-alpha.1
+        version: 0.31.0-alpha.1(@greenwood/cli@0.31.0-alpha.1)
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
 
 packages:
 
-  '@greenwood/cli@0.31.0-alpha.0':
-    resolution: {integrity: sha512-wDhUGqCxc29l1jlGRcV3TCCgP255Qg3hQGFnTyTD7m2bLKMni8NN76YeqK8SevoS5DcmLMbu05NzXixJISMRrQ==}
+  '@greenwood/cli@0.31.0-alpha.1':
+    resolution: {integrity: sha512-KXU7EL9v5m7ugvtHo8rX92YBFwD3AEukz8feXrA7BaU32z6dCf0mkUBs6zqyAIQGaou+6Ty4aHznpVRdYcNNMA==}
     engines: {node: '>=18.20.0'}
     hasBin: true
 
-  '@greenwood/plugin-adapter-vercel@0.31.0-alpha.0':
-    resolution: {integrity: sha512-s02AHctJUTbNK4nSAZUEp1cnRGE1/XdUgGBQGruffNE99BJF3YaKtslcxwOgTsAUGClz2Kz0UfSmeHiq7lkn9w==}
+  '@greenwood/plugin-adapter-vercel@0.31.0-alpha.1':
+    resolution: {integrity: sha512-NgOOW5Hk3ktYDpEbJH5cVVKYK25xNogc3oDcTxKSI0//ORcE3dX2AGpS+eusW+C+MtIcoyuKntcPwPCFHLkNBw==}
     peerDependencies:
       '@greenwood/cli': ^0.30.0
 
-  '@greenwood/plugin-renderer-lit@0.31.0-alpha.0':
-    resolution: {integrity: sha512-Ype7J5Bwg00gkKQgYadA52umqwa+beIbetRj3yRW/wKcUAua5kqu6zmc1RDnHg4qGdKzUUehHXHk5bET65oCDQ==}
+  '@greenwood/plugin-renderer-lit@0.31.0-alpha.1':
+    resolution: {integrity: sha512-Kalts3IVHd7g27HgT9y9Y2Cu/Bu5ssOHauknb8X+IxSK93wrGq/9hoIcLR1+kcGpDEyGmBy4U0bfo2muY2yM6g==}
     peerDependencies:
       '@greenwood/cli': ^0.30.0
       lit: ^3.1.0
 
-  '@greenwood/plugin-typescript@0.31.0-alpha.0':
-    resolution: {integrity: sha512-O248Q8Lc0iYCjdH6UATgd5K98ahnafe4ScIIKJYd3Prs9FY/OH9QJjQqVqANSuv0e0G98EAt1YlW4qntGbaOsg==}
+  '@greenwood/plugin-typescript@0.31.0-alpha.1':
+    resolution: {integrity: sha512-OclyYCpvtA04+aof/QymwHbM+zLt28Vm3ogIJVqB45yTSbiYoC107ewJq/5YFkKWWFAWbWhePfMEenFERdBQ/Q==}
     peerDependencies:
       '@greenwood/cli': ^0.30.0
 
@@ -1450,7 +1445,7 @@ packages:
 
 snapshots:
 
-  '@greenwood/cli@0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y)':
+  '@greenwood/cli@0.31.0-alpha.1':
     dependencies:
       '@rollup/plugin-commonjs': 28.0.1(rollup@4.28.0)
       '@rollup/plugin-node-resolve': 15.3.0(rollup@4.28.0)
@@ -1479,20 +1474,20 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@greenwood/plugin-adapter-vercel@0.31.0-alpha.0(@greenwood/cli@0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y))':
+  '@greenwood/plugin-adapter-vercel@0.31.0-alpha.1(@greenwood/cli@0.31.0-alpha.1)':
     dependencies:
-      '@greenwood/cli': 0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y)
+      '@greenwood/cli': 0.31.0-alpha.1
 
-  '@greenwood/plugin-renderer-lit@0.31.0-alpha.0(@greenwood/cli@0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y))(lit@3.2.1)':
+  '@greenwood/plugin-renderer-lit@0.31.0-alpha.1(@greenwood/cli@0.31.0-alpha.1)(lit@3.2.1)':
     dependencies:
-      '@greenwood/cli': 0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y)
+      '@greenwood/cli': 0.31.0-alpha.1
       '@lit-labs/ssr': 3.2.2
       '@lit-labs/ssr-client': 1.1.7
       lit: 3.2.1
 
-  '@greenwood/plugin-typescript@0.31.0-alpha.0(@greenwood/cli@0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y))':
+  '@greenwood/plugin-typescript@0.31.0-alpha.1(@greenwood/cli@0.31.0-alpha.1)':
     dependencies:
-      '@greenwood/cli': 0.31.0-alpha.0(patch_hash=sidnbo6ceotdfjxkxr3z3wfv2y)
+      '@greenwood/cli': 0.31.0-alpha.1
       typescript: 5.7.2
 
   '@hapi/bourne@3.0.0': {}
