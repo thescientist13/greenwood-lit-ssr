@@ -30,10 +30,10 @@
     "lit": "^3.2.1"
   },
   "devDependencies": {
-    "@greenwood/cli": "~0.31.0-alpha.1",
-    "@greenwood/plugin-adapter-vercel": "~0.31.0-alpha.1",
-    "@greenwood/plugin-renderer-lit": "~0.31.0-alpha.1",
-    "@greenwood/plugin-typescript": "~0.31.0-alpha.1",
+    "@greenwood/cli": "~0.31.0-alpha.2",
+    "@greenwood/plugin-adapter-vercel": "~0.31.0-alpha.2",
+    "@greenwood/plugin-renderer-lit": "~0.31.0-alpha.2",
+    "@greenwood/plugin-typescript": "~0.31.0-alpha.2",
     "rimraf": "^6.0.1"
   }
 }
