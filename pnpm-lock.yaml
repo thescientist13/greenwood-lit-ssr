@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@greenwood/cli':
+    hash: v76r3xexrhq25eicglx2oi3jki
+    path: patches/@greenwood__cli.patch
+
 importers:
 
   .:
@@ -14,16 +19,16 @@ importers:
     devDependencies:
       '@greenwood/cli':
         specifier: ~0.31.0-alpha.2
-        version: 0.31.0-alpha.2
+        version: 0.31.0-alpha.2(patch_hash=v76r3xexrhq25eicglx2oi3jki)
       '@greenwood/plugin-adapter-vercel':
         specifier: ~0.31.0-alpha.2
-        version: 0.31.0-alpha.2(@greenwood/cli@0.31.0-alpha.2)
+        version: 0.31.0-alpha.2(@greenwood/cli@0.31.0-alpha.2(patch_hash=v76r3xexrhq25eicglx2oi3jki))
       '@greenwood/plugin-renderer-lit':
         specifier: ~0.31.0-alpha.2
-        version: 0.31.0-alpha.2(@greenwood/cli@0.31.0-alpha.2)(lit@3.2.1)
+        version: 0.31.0-alpha.2(@greenwood/cli@0.31.0-alpha.2(patch_hash=v76r3xexrhq25eicglx2oi3jki))(lit@3.2.1)
       '@greenwood/plugin-typescript':
         specifier: ~0.31.0-alpha.2
-        version: 0.31.0-alpha.2(@greenwood/cli@0.31.0-alpha.2)
+        version: 0.31.0-alpha.2(@greenwood/cli@0.31.0-alpha.2(patch_hash=v76r3xexrhq25eicglx2oi3jki))
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -1445,7 +1450,7 @@ packages:
 
 snapshots:
 
-  '@greenwood/cli@0.31.0-alpha.2':
+  '@greenwood/cli@0.31.0-alpha.2(patch_hash=v76r3xexrhq25eicglx2oi3jki)':
     dependencies:
       '@rollup/plugin-commonjs': 28.0.1(rollup@4.28.0)
       '@rollup/plugin-node-resolve': 15.3.0(rollup@4.28.0)
@@ -1474,20 +1479,20 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@greenwood/plugin-adapter-vercel@0.31.0-alpha.2(@greenwood/cli@0.31.0-alpha.2)':
+  '@greenwood/plugin-adapter-vercel@0.31.0-alpha.2(@greenwood/cli@0.31.0-alpha.2(patch_hash=v76r3xexrhq25eicglx2oi3jki))':
     dependencies:
-      '@greenwood/cli': 0.31.0-alpha.2
+      '@greenwood/cli': 0.31.0-alpha.2(patch_hash=v76r3xexrhq25eicglx2oi3jki)
 
-  '@greenwood/plugin-renderer-lit@0.31.0-alpha.2(@greenwood/cli@0.31.0-alpha.2)(lit@3.2.1)':
+  '@greenwood/plugin-renderer-lit@0.31.0-alpha.2(@greenwood/cli@0.31.0-alpha.2(patch_hash=v76r3xexrhq25eicglx2oi3jki))(lit@3.2.1)':
     dependencies:
-      '@greenwood/cli': 0.31.0-alpha.2
+      '@greenwood/cli': 0.31.0-alpha.2(patch_hash=v76r3xexrhq25eicglx2oi3jki)
       '@lit-labs/ssr': 3.2.2
       '@lit-labs/ssr-client': 1.1.7
       lit: 3.2.1
 
-  '@greenwood/plugin-typescript@0.31.0-alpha.2(@greenwood/cli@0.31.0-alpha.2)':
+  '@greenwood/plugin-typescript@0.31.0-alpha.2(@greenwood/cli@0.31.0-alpha.2(patch_hash=v76r3xexrhq25eicglx2oi3jki))':
     dependencies:
-      '@greenwood/cli': 0.31.0-alpha.2
+      '@greenwood/cli': 0.31.0-alpha.2(patch_hash=v76r3xexrhq25eicglx2oi3jki)
       typescript: 5.7.2
 
   '@hapi/bourne@3.0.0': {}

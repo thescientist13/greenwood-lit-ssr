@@ -1,0 +1,12 @@
+diff --git a/src/register.js b/src/register.js
+new file mode 100644
+index 0000000000000000000000000000000000000000..e5ea8bb999b2729a825a265e445a9a024a68057f
+--- /dev/null
++++ b/src/register.js
+@@ -0,0 +1,6 @@
++import { register } from 'node:module';
++
++register('./loader.js', import.meta.url);
++
++// TODO can we do this for the user?
++// await import('./index.js');
