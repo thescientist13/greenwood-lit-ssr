@@ -5,7 +5,9 @@ import { greenwoodPluginTypeScript } from '@greenwood/plugin-typescript';
 export default {
   plugins: [
     greenwoodPluginRendererLit(),
-    greenwoodPluginAdapterVercel(),
+    greenwoodPluginAdapterVercel({
+      runtime: 'nodejs22.x'
+    }),
     greenwoodPluginTypeScript({
       extendConfig: true
     })
