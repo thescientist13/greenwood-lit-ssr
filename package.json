@@ -37,6 +37,7 @@
     "@spectrum-web-components/styles": "^1.0.1",
     "@spectrum-web-components/theme": "^1.0.1",
     "@spectrum-web-components/top-nav": "^1.0.1",
+    "@uswds/web-components": "^0.0.1-alpha",
     "lit": "^3.2.1",
     "signal-polyfill": "^0.2.2",
     "signal-utils": "^0.21.1"
