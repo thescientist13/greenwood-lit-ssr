@@ -1,6 +1,8 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { SignalObject } from 'signal-utils/object';
 
+console.log({ SignalObject })
 @customElement('app-card')
 export class Card extends LitElement {
 

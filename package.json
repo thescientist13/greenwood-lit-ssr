@@ -36,7 +36,9 @@
     "@spectrum-web-components/styles": "^1.0.1",
     "@spectrum-web-components/theme": "^1.0.1",
     "@spectrum-web-components/top-nav": "^1.0.1",
-    "lit": "^3.2.1"
+    "lit": "^3.2.1",
+    "signal-polyfill": "^0.2.2",
+    "signal-utils": "^0.21.1"
   },
   "devDependencies": {
     "@greenwood/cli": "~0.31.0-alpha.5",
@@ -44,5 +46,10 @@
     "@greenwood/plugin-renderer-lit": "~0.31.0-alpha.5",
     "@greenwood/plugin-typescript": "~0.31.0-alpha.5",
     "rimraf": "^6.0.1"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@greenwood/cli": "patches/@greenwood__cli.patch"
+    }
   }
 }
