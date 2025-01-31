@@ -27,6 +27,7 @@
     "start": "pnpm run serve"
   },
   "dependencies": {
+    "@microsoft/fast-element": "^2.0.1",
     "lit": "^3.2.1"
   },
   "devDependencies": {

@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="../styles/main.css">
     <script type="module" src="../components/card.ts"></script>
     <script type="module" src="../components/modal.ts"></script>
+    <script type="module" src="../components/hello-world.ts"></script>
+    <script type="module" src="../components/count.js"></script>
   </head>
 
   <body>
@@ -31,6 +33,8 @@
         <a href="https://github.com/ProjectEvergreen/greenwood-demo-adapter-vercel" title="Link to demonstration repo">Greenwood demonstration repo</a>
         showcasing various features deployed to and running on Vercel serverless functions.
       </p>
+      <hello-world name="World"></hello-world>
+      <my-count name="42"></my-count>
       <section class="products-cards-container">
         <page-outlet></page-outlet>
       </section>
