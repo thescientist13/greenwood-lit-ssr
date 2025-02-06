@@ -6,9 +6,11 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "allowImportingTsExtensions": true,
-    "noEmit": true
+    "noEmit": true,
+    "checkJs": true
   },
   "include": [
-    "./src/**/*.ts"
+    "./src/**/*.ts",
+    "./src/**/*.js"
   ]
 }
