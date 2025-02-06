@@ -24,7 +24,8 @@
     "dev": "node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js develop",
     "build": "node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js build",
     "serve": "pnpm run clean && pnpm run build && node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js serve",
-    "start": "pnpm run serve"
+    "start": "pnpm run serve",
+    "lint:types": "tsc --project ./tsconfig.json"
   },
   "dependencies": {
     "lit": "^3.2.1"

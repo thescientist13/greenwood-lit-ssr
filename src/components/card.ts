@@ -71,8 +71,11 @@ export class Card extends LitElement {
     window.dispatchEvent(itemSelectedEvent);
   }
 
-  render() {
+  async render() {
     const { title, thumbnail } = this;
+
+    const x = new URL('https://www.example.com');
+    await import(x);
 
     if(!title && !thumbnail) {
       return;
