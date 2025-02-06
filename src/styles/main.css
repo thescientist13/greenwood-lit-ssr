@@ -16,7 +16,6 @@ header, footer {
   color: var(--color-white);
   background-color: rgb(25, 42, 39);
   text-align: center;
-  height: 50px;
   padding: 15px 0 0;
 }
 
