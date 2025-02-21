@@ -9,10 +9,11 @@ You can see the live demo at [https://greenwood-lit-ssr.vercel.app/](https://gre
 ## Setup
 
 To run locally:
-1. Install [**pnpm**](https://pnpm.io/installation)
+
+1. Install [**Bun** `>= 1.2`](https://bun.sh/docs/installation)
 1. Clone the repo
-1. Run `pnpm i`
+1. Run `bun i`
 
 You can now run these npm scripts
-- `pnpm dev` - Start the demo with Greenwood local dev server
-- `pnpm start` - Start the demo with a production Greenwood build
+- `bun run --bun dev` - Start the demo with Greenwood local dev server
+- `bun run --bun start` - Start the demo with a production Greenwood build

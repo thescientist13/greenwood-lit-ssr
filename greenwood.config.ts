@@ -1,6 +1,7 @@
 import { greenwoodPluginAdapterVercel } from '@greenwood/plugin-adapter-vercel';
 import { greenwoodPluginRendererLit } from '@greenwood/plugin-renderer-lit';
-import { greenwoodPluginTypeScript } from '@greenwood/plugin-typescript';
+import { builtInTypeScriptPlugin } from "./built-in-typescript-plugin.ts";
+// import { greenwoodPluginTypeScript } from '@greenwood/plugin-typescript';
 
 export default {
   plugins: [
@@ -8,8 +9,9 @@ export default {
     greenwoodPluginAdapterVercel({
       runtime: 'nodejs22.x'
     }),
-    greenwoodPluginTypeScript({
-      extendConfig: true
-    })
+    builtInTypeScriptPlugin(),
+    // greenwoodPluginTypeScript({
+    //   extendConfig: true
+    // })
   ]
 };
