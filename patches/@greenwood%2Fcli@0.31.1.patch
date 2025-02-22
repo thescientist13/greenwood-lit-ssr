@@ -1,0 +1,85 @@
+diff --git a/src/config/rollup.config.js b/src/config/rollup.config.js
+index d82b221c5923c835fd83f0f5115b1d888bfb03d1..2766f2f287bbf3a7dc319ed669fef239d647fafa 100644
+--- a/src/config/rollup.config.js
++++ b/src/config/rollup.config.js
+@@ -337,7 +337,7 @@ function greenwoodImportMetaUrl(compilation) {
+         const assetContents = await fs.promises.readFile(url);
+         const name = assetName.replace(`.${assetExtension}`, "");
+         const request = new Request(url, { headers: { Accept: "text/javascript" } });
+-        let bundleExtensions = ["js"];
++        let bundleExtensions = ["js", "ts"];
+ 
+         for (const plugin of customResourcePlugins) {
+           if (plugin.shouldServe && (await plugin.shouldServe(url, request))) {
+diff --git a/src/lib/layout-utils.js b/src/lib/layout-utils.js
+index fc5548ec78b28d12ae0602188ccbb03d288b3ce4..d592abe80bb146db4a1ee8429584aa82f2448f29 100644
+--- a/src/lib/layout-utils.js
++++ b/src/lib/layout-utils.js
+@@ -1,5 +1,5 @@
+ import fs from "fs/promises";
+-import htmlparser from "node-html-parser";
++import * as htmlparser from "node-html-parser";
+ import { checkResourceExists } from "./resource-utils.js";
+ import { Worker } from "worker_threads";
+ import { asyncFilter } from "./async-utils.js";
+diff --git a/src/lib/resource-utils.js b/src/lib/resource-utils.js
+index 0fc513d8af755ff888f05cc87ac6eda9a64128e4..0d9e0a4f19349c5e963bc3b9216c0f7fa385f2da 100644
+--- a/src/lib/resource-utils.js
++++ b/src/lib/resource-utils.js
+@@ -1,7 +1,7 @@
+ import fs from "fs/promises";
+ import { hashString } from "./hashing-utils.js";
+ import { getResolvedHrefFromPathnameShortcut } from "../lib/node-modules-utils.js";
+-import htmlparser from "node-html-parser";
++import * as htmlparser from "node-html-parser";
+ import { asyncMap } from "./async-utils.js";
+ 
+ async function modelResource(
+diff --git a/src/lifecycles/config.js b/src/lifecycles/config.js
+index 90cc50ef151f557873ef0bb514ab66b77be47ae0..953efcf2b702e9f9b1fee63246ed685c195a97bf 100644
+--- a/src/lifecycles/config.js
++++ b/src/lifecycles/config.js
+@@ -81,7 +81,7 @@ const readAndMergeConfig = async () => {
+   return new Promise(async (resolve, reject) => {
+     try {
+       // deep clone of default config
+-      const configUrl = new URL("./greenwood.config.js", cwd);
++      const configUrl = new URL("./greenwood.config.ts", cwd);
+       let customConfig = Object.assign({}, defaultConfig);
+       let hasConfigFile;
+       let isSPA;
+diff --git a/src/lifecycles/graph.js b/src/lifecycles/graph.js
+index 2947f257ce2ad33647d3ac8ceae202b9b0d0ec52..9e4c787f8eb5cb2b3dff1bada8156624c3f1ce1a 100644
+--- a/src/lifecycles/graph.js
++++ b/src/lifecycles/graph.js
+@@ -89,7 +89,7 @@ const generateGraph = async (compilation) => {
+             }
+ 
+             const isStatic = isCustom === "static" || extension === ".md" || extension === ".html";
+-            const isDynamic = isCustom === "dynamic" || extension === ".js";
++            const isDynamic = isCustom === "dynamic" || extension === ".js" || extension === '.ts';
+             const isPage = isStatic || isDynamic;
+             let route = `${relativePagePath.replace(".", "").replace(`${extension}`, "")}`;
+             let fileContents;
+@@ -97,7 +97,7 @@ const generateGraph = async (compilation) => {
+             if (isApiRoute) {
+               const extension = filenameUrl.pathname.split(".").pop();
+ 
+-              if (extension !== "js" && !isCustom) {
++              if (extension !== "js" && extension !== "ts"&& !isCustom) {
+                 console.warn(`${filenameUrl} is not a supported API file extension, skipping...`);
+                 return;
+               }
+diff --git a/src/plugins/resource/plugin-standard-html.js b/src/plugins/resource/plugin-standard-html.js
+index 0ed408965b55c8c4aa9e083a5e9cc26c12f13b23..aaf387fbabe7ea8fd647c9268c19baed39d6dd01 100644
+--- a/src/plugins/resource/plugin-standard-html.js
++++ b/src/plugins/resource/plugin-standard-html.js
+@@ -15,7 +15,7 @@ import { getUserScripts, getPageLayout, getAppLayout } from "../../lib/layout-ut
+ import { requestAsObject } from "../../lib/resource-utils.js";
+ import { unified } from "unified";
+ import { Worker } from "worker_threads";
+-import htmlparser from "node-html-parser";
++import * as htmlparser from "node-html-parser";
+ 
+ class StandardHtmlResource extends ResourceInterface {
+   constructor(compilation, options) {

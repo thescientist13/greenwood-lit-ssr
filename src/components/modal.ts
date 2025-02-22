@@ -1,11 +1,17 @@
 import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import {unsafeHTML} from 'lit-html/directives/unsafe-html.js';
+// import { customElement, property } from 'lit/decorators.js';
+import logo from "./greenwood-logo-leaf.svg?type=raw";
 
-@customElement('app-modal')
+// TODO amaro / SWC does not support decorators yet?
+// @customElement('app-modal')
 export class Modal extends LitElement {
 
-  @property()
-  accessor content: string;
+  static properties = {
+    content: {type: String},
+  };
+
+  content: string;
 
   static styles = css`
     dialog {
@@ -34,7 +40,7 @@ export class Modal extends LitElement {
     }
     @media(max-width: 768px) {
       dialog {
-        width: 80%;
+        width: 80%!important;
       }
     }
   `;
@@ -69,9 +75,13 @@ export class Modal extends LitElement {
 
     return html`
       <dialog>
+        ${unsafeHTML(logo)}
         <h3 id="content">${content}</h3>
         <button autofocus>Close</button>
       </dialog>
     `;
   }
 }
+
+// TODO amaro / SWC does not support decorators yet?
+customElements.define('app-modal', Modal);

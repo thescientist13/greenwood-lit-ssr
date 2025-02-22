@@ -1,14 +1,17 @@
 import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+// import { customElement, property } from 'lit/decorators.js';
 
-@customElement('app-card')
+// TODO amaro / SWC does not support decorators yet?
+// @customElement('app-card')
 export class Card extends LitElement {
 
-  @property()
-  accessor title: string;
+  static properties = {
+    title: {type: String},
+    thumbnail: {type: String},
+  };
 
-  @property()
-  accessor thumbnail: string;
+  title: string = "";
+  thumbnail: string = "";
 
   static styles = css`
     div {
@@ -87,3 +90,5 @@ export class Card extends LitElement {
     `;
   }
 }
+
+customElements.define('app-card', Card);

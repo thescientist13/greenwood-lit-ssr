@@ -7,10 +7,11 @@
     "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "noEmit": true,
-    "checkJs": true
+    "checkJs": true,
+    "skipLibCheck": true
   },
   "include": [
-    "./src/**/*.ts",
-    "./src/**/*.js"
+    "./*.ts",
+    "./src/**/*.ts"
   ]
 }

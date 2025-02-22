@@ -21,10 +21,10 @@
   ],
   "scripts": {
     "clean": "rimraf public .greenwood .vercel",
-    "dev": "node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js develop",
-    "build": "node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js build",
-    "serve": "pnpm run clean && pnpm run build && node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js serve",
-    "start": "pnpm run serve",
+    "dev": "greenwood develop",
+    "build": "greenwood build",
+    "serve": "greenwood serve",
+    "start": "bun run --bun clean && bun run --bun build && bun run --bun serve",
     "lint:types": "tsc --project ./tsconfig.json"
   },
   "dependencies": {
@@ -33,8 +33,13 @@
   "devDependencies": {
     "@greenwood/cli": "~0.31.0",
     "@greenwood/plugin-adapter-vercel": "~0.31.0",
+    "@greenwood/plugin-import-raw": "~0.31.0",
     "@greenwood/plugin-renderer-lit": "~0.31.0",
-    "@greenwood/plugin-typescript": "~0.31.0",
+    "@types/bun": "^1.2.3",
+    "amaro": "^0.4.0",
     "rimraf": "^6.0.1"
+  },
+  "patchedDependencies": {
+    "@greenwood/cli@0.31.1": "patches/@greenwood%2Fcli@0.31.1.patch"
   }
 }
