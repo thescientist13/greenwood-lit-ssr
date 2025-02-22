@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit';
 import {unsafeHTML} from 'lit-html/directives/unsafe-html.js';
-import logo from "./greenwood-logo-leaf.gwd?type=raw";
+import logo from "./greenwood-logo-leaf.svg?type=raw";
 // import { customElement, property } from 'lit/decorators.js';
 
 // TODO amaro / SWC does not support decorators yet?
