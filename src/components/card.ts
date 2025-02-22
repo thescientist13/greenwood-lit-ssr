@@ -1,6 +1,4 @@
 import { LitElement, html, css } from 'lit';
-import {unsafeHTML} from 'lit-html/directives/unsafe-html.js';
-import logo from "./greenwood-logo-leaf.svg?type=raw";
 // import { customElement, property } from 'lit/decorators.js';
 
 // TODO amaro / SWC does not support decorators yet?
@@ -85,7 +83,6 @@ export class Card extends LitElement {
 
     return html`
       <div>
-        ${unsafeHTML(logo)}
         <h3>${title}</h3>
         <img src="${thumbnail}" alt="${title}" loading="lazy" width="100%">
         <button @click="${this.selectItem}">View Item Details</button>
