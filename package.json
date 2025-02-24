@@ -28,6 +28,7 @@
     "lint:types": "tsc --project ./tsconfig.json"
   },
   "dependencies": {
+    "@microsoft/fast-element": "^2.0.1",
     "lit": "^3.2.1"
   },
   "devDependencies": {

@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@microsoft/fast-element':
+        specifier: ^2.0.1
+        version: 2.0.1
       lit:
         specifier: ^3.2.1
         version: 3.2.1
@@ -91,6 +94,9 @@ packages:
 
   '@lit/reactive-element@2.0.4':
     resolution: {integrity: sha512-GFn91inaUa2oHLak8awSIigYz0cU0Payr1rcFsrkf5OJ5eSPxElyZfKh0f2p9FsTiZWXQdWGJeXZICEfXXYSXQ==}
+
+  '@microsoft/fast-element@2.0.1':
+    resolution: {integrity: sha512-JRAJS/Ib/Z10xSvTIjWEDsnBvKdJR1J0Q1AGttZnpkceih3GE3QfPgrDGhvIkKVF5raaHRfChIJkLYE2Jw7crQ==}
 
   '@parse5/tools@0.3.0':
     resolution: {integrity: sha512-zxRyTHkqb7WQMV8kTNBKWb1BeOFUKXBXTBWuxg9H9hfvQB3IwP6Iw2U75Ia5eyRxPNltmY7E8YAlz6zWwUnjKg==}
@@ -1579,6 +1585,8 @@ snapshots:
   '@lit/reactive-element@2.0.4':
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.2.1
+
+  '@microsoft/fast-element@2.0.1': {}
 
   '@parse5/tools@0.3.0':
     dependencies:
