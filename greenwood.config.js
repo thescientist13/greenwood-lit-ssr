@@ -4,6 +4,7 @@ import { greenwoodPluginTypeScript } from '@greenwood/plugin-typescript';
 import { greenwoodPluginImportRaw } from '@greenwood/plugin-import-raw';
 
 export default {
+  prerender: true,
   plugins: [
     greenwoodPluginImportRaw(),
     greenwoodPluginRendererLit(),
