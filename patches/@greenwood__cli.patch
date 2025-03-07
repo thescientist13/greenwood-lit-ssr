@@ -1,0 +1,874 @@
+diff --git a/src/lifecycles/config.js b/src/lifecycles/config.js
+index 0b5a59f937c9be90421e07a71f93011bdad01894..30bcea56590c3f82141b25670e90101f08e0118f 100644
+--- a/src/lifecycles/config.js
++++ b/src/lifecycles/config.js
+@@ -1,110 +1,157 @@
+-import fs from 'fs/promises';
+-import { checkResourceExists } from '../lib/resource-utils.js';
++// @ts-nocheck
++import fs from "fs/promises";
++import { checkResourceExists } from "../lib/resource-utils.js";
+ 
+ const cwd = new URL(`file://${process.cwd()}/`);
+-const greenwoodPluginsDirectoryUrl = new URL('../plugins/', import.meta.url);
++const greenwoodPluginsDirectoryUrl = new URL("../plugins/", import.meta.url);
+ const PLUGINS_FLATTENED_DEPTH = 2;
+ 
+ // get and "tag" all plugins provided / maintained by the @greenwood/cli
+ // and include as the default set, with all user plugins getting appended
+-const greenwoodPlugins = (await Promise.all([
+-  new URL('./copy/', greenwoodPluginsDirectoryUrl),
+-  new URL('./renderer/', greenwoodPluginsDirectoryUrl),
+-  new URL('./resource/', greenwoodPluginsDirectoryUrl),
+-  new URL('./server/', greenwoodPluginsDirectoryUrl)
+-].map(async (pluginDirectoryUrl) => {
+-  const files = await fs.readdir(pluginDirectoryUrl);
+-
+-  return await Promise.all(files.map(async(file) => {
+-    const importUrl = new URL(`./${file}`, pluginDirectoryUrl);
+-    const pluginImport = await import(importUrl);
+-    const plugin = pluginImport[Object.keys(pluginImport)[0]];
+-
+-    return Array.isArray(plugin)
+-      ? plugin
+-      : [plugin];
+-  }));
+-}))).flat(PLUGINS_FLATTENED_DEPTH).map((plugin) => {
+-  const isStandardStaticResource = (plugin.name.startsWith('plugin-standard') && plugin.name !== 'plugin-standard-html') || plugin.name === 'plugin-source-maps';
+-
+-  return {
+-    isGreenwoodDefaultPlugin: true,
+-    isStandardStaticResource,
+-    ...plugin
+-  };
+-});
+-
+-const optimizations = ['default', 'none', 'static', 'inline'];
+-const pluginTypes = ['copy', 'context', 'resource', 'rollup', 'server', 'source', 'renderer', 'adapter'];
++const greenwoodPlugins = (
++  await Promise.all(
++    [
++      new URL("./copy/", greenwoodPluginsDirectoryUrl),
++      new URL("./renderer/", greenwoodPluginsDirectoryUrl),
++      new URL("./resource/", greenwoodPluginsDirectoryUrl),
++      new URL("./server/", greenwoodPluginsDirectoryUrl),
++    ].map(async (pluginDirectoryUrl) => {
++      const files = await fs.readdir(pluginDirectoryUrl);
++
++      return await Promise.all(
++        files.map(async (file) => {
++          const importUrl = new URL(`./${file}`, pluginDirectoryUrl);
++          // @ts-expect-error see https://github.com/microsoft/TypeScript/issues/42866
++          const pluginImport = await import(importUrl);
++          const plugin = pluginImport[Object.keys(pluginImport)[0]];
++
++          return Array.isArray(plugin) ? plugin : [plugin];
++        }),
++      );
++    }),
++  )
++)
++  .flat(PLUGINS_FLATTENED_DEPTH)
++  .map((plugin) => {
++    const isStandardStaticResource =
++      (plugin.name.startsWith("plugin-standard") && plugin.name !== "plugin-standard-html") ||
++      plugin.name === "plugin-source-maps";
++
++    return {
++      isGreenwoodDefaultPlugin: true,
++      isStandardStaticResource,
++      ...plugin,
++    };
++  });
++
++const optimizations = ["default", "none", "static", "inline"];
++const pluginTypes = [
++  "copy",
++  "context",
++  "resource",
++  "rollup",
++  "server",
++  "source",
++  "renderer",
++  "adapter",
++];
+ const defaultConfig = {
+-  workspace: new URL('./src/', cwd),
++  workspace: new URL("./src/", cwd),
+   devServer: {
+     hud: true,
+     port: 1984,
+-    extensions: []
++    extensions: [],
+   },
+   port: 8080,
+-  basePath: '',
++  basePath: "",
+   optimization: optimizations[0],
+   activeContent: false,
+   plugins: greenwoodPlugins,
+   markdown: { plugins: [] },
+   prerender: false,
+   isolation: false,
+-  pagesDirectory: 'pages',
+-  layoutsDirectory: 'layouts',
++  pagesDirectory: "pages",
++  layoutsDirectory: "layouts",
+   polyfills: {
+     importAttributes: null, // or ['css', 'json']
+-    importMaps: false
+-  }
++    importMaps: false,
++  },
++  useTsc: false,
+ };
+ 
+-const readAndMergeConfig = async() => {
++const readAndMergeConfig = async () => {
+   // eslint-disable-next-line no-async-promise-executor
+   return new Promise(async (resolve, reject) => {
+     try {
++      // check for greenwood.config.ts or greenwood.config.js
++      const jsConfigUrl = new URL("./greenwood.config.js", cwd);
++      const tsConfigUrl = new URL("./greenwood.config.ts", cwd);
++      const configUrl = (await checkResourceExists(tsConfigUrl))
++        ? tsConfigUrl
++        : (await checkResourceExists(jsConfigUrl))
++          ? jsConfigUrl
++          : null;
+       // deep clone of default config
+-      const configUrl = new URL('./greenwood.config.js', cwd);
+       let customConfig = Object.assign({}, defaultConfig);
+-      let hasConfigFile;
+       let isSPA;
+ 
+-      // check for greenwood.config.js
+-      if (await checkResourceExists(configUrl)) {
+-        hasConfigFile = true;
+-      }
+-
+       // check for SPA
+-      if (await checkResourceExists(new URL('./index.html', customConfig.workspace))) {
++      if (await checkResourceExists(new URL("./index.html", customConfig.workspace))) {
+         isSPA = true;
+       }
+ 
+-      if (hasConfigFile) {
++      if (configUrl) {
++        console.log(`Configuration file detected... loading => ${configUrl.href}`);
++
++        // @ts-expect-error see https://github.com/microsoft/TypeScript/issues/42866
+         const userCfgFile = (await import(configUrl)).default;
+-        const { workspace, devServer, markdown, optimization, plugins, port, prerender, basePath, staticRouter, pagesDirectory, layoutsDirectory, activeContent, isolation, polyfills } = userCfgFile;
++        const {
++          workspace,
++          devServer,
++          markdown,
++          optimization,
++          plugins,
++          port,
++          prerender,
++          basePath,
++          staticRouter,
++          pagesDirectory,
++          layoutsDirectory,
++          activeContent,
++          isolation,
++          polyfills,
++          useTsc,
++        } = userCfgFile;
+ 
+         // workspace validation
+         if (workspace) {
+           if (!(workspace instanceof URL)) {
+-            reject('Error: greenwood.config.js workspace must be an instance of URL');
++            reject("Configuration error: workspace must be an instance of URL");
+           }
+ 
+           if (await checkResourceExists(workspace)) {
+             customConfig.workspace = workspace;
+           } else {
+-            reject('Error: greenwood.config.js workspace doesn\'t exist! Please double check your configuration.');
++            reject(
++              "Configuration error: Workspace doesn't exist! Please double check your configuration.",
++            );
+           }
+         }
+ 
+-        if (typeof optimization === 'string' && optimizations.indexOf(optimization.toLowerCase()) >= 0) {
++        if (
++          typeof optimization === "string" &&
++          optimizations.indexOf(optimization.toLowerCase()) >= 0
++        ) {
+           customConfig.optimization = optimization;
+         } else if (optimization) {
+-          reject(`Error: provided optimization "${optimization}" is not supported.  Please use one of: ${optimizations.join(', ')}.`);
++          reject(
++            `Configuration error: provided optimization "${optimization}" is not supported.  Please use one of: ${optimizations.join(", ")}.`,
++          );
+         }
+ 
+         if (activeContent) {
+-          if (typeof activeContent !== 'boolean') {
+-            reject('Error: greenwood.config.js activeContent must be a boolean');
++          if (typeof activeContent !== "boolean") {
++            reject("Configuration error: activeContent must be a boolean");
+           }
+           customConfig.activeContent = activeContent;
+         }
+@@ -112,55 +159,63 @@ const readAndMergeConfig = async() => {
+         if (plugins && plugins.length > 0) {
+           const flattened = plugins.flat(PLUGINS_FLATTENED_DEPTH);
+ 
+-          flattened.forEach(plugin => {
++          flattened.forEach((plugin) => {
+             if (!plugin.type || pluginTypes.indexOf(plugin.type) < 0) {
+-              reject(`Error: greenwood.config.js plugins must be one of type "${pluginTypes.join(', ')}". got "${plugin.type}" instead.`);
++              reject(
++                `Configuration error: plugins must be one of type "${pluginTypes.join(", ")}". got "${plugin.type}" instead.`,
++              );
+             }
+ 
+-            if (!plugin.provider || typeof plugin.provider !== 'function') {
++            if (!plugin.provider || typeof plugin.provider !== "function") {
+               const providerTypeof = typeof plugin.provider;
+ 
+-              reject(`Error: greenwood.config.js plugins provider must be a function. got ${providerTypeof} instead.`);
++              reject(
++                `Configuration error: plugins provider must be a function. got ${providerTypeof} instead.`,
++              );
+             }
+ 
+-            if (!plugin.name || typeof plugin.name !== 'string') {
++            if (!plugin.name || typeof plugin.name !== "string") {
+               const nameTypeof = typeof plugin.name;
+ 
+-              reject(`Error: greenwood.config.js plugins must have a name. got ${nameTypeof} instead.`);
++              reject(`Configuration error: plugins must have a name. got ${nameTypeof} instead.`);
+             }
+           });
+ 
+           // if user provided a custom renderer, filter out Greenwood's default renderer
+-          const customRendererPlugins = flattened.filter(plugin => plugin.type === 'renderer').length;
++          const customRendererPlugins = flattened.filter(
++            (plugin) => plugin.type === "renderer",
++          ).length;
+ 
+           if (customRendererPlugins === 1) {
+             customConfig.plugins = customConfig.plugins.filter((plugin) => {
+-              return plugin.type !== 'renderer';
++              return plugin.type !== "renderer";
+             });
+           } else if (customRendererPlugins > 1) {
+-            console.warn('More than one custom renderer plugin detected.  Please make sure you are only loading one.');
+-            console.debug(plugins.filter(plugin => plugin.type === 'renderer'));
++            console.warn(
++              "Configuration warning: more than one custom renderer plugin detected.  Please make sure you are only loading one.",
++            );
++            console.debug(plugins.filter((plugin) => plugin.type === "renderer"));
+           }
+ 
+-          customConfig.plugins = [
+-            ...customConfig.plugins,
+-            ...flattened
+-          ];
++          customConfig.plugins = [...customConfig.plugins, ...flattened];
+         }
+ 
+         if (devServer && Object.keys(devServer).length > 0) {
+-
+           if (Object.prototype.hasOwnProperty.call(devServer, "hud")) {
+-            if (typeof devServer.hud === 'boolean') {
++            if (typeof devServer.hud === "boolean") {
+               customConfig.devServer.hud = devServer.hud;
+             } else {
+-              reject(`Error: greenwood.config.js devServer hud options must be a boolean.  Passed value was: ${devServer.hud}`);
++              reject(
++                `Configuration error: devServer hud options must be a boolean.  Passed value was: ${devServer.hud}`,
++              );
+             }
+           }
+ 
+           if (devServer.port) {
+             if (!Number.isInteger(devServer.port)) {
+-              reject(`Error: greenwood.config.js devServer port must be an integer.  Passed value was: ${devServer.port}`);
++              reject(
++                `Configuration error: devServer port must be an integer.  Passed value was: ${devServer.port}`,
++              );
+             } else {
+               customConfig.devServer.port = devServer.port;
+             }
+@@ -174,48 +229,59 @@ const readAndMergeConfig = async() => {
+             if (Array.isArray(devServer.extensions)) {
+               customConfig.devServer.extensions = devServer.extensions;
+             } else {
+-              reject('Error: provided extensions is not an array.  Please provide an array like [\'.txt\', \'.foo\']');
++              reject(
++                "Configuration error: provided extensions is not an array.  Please provide an array like ['txt', 'foo']",
++              );
+             }
+           }
+         }
+ 
+         if (markdown && Object.keys(markdown).length > 0) {
+-          customConfig.markdown.plugins = markdown.plugins && markdown.plugins.length > 0 ? markdown.plugins : [];
++          customConfig.markdown.plugins =
++            markdown.plugins && markdown.plugins.length > 0 ? markdown.plugins : [];
+         }
+ 
+         if (port) {
+           if (!Number.isInteger(port)) {
+-            reject(`Error: greenwood.config.js port must be an integer.  Passed value was: ${port}`);
++            reject(`Configuration error: port must be an integer.  Passed value was: ${port}`);
+           } else {
+             customConfig.port = port;
+           }
+         }
+ 
+         if (basePath) {
+-          if (typeof basePath !== 'string') {
+-            reject(`Error: greenwood.config.js basePath must be a string.  Passed value was: ${basePath}`);
++          if (typeof basePath !== "string") {
++            reject(
++              `Configuration error: basePath must be a string.  Passed value was: ${basePath}`,
++            );
+           } else {
+             customConfig.basePath = basePath;
+           }
+         }
+ 
+-        if (pagesDirectory && typeof pagesDirectory === 'string') {
++        if (pagesDirectory && typeof pagesDirectory === "string") {
+           customConfig.pagesDirectory = pagesDirectory;
+         } else if (pagesDirectory) {
+-          reject(`Error: provided pagesDirectory "${pagesDirectory}" is not supported.  Please make sure to pass something like 'docs/'`);
++          reject(
++            `Configuration error: provided pagesDirectory "${pagesDirectory}" is not supported.  Please make sure to pass something like 'docs/'`,
++          );
+         }
+ 
+-        if (layoutsDirectory && typeof layoutsDirectory === 'string') {
++        if (layoutsDirectory && typeof layoutsDirectory === "string") {
+           customConfig.layoutsDirectory = layoutsDirectory;
+         } else if (layoutsDirectory) {
+-          reject(`Error: provided layoutsDirectory "${layoutsDirectory}" is not supported.  Please make sure to pass something like 'layouts/'`);
++          reject(
++            `Configuration error: provided layoutsDirectory "${layoutsDirectory}" is not supported.  Please make sure to pass something like 'layouts/'`,
++          );
+         }
+ 
+         if (prerender !== undefined) {
+-          if (typeof prerender === 'boolean') {
++          if (typeof prerender === "boolean") {
+             customConfig.prerender = prerender;
+           } else {
+-            reject(`Error: greenwood.config.js prerender must be a boolean; true or false.  Passed value was typeof: ${typeof prerender}`);
++            reject(
++              `Configuration error: prerender must be a boolean; true or false.  Passed value was typeof: ${typeof prerender}`,
++            );
+           }
+         }
+ 
+@@ -225,31 +291,37 @@ const readAndMergeConfig = async() => {
+         }
+ 
+         if (isolation !== undefined) {
+-          if (typeof isolation === 'boolean') {
++          if (typeof isolation === "boolean") {
+             customConfig.isolation = isolation;
+           } else {
+-            reject(`Error: greenwood.config.js isolation must be a boolean; true or false.  Passed value was typeof: ${typeof staticRouter}`);
++            reject(
++              `Configuration error: isolation must be a boolean; true or false.  Passed value was typeof: ${typeof staticRouter}`,
++            );
+           }
+         }
+ 
+         if (staticRouter !== undefined) {
+-          if (typeof staticRouter === 'boolean') {
++          if (typeof staticRouter === "boolean") {
+             customConfig.staticRouter = staticRouter;
+           } else {
+-            reject(`Error: greenwood.config.js staticRouter must be a boolean; true or false.  Passed value was typeof: ${typeof staticRouter}`);
++            reject(
++              `Configuration error: staticRouter must be a boolean; true or false.  Passed value was typeof: ${typeof staticRouter}`,
++            );
+           }
+         }
+ 
+         if (polyfills !== undefined) {
+           const { importMaps, importAttributes } = polyfills;
+ 
+-          customConfig.polyfills = {};
++          customConfig.polyfills = { importAttributes: null, importMaps: false };
+ 
+           if (importMaps) {
+-            if (typeof importMaps === 'boolean') {
++            if (typeof importMaps === "boolean") {
+               customConfig.polyfills.importMaps = true;
+             } else {
+-              reject(`Error: greenwood.config.js polyfills.importMaps must be a boolean; true or false.  Passed value was typeof: ${typeof importMaps}`);
++              reject(
++                `Configuration error: polyfills.importMaps must be a boolean; true or false.  Passed value was typeof: ${typeof importMaps}`,
++              );
+             }
+           }
+ 
+@@ -257,10 +329,22 @@ const readAndMergeConfig = async() => {
+             if (Array.isArray(importAttributes)) {
+               customConfig.polyfills.importAttributes = importAttributes;
+             } else {
+-              reject(`Error: greenwood.config.js polyfills.importAttributes must be an array of types; ['css', 'json'].  Passed value was typeof: ${typeof importAttributes}`);
++              reject(
++                `Configuration error: polyfills.importAttributes must be an array of types; ['css', 'json'].  Passed value was typeof: ${typeof importAttributes}`,
++              );
+             }
+           }
+         }
++
++        if (useTsc !== undefined) {
++          if (typeof useTsc === "boolean") {
++            customConfig.useTsc = useTsc;
++          } else {
++            reject(
++              `Configuration error: useTsc must be a boolean; true or false.  Passed value was typeof: ${typeof useTsc}`,
++            );
++          }
++        }
+       } else {
+         // SPA should _not_ prerender unless if user has specified prerender should be true
+         if (isSPA) {
+diff --git a/src/lifecycles/graph.js b/src/lifecycles/graph.js
+index 6ad2896a01e72bba47154f8c77782ca3d57db60d..9e4c787f8eb5cb2b3dff1bada8156624c3f1ce1a 100644
+--- a/src/lifecycles/graph.js
++++ b/src/lifecycles/graph.js
+@@ -1,36 +1,35 @@
+-import fs from 'fs/promises';
+-import fm from 'front-matter';
+-import { checkResourceExists, requestAsObject } from '../lib/resource-utils.js';
+-import { activeFrontmatterKeys } from '../lib/content-utils.js';
+-import toc from 'markdown-toc';
+-import { Worker } from 'worker_threads';
++import fs from "fs/promises";
++import fm from "front-matter";
++import { checkResourceExists, requestAsObject } from "../lib/resource-utils.js";
++import { activeFrontmatterKeys } from "../lib/content-utils.js";
++import toc from "markdown-toc";
++import { Worker } from "worker_threads";
+ 
+ function getLabelFromRoute(_route) {
+   let route = _route;
+ 
+-  if (route === '/index/') {
+-    return 'Home';
+-  } else if (route.endsWith('/index/')) {
+-    route = route.replace('index/', '');
++  if (route === "/index/") {
++    return "Home";
++  } else if (route.endsWith("/index/")) {
++    route = route.replace("index/", "");
+   }
+ 
+   return route
+-    .split('/')
+-    .filter(part => part !== '')
++    .split("/")
++    .filter((part) => part !== "")
+     .pop()
+-    .split('-')
++    .split("-")
+     .map((routePart) => {
+       return `${routePart.charAt(0).toUpperCase()}${routePart.substring(1)}`;
+     })
+-    .join(' ');
++    .join(" ");
+ }
+ 
+ function getIdFromRelativePathPath(relativePathPath, extension) {
+-  return relativePathPath.replace(extension, '').replace('./', '').replace(/\//g, '-');
++  return relativePathPath.replace(extension, "").replace("./", "").replace(/\//g, "-");
+ }
+ 
+ const generateGraph = async (compilation) => {
+-
+   // eslint-disable-next-line no-async-promise-executor
+   return new Promise(async (resolve, reject) => {
+     try {
+@@ -39,30 +38,34 @@ const generateGraph = async (compilation) => {
+       const { pagesDir, userWorkspace, outputDir } = context;
+       const collections = {};
+       const customPageFormatPlugins = config.plugins
+-        .filter(plugin => plugin.type === 'resource' && !plugin.isGreenwoodDefaultPlugin)
+-        .map(plugin => plugin.provider(compilation));
++        .filter((plugin) => plugin.type === "resource" && !plugin.isGreenwoodDefaultPlugin)
++        .map((plugin) => plugin.provider(compilation));
+ 
+       let apis = new Map();
+-      let graph = [{
+-        id: 'index',
+-        outputHref: new URL('./index.html', outputDir).href,
+-        route: `${basePath}/`,
+-        label: 'Home',
+-        title: null,
+-        data: {},
+-        imports: [],
+-        resources: [],
+-        prerender: true,
+-        isolation: false
+-      }];
+-
+-      const walkDirectoryForPages = async function(directory, pages = [], apiRoutes = new Map()) {
+-        const files = (await fs.readdir(directory)).filter(file => !file.startsWith('.'));
++      let graph = [
++        {
++          id: "index",
++          outputHref: new URL("./index.html", outputDir).href,
++          route: `${basePath}/`,
++          label: "Home",
++          title: null,
++          data: {},
++          imports: [],
++          resources: [],
++          prerender: true,
++          isolation: false,
++        },
++      ];
++
++      const walkDirectoryForPages = async function (directory, pages = [], apiRoutes = new Map()) {
++        const files = (await fs.readdir(directory)).filter((file) => !file.startsWith("."));
+ 
+         for (const filename of files) {
+           const filenameUrl = new URL(`./${filename}`, directory);
+           const filenameUrlAsDir = new URL(`./${filename}/`, directory);
+-          const isDirectory = await checkResourceExists(filenameUrlAsDir) && (await fs.stat(filenameUrlAsDir)).isDirectory();
++          const isDirectory =
++            (await checkResourceExists(filenameUrlAsDir)) &&
++            (await fs.stat(filenameUrlAsDir)).isDirectory();
+ 
+           if (isDirectory) {
+             const nextPages = await walkDirectoryForPages(filenameUrlAsDir, pages, apiRoutes);
+@@ -70,58 +73,61 @@ const generateGraph = async (compilation) => {
+             pages = nextPages.pages;
+             apiRoutes = nextPages.apiRoutes;
+           } else {
+-            const extension = `.${filenameUrl.pathname.split('.').pop()}`;
+-            const relativePagePath = filenameUrl.pathname.replace(pagesDir.pathname, './');
+-            const isApiRoute = relativePagePath.startsWith('./api');
++            const extension = `.${filenameUrl.pathname.split(".").pop()}`;
++            const relativePagePath = filenameUrl.pathname.replace(pagesDir.pathname, "./");
++            const isApiRoute = relativePagePath.startsWith("./api");
+             const req = isApiRoute
+-              ? new Request(filenameUrl, { headers: { 'Accept': 'text/javascript' } })
+-              : new Request(filenameUrl, { headers: { 'Accept': 'text/html' } });
++              ? new Request(filenameUrl, { headers: { Accept: "text/javascript" } })
++              : new Request(filenameUrl, { headers: { Accept: "text/html" } });
+             let isCustom = null;
+ 
+             for (const plugin of customPageFormatPlugins) {
+-              if (plugin.shouldServe && await plugin.shouldServe(filenameUrl, req)) {
++              if (plugin.shouldServe && (await plugin.shouldServe(filenameUrl, req))) {
+                 isCustom = plugin.servePage;
+                 break;
+               }
+             }
+ 
+-            const isStatic = isCustom === 'static' || extension === '.md' || extension === '.html';
+-            const isDynamic = isCustom === 'dynamic' || extension === '.js';
++            const isStatic = isCustom === "static" || extension === ".md" || extension === ".html";
++            const isDynamic = isCustom === "dynamic" || extension === ".js" || extension === '.ts';
+             const isPage = isStatic || isDynamic;
+-            let route = `${relativePagePath.replace('.', '').replace(`${extension}`, '')}`;
++            let route = `${relativePagePath.replace(".", "").replace(`${extension}`, "")}`;
+             let fileContents;
+ 
+             if (isApiRoute) {
+-              const extension = filenameUrl.pathname.split('.').pop();
++              const extension = filenameUrl.pathname.split(".").pop();
+ 
+-              if (extension !== 'js' && !isCustom) {
++              if (extension !== "js" && extension !== "ts"&& !isCustom) {
+                 console.warn(`${filenameUrl} is not a supported API file extension, skipping...`);
+                 return;
+               }
+ 
+               // should this be run in isolation like SSR pages?
+               // https://github.com/ProjectEvergreen/greenwood/issues/991
+-              const { isolation } = await import(filenameUrl).then(module => module);
++              const { isolation } = await import(filenameUrl).then((module) => module);
+ 
+               /*
+-              * API Properties (per route)
+-              *----------------------
+-              * id: unique hyphen delimited string of the filename, relative to the page/api directory
+-              * pageHref: href to the page's filesystem file
+-              * outputHref: href of the filename to write to when generating a build
+-              * route: URL route for a given page on outputFilePath
+-              * isolation: if this should be run in isolated mode
+-              */
++               * API Properties (per route)
++               *----------------------
++               * id: unique hyphen delimited string of the filename, relative to the page/api directory
++               * pageHref: href to the page's filesystem file
++               * outputHref: href of the filename to write to when generating a build
++               * route: URL route for a given page on outputFilePath
++               * isolation: if this should be run in isolated mode
++               */
+               apiRoutes.set(`${basePath}${route}`, {
+-                id: getIdFromRelativePathPath(relativePagePath, `.${extension}`).replace('api-', ''),
++                id: getIdFromRelativePathPath(relativePagePath, `.${extension}`).replace(
++                  "api-",
++                  "",
++                ),
+                 pageHref: new URL(relativePagePath, pagesDir).href,
+                 outputHref: new URL(relativePagePath, outputDir).href,
+                 route: `${basePath}${route}`,
+-                isolation
++                isolation,
+               });
+             } else if (isPage) {
+-              let root = filename.split('/')[filename.split('/').length - 1].replace(extension, '');
+-              let layout = extension === '.html' ? null : 'page';
++              let root = filename.split("/")[filename.split("/").length - 1].replace(extension, "");
++              let layout = extension === ".html" ? null : "page";
+               let title = null;
+               let label = getLabelFromRoute(`${route}/`);
+               let imports = [];
+@@ -131,26 +137,25 @@ const generateGraph = async (compilation) => {
+               let hydration = false;
+ 
+               /*
+-              * check if additional nested directories exist to correctly determine route (minus filename)
+-              * examples:
+-              * - pages/index.{html,md,js} -> /
+-              * - pages/about.{html,md,js} -> /about/
+-              * - pages/blog/index.{html,md,js} -> /blog/
+-              * - pages/blog/some-post.{html,md,js} -> /blog/some-post/
+-              */
+-              if (relativePagePath.lastIndexOf('/index') > 0) {
++               * check if additional nested directories exist to correctly determine route (minus filename)
++               * examples:
++               * - pages/index.{html,md,js} -> /
++               * - pages/about.{html,md,js} -> /about/
++               * - pages/blog/index.{html,md,js} -> /blog/
++               * - pages/blog/some-post.{html,md,js} -> /blog/some-post/
++               */
++              if (relativePagePath.lastIndexOf("/index") > 0) {
+                 // https://github.com/ProjectEvergreen/greenwood/issues/455
+-                route = root === 'index' || route.replace('/index', '') === `/${root}`
+-                  ? route.replace('index', '')
+-                  : `${route}/`;
++                route =
++                  root === "index" || route.replace("/index", "") === `/${root}`
++                    ? route.replace("index", "")
++                    : `${route}/`;
+               } else {
+-                route = route === '/index'
+-                  ? '/'
+-                  : `${route}/`;
++                route = route === "/index" ? "/" : `${route}/`;
+               }
+ 
+               if (isStatic) {
+-                fileContents = await fs.readFile(filenameUrl, 'utf8');
++                fileContents = await fs.readFile(filenameUrl, "utf8");
+                 const { attributes } = fm(fileContents);
+ 
+                 layout = attributes.layout || layout;
+@@ -160,15 +165,17 @@ const generateGraph = async (compilation) => {
+ 
+                 customData = attributes;
+               } else if (isDynamic) {
+-                const routeWorkerUrl = compilation.config.plugins.filter(plugin => plugin.type === 'renderer')[0].provider(compilation).executeModuleUrl;
++                const routeWorkerUrl = compilation.config.plugins
++                  .filter((plugin) => plugin.type === "renderer")[0]
++                  .provider(compilation).executeModuleUrl;
+                 let ssrFrontmatter;
+ 
+                 // eslint-disable-next-line no-async-promise-executor
+                 await new Promise(async (resolve, reject) => {
+-                  const worker = new Worker(new URL('../lib/ssr-route-worker.js', import.meta.url));
++                  const worker = new Worker(new URL("../lib/ssr-route-worker.js", import.meta.url));
+                   const request = await requestAsObject(new Request(filenameUrl));
+ 
+-                  worker.on('message', async (result) => {
++                  worker.on("message", async (result) => {
+                     prerender = result.prerender ?? false;
+                     isolation = result.isolation ?? isolation;
+                     hydration = result.hydration ?? hydration;
+@@ -180,8 +187,8 @@ const generateGraph = async (compilation) => {
+ 
+                     resolve();
+                   });
+-                  worker.on('error', reject);
+-                  worker.on('exit', (code) => {
++                  worker.on("error", reject);
++                  worker.on("exit", (code) => {
+                     if (code !== 0) {
+                       reject(new Error(`Worker stopped with exit code ${code}`));
+                     }
+@@ -195,9 +202,9 @@ const generateGraph = async (compilation) => {
+                       servePage: isCustom,
+                       route,
+                       root,
+-                      label
++                      label,
+                     }),
+-                    request
++                    request,
+                   });
+                 });
+ 
+@@ -220,7 +227,7 @@ const generateGraph = async (compilation) => {
+                */
+ 
+               // prune "reserved" attributes that are supported by Greenwood
+-              [...activeFrontmatterKeys, 'layout'].forEach((key) => {
++              [...activeFrontmatterKeys, "layout"].forEach((key) => {
+                 delete customData[key];
+               });
+ 
+@@ -234,8 +241,9 @@ const generateGraph = async (compilation) => {
+ 
+                 // parse table of contents for only the pages user wants linked
+                 if (customData.tableOfContents.length > 0 && customData.tocHeading > 0) {
+-                  customData.tableOfContents = customData.tableOfContents
+-                    .filter((item) => item.lvl === customData.tocHeading);
++                  customData.tableOfContents = customData.tableOfContents.filter(
++                    (item) => item.lvl === customData.tocHeading,
++                  );
+                 }
+               }
+ 
+@@ -268,14 +276,15 @@ const generateGraph = async (compilation) => {
+                 imports,
+                 resources: [],
+                 pageHref: new URL(relativePagePath, pagesDir).href,
+-                outputHref: route === '/404/'
+-                  ? new URL('./404.html', outputDir).href
+-                  : new URL(`.${route}index.html`, outputDir).href,
++                outputHref:
++                  route === "/404/"
++                    ? new URL("./404.html", outputDir).href
++                    : new URL(`.${route}index.html`, outputDir).href,
+                 isSSR: !isStatic,
+                 prerender,
+                 isolation,
+                 hydration,
+-                servePage: isCustom
++                servePage: isCustom,
+               };
+ 
+               pages.push(page);
+@@ -301,58 +310,59 @@ const generateGraph = async (compilation) => {
+         return { pages, apiRoutes };
+       };
+ 
+-      console.debug('building from local sources...');
++      console.debug("building from local sources...");
+ 
+       // test for SPA
+-      if (await checkResourceExists(new URL('./index.html', userWorkspace))) {
+-        graph = [{
+-          ...graph[0],
+-          pageHref: new URL('./index.html', userWorkspace).href,
+-          isSPA: true
+-        }];
++      if (await checkResourceExists(new URL("./index.html", userWorkspace))) {
++        graph = [
++          {
++            ...graph[0],
++            pageHref: new URL("./index.html", userWorkspace).href,
++            isSPA: true,
++          },
++        ];
+       } else {
+         const oldGraph = graph[0];
+-        const pages = await checkResourceExists(pagesDir) ? await walkDirectoryForPages(pagesDir) : { pages: graph, apiRoutes: apis };
++        const pages = (await checkResourceExists(pagesDir))
++          ? await walkDirectoryForPages(pagesDir)
++          : { pages: graph, apiRoutes: apis };
+ 
+         graph = pages.pages;
+         apis = pages.apiRoutes;
+ 
+-        const has404Page = graph.find(page => page.route.endsWith('/404/'));
++        const has404Page = graph.find((page) => page.route.endsWith("/404/"));
+ 
+         // if the _only_ page is a 404 page, still provide a default index.html
+         if (has404Page && graph.length === 1) {
+-          graph = [
+-            oldGraph,
+-            ...graph
+-          ];
++          graph = [oldGraph, ...graph];
+         } else if (!has404Page) {
+           graph = [
+             ...graph,
+             {
+               ...oldGraph,
+-              id: '404',
+-              outputHref: new URL('./404.html', outputDir).href,
+-              pageHref: new URL('./404.html', pagesDir).href,
++              id: "404",
++              outputHref: new URL("./404.html", outputDir).href,
++              pageHref: new URL("./404.html", pagesDir).href,
+               route: `${basePath}/404/`,
+-              path: '404.html',
+-              label: 'Not Found',
+-              title: 'Page Not Found'
+-            }
++              path: "404.html",
++              label: "Not Found",
++              title: "Page Not Found",
++            },
+           ];
+         }
+       }
+ 
+-      const sourcePlugins = compilation.config.plugins.filter(plugin => plugin.type === 'source');
++      const sourcePlugins = compilation.config.plugins.filter((plugin) => plugin.type === "source");
+ 
+       if (sourcePlugins.length > 0) {
+-        console.debug('building from external sources...');
++        console.debug("building from external sources...");
+         for (const plugin of sourcePlugins) {
+           const instance = plugin.provider(compilation);
+           const data = await instance();
+ 
+           for (const node of data) {
+             if (!node.body || !node.route) {
+-              const missingKey = !node.body ? 'body' : 'route';
++              const missingKey = !node.body ? "body" : "route";
+ 
+               reject(`ERROR: provided node does not provide a ${missingKey} property.`);
+             }
+@@ -364,7 +374,7 @@ const generateGraph = async (compilation) => {
+               resources: [],
+               outputHref: new URL(`.${node.route}index.html`, outputDir).href,
+               ...node,
+-              external: true
++              external: true,
+             });
+           }
+         }
+@@ -377,7 +387,6 @@ const generateGraph = async (compilation) => {
+     } catch (err) {
+       reject(err);
+     }
+-
+   });
+ };
+ 
+diff --git a/src/loader.js b/src/loader.js
+index f7c2c968e82b7e5333e22806b8b5109d505a4176..90380bc3a82e753e1aefa8dc6e477a760e8df3ae 100644
+--- a/src/loader.js
++++ b/src/loader.js
+@@ -97,7 +97,7 @@ export async function load(source, context, defaultLoad) {
+   const url = new URL(source);
+   const { shouldHandle } = await getCustomLoaderResponse(url, true);
+ 
+-  if (shouldHandle && extension !== 'js') {
++  if ((config.useTsc && extension === 'ts') || (shouldHandle && extension !== 'js' && extension !== 'ts')) {
+     const { response } = await getCustomLoaderResponse(url);
+     const contents = await response.text();
+ 
