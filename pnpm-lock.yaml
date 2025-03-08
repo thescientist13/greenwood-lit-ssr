@@ -18,6 +18,9 @@ importers:
       '@greenwood/plugin-adapter-vercel':
         specifier: ~0.31.0
         version: 0.31.0(@greenwood/cli@0.31.0)
+      '@greenwood/plugin-import-raw':
+        specifier: ~0.31.0
+        version: 0.31.1(@greenwood/cli@0.31.0)
       '@greenwood/plugin-renderer-lit':
         specifier: ~0.31.0
         version: 0.31.0(@greenwood/cli@0.31.0)(lit@3.2.1)
@@ -37,6 +40,11 @@ packages:
 
   '@greenwood/plugin-adapter-vercel@0.31.0':
     resolution: {integrity: sha512-WxRqiIzOxcRXyp3QnXe4JU7dmUboyLb9H+mHmhabwa9CdVRx2EAvia4KGL2dXs05yQnZ3JyBBT7By22Sne3duA==}
+    peerDependencies:
+      '@greenwood/cli': ^0.31.0
+
+  '@greenwood/plugin-import-raw@0.31.1':
+    resolution: {integrity: sha512-ntNLrna1O7Mm1LGT1YGDzMZ3AW1fKx7B/LVpBAfZsnL0jqJlXbkvt6WEEhbq9DM+1LDZqKidsOzST2tHlTA0dw==}
     peerDependencies:
       '@greenwood/cli': ^0.31.0
 
@@ -1506,6 +1514,10 @@ snapshots:
       - utf-8-validate
 
   '@greenwood/plugin-adapter-vercel@0.31.0(@greenwood/cli@0.31.0)':
+    dependencies:
+      '@greenwood/cli': 0.31.0
+
+  '@greenwood/plugin-import-raw@0.31.1(@greenwood/cli@0.31.0)':
     dependencies:
       '@greenwood/cli': 0.31.0
 

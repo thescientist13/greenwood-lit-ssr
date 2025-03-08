@@ -3,7 +3,7 @@ import { collectResult } from '@lit-labs/ssr/lib/render-result.js'
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getProducts } from '../../services/products.ts';
-import '../../components/card.ts';
+import '../../components/card/card.ts';
 
 export const isolation = true;
 
