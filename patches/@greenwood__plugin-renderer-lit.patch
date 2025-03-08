@@ -1,0 +1,13 @@
+diff --git a/src/types/index.d.ts b/src/types/index.d.ts
+index 82a6f4ec1f124a360bea583c04f01b7c72edb238..47e26d9da41a7fc857622f736789b05047f9d7ce 100644
+--- a/src/types/index.d.ts
++++ b/src/types/index.d.ts
+@@ -1,6 +1,6 @@
+-import type { Plugin } from "@greenwood/cli";
++import type { AdapterPlugin } from "@greenwood/cli";
+ 
+-export type LitRendererPlugin = () => Array<Plugin>;
++export type LitRendererPlugin = () => Array<AdapterPlugin>;
+ 
+ declare module "@greenwood/plugin-renderer-lit" {
+   export const greenwoodPluginRendererLit: LitRendererPlugin;
