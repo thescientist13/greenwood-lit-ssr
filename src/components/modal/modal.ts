@@ -1,5 +1,6 @@
 import { LitElement, html, unsafeCSS } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import styles from './modal.css?type=raw';
 
 @customElement('app-modal')
@@ -17,7 +18,6 @@ export class Modal extends LitElement {
     this.content = content;
 
     dialog.showModal();
-    this.requestUpdate();
   }
 
   connectedCallback() {
@@ -40,7 +40,7 @@ export class Modal extends LitElement {
 
     return html`
       <dialog>
-        <h3 id="content">${content}</h3>
+        <h3 id="content">${unsafeHTML(content)}</h3>
         <button autofocus>Close</button>
       </dialog>
     `;
