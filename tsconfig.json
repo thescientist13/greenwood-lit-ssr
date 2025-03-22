@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "module": "es2022",
+    "module": "preserve",
     "lib": ["es2022", "DOM", "DOM.Iterable", "esnext"],
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": false,
     "noEmit": true,
     "checkJs": true
   },

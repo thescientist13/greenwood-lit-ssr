@@ -1,39 +1,45 @@
 <html>
   <head>
-    <!-- Greeting API Setup -->
     <script>
-      globalThis.addEventListener('DOMContentLoaded', () => {
-        globalThis.document.getElementsByTagName('form')[0].addEventListener('submit', async (e) => {
-          e.preventDefault();
+      if(typeof window !== "undefined") {
+        // greeting API Setup
+        globalThis?.addEventListener('DOMContentLoaded', () => {
+          globalThis.document.getElementsByTagName('form')[0].addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-          const form = new FormData(e.currentTarget);
-          const name = form.get('name');
-          const data = await fetch(new URL(`/api/greeting?name=${name}`, window.location.href)).then(resp => resp.json());
+            const form = new FormData(e.currentTarget);
+            const name = form.get('name');
+            const data = await fetch(new URL(`/api/greeting?name=${name}`, window.location.href)).then(resp => resp.json());
 
-          document.getElementById('greeting-output').textContent = `${data.message}! 👋`;
+            document.getElementById('greeting-output').textContent = `${data.message}! 👋`;
+          });
         });
-      });
-    </script>
 
-    <!-- Fragment API Setup -->
-    <script>
-      globalThis.addEventListener('DOMContentLoaded', () => {
-        const limit = 10;
-        const page = limit;
-        let offset = 0 - page;
+        // Fragment API Setup
+        globalThis?.addEventListener('DOMContentLoaded', () => {
+          const limit = 10;
+          const page = limit;
+          let offset = 0 - page;
 
-        globalThis.document.getElementById('load-products').addEventListener('click', async () => {
-          offset = offset += page;
-          const html = await fetch(`/api/fragment?offset=${offset}&limit=10`).then(resp => resp.text());
-          const fragment = Document.parseHTMLUnsafe(html);
+          globalThis.document.getElementById('load-products').addEventListener('click', async () => {
+            offset = offset += page;
+            const html = await fetch(`/api/fragment?offset=${offset}&limit=10`).then(resp => resp.text());
+            const fragment = Document.parseHTMLUnsafe(html);
 
-          document.getElementById('load-products-output').insertAdjacentHTML('beforeend', fragment.body.innerHTML);
+            document.getElementById('load-products-output').insertAdjacentHTML('beforeend', fragment.body.innerHTML);
+          });
         });
-      });
+      }
     </script>
   </head>
 
   <body>
+    <article>
+      <app-card
+        title="Greenwood Logo"
+        thumbnail="https://www.greenwoodjs.dev/assets/greenwood-logo-og.png"
+      ></app-card>
+    </article>
     <article>
       <h2>JSON API</h2>
       <p>This is an example of a Greenwood API Route returning JSON when fetched on-submit of the form to display a message on the page.  You can see it fire in the network tab as <i>/api/greeting</i></p>
