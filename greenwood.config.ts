@@ -1,9 +1,10 @@
 import { greenwoodPluginAdapterVercel } from '@greenwood/plugin-adapter-vercel';
 import { greenwoodPluginRendererLit } from '@greenwood/plugin-renderer-lit';
-import { greenwoodPluginTypeScript } from '@greenwood/plugin-typescript';
 import { greenwoodPluginImportRaw } from '@greenwood/plugin-import-raw';
+import type { Config } from '@greenwood/cli';
 
 export default {
+  useTsc: true,
   prerender: true,
   plugins: [
     greenwoodPluginImportRaw(),
@@ -11,8 +12,5 @@ export default {
     greenwoodPluginAdapterVercel({
       runtime: 'nodejs22.x'
     }),
-    greenwoodPluginTypeScript({
-      extendConfig: true
-    })
   ]
-};
+} satisfies Config;
