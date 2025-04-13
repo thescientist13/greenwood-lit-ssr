@@ -46,5 +46,10 @@
     "@greenwood/plugin-renderer-lit": "^0.32.0",
     "rimraf": "^6.0.1",
     "typescript": "^5.8.2"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@spectrum-web-components/picker": "patches/@spectrum-web-components__picker.patch"
+    }
   }
 }
