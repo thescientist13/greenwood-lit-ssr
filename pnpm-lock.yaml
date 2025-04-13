@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@spectrum-web-components/picker':
+    hash: 903593362cbb40f99799da23e92057008efb63359eecf673713995c28113e737
+    path: patches/@spectrum-web-components__picker.patch
+
 importers:
 
   .:
@@ -1366,7 +1371,7 @@ snapshots:
       '@spectrum-web-components/icons-workflow': 1.12.2
       '@spectrum-web-components/menu': 1.12.2
       '@spectrum-web-components/overlay': 1.12.2
-      '@spectrum-web-components/picker': 1.12.2
+      '@spectrum-web-components/picker': 1.12.2(patch_hash=903593362cbb40f99799da23e92057008efb63359eecf673713995c28113e737)
       '@spectrum-web-components/popover': 1.12.2
       '@spectrum-web-components/progress-circle': 1.12.2
       '@spectrum-web-components/shared': 1.12.2
@@ -1457,7 +1462,7 @@ snapshots:
       '@spectrum-web-components/theme': 1.12.2
       focus-trap: 7.6.5
 
-  '@spectrum-web-components/picker@1.12.2':
+  '@spectrum-web-components/picker@1.12.2(patch_hash=903593362cbb40f99799da23e92057008efb63359eecf673713995c28113e737)':
     dependencies:
       '@spectrum-web-components/base': 1.12.2
       '@spectrum-web-components/button': 1.12.2
