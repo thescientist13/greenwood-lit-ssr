@@ -1,0 +1,11 @@
+diff --git a/src/InteractionController.d.ts b/src/InteractionController.d.ts
+index 7f6f7b71c368777d435a8a9f56174be2003fcf64..0268df4a17042425d41b058c09c595ba550b1bd2 100644
+--- a/src/InteractionController.d.ts
++++ b/src/InteractionController.d.ts
+@@ -1,5 +1,5 @@
+ import { ReactiveController, TemplateResult } from '@spectrum-web-components/base';
+-import { AbstractOverlay } from '@spectrum-web-components/overlay/src/AbstractOverlay';
++import { AbstractOverlay } from '@spectrum-web-components/overlay/src/AbstractOverlay.js';
+ import { Overlay } from '@spectrum-web-components/overlay/src/Overlay.js';
+ import { PickerBase } from './Picker.js';
+ export declare enum InteractionTypes {

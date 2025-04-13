@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@spectrum-web-components/picker':
+    hash: y5ojgwg5lzqcoq3y5duecaddjm
+    path: patches/@spectrum-web-components__picker.patch
+
 importers:
 
   .:
@@ -1410,7 +1415,7 @@ snapshots:
       '@spectrum-web-components/base': 1.0.1
       '@spectrum-web-components/icon': 1.0.1
       '@spectrum-web-components/icons-workflow': 1.0.1
-      '@spectrum-web-components/picker': 1.0.1
+      '@spectrum-web-components/picker': 1.0.1(patch_hash=y5ojgwg5lzqcoq3y5duecaddjm)
       '@spectrum-web-components/shared': 1.0.1
 
   '@spectrum-web-components/base@1.0.1':
@@ -1494,7 +1499,7 @@ snapshots:
       '@spectrum-web-components/shared': 1.0.1
       '@spectrum-web-components/theme': 1.0.1
 
-  '@spectrum-web-components/picker@1.0.1':
+  '@spectrum-web-components/picker@1.0.1(patch_hash=y5ojgwg5lzqcoq3y5duecaddjm)':
     dependencies:
       '@spectrum-web-components/base': 1.0.1
       '@spectrum-web-components/button': 1.0.1
