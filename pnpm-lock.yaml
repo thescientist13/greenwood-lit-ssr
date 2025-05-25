@@ -13,43 +13,40 @@ importers:
         version: 3.2.1
     devDependencies:
       '@greenwood/cli':
-        specifier: ^0.32.0
-        version: 0.32.0
+        specifier: ^0.33.0-alpha.0
+        version: 0.33.0-alpha.0
       '@greenwood/plugin-adapter-vercel':
-        specifier: ^0.32.0
-        version: 0.32.0(@greenwood/cli@0.32.0)
+        specifier: ^0.33.0-alpha.0
+        version: 0.33.0-alpha.0(@greenwood/cli@0.33.0-alpha.0)
       '@greenwood/plugin-import-raw':
-        specifier: ^0.32.0
-        version: 0.32.0(@greenwood/cli@0.32.0)
+        specifier: ^0.33.0-alpha.0
+        version: 0.33.0-alpha.0(@greenwood/cli@0.33.0-alpha.0)
       '@greenwood/plugin-renderer-lit':
-        specifier: ^0.32.0
-        version: 0.32.0(@greenwood/cli@0.32.0)(lit@3.2.1)
-      rimraf:
-        specifier: ^6.0.1
-        version: 6.0.1
+        specifier: ^0.33.0-alpha.0
+        version: 0.33.0-alpha.0(@greenwood/cli@0.33.0-alpha.0)(lit@3.2.1)
       typescript:
         specifier: ^5.8.2
         version: 5.8.2
 
 packages:
 
-  '@greenwood/cli@0.32.0':
-    resolution: {integrity: sha512-8n4ja1ZTDho29JTv+ZjCTOVlB36YT0Uo4XmN/zp/tleprE5/Y1olwWD2gi9zLMyPRIzez6X7wyNwPEj8Eu+rQA==}
+  '@greenwood/cli@0.33.0-alpha.0':
+    resolution: {integrity: sha512-+U4WSVYaXr8JgunZOVmX5qkJRBwlqu8OEVUHYlJ/EeD2uuNbK+vYmosxV+P55FQykc5Iiq4mZvUTxPeDNEuUdQ==}
     engines: {node: ^18.20.5 || ^20.18.3 || >=22.12.0}
     hasBin: true
 
-  '@greenwood/plugin-adapter-vercel@0.32.0':
-    resolution: {integrity: sha512-fG6Xj4Nn+1a/Vlex1W3NOpw2pZXMkwPfpr7mAL93omegC4KEFYj21vNjNDXJaD40zhE6SaolqlLdRB/SLMvlcw==}
+  '@greenwood/plugin-adapter-vercel@0.33.0-alpha.0':
+    resolution: {integrity: sha512-xuvx7tUDGQ5eRfelsEPfb4pGkeiSetKuv9tkLQnFTMyhWzvQRJa9L8PbXZIlRE8q7LzE9/PtrwWhoinW8puimA==}
     peerDependencies:
       '@greenwood/cli': ^0.32.0
 
-  '@greenwood/plugin-import-raw@0.32.0':
-    resolution: {integrity: sha512-et8H6yRv0YSyAv1NAD+4XwDkV+MQ1BPx4xcypTQCWVkaBdvwGZrkcOdSBph4T3RCT/1Tkr+7E845oi+ZAVf49A==}
+  '@greenwood/plugin-import-raw@0.33.0-alpha.0':
+    resolution: {integrity: sha512-adS39F8RgCnX2+RxtWrboAqbN+6t1kwU27Vx5yZ6w3pRvFCAsb0Rbv+v/f2nS7SlmbLO66OFkGbjlcldrtIuoA==}
     peerDependencies:
       '@greenwood/cli': ^0.32.0
 
-  '@greenwood/plugin-renderer-lit@0.32.0':
-    resolution: {integrity: sha512-hXpQtTehCkPisa8pAbIUJGeqmnrUgZPM+SZHV8wLCdt/v2GGSxvh+ATdoeTMFUrExB9/ZcdaZJuge2AY974mDQ==}
+  '@greenwood/plugin-renderer-lit@0.33.0-alpha.0':
+    resolution: {integrity: sha512-rbPatccImEYKSBzJ+sbnL85cne7z01/IJU+erDmCBGHVR8VP5yGcWNg/TsHU9MwwBmT+/VxlEZyqEcxApVDz8A==}
     peerDependencies:
       '@greenwood/cli': ^0.32.0
       lit: ^3.1.0
@@ -650,6 +647,7 @@ packages:
 
   formidable@2.1.2:
     resolution: {integrity: sha512-CM3GuJ57US06mlpQ47YcunuUZ9jpm8Vx+P2CGt2j7HpgkKZO/DJYQ0Bobim8G6PFQmK5lOqOOdUXboU+h73A4g==}
+    deprecated: 'ACTION REQUIRED: SWITCH TO v3 - v1 and v2 are VULNERABLE! v1 is DEPRECATED FOR OVER 2 YEARS! Use formidable@latest or try formidable-mini for fresh projects'
 
   fresh@0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
@@ -676,11 +674,6 @@ packages:
 
   glob@10.4.5:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
-    hasBin: true
-
-  glob@11.0.0:
-    resolution: {integrity: sha512-9UiX/Bl6J2yaBbxKoEBRm4Cipxgok8kQYcOPEhScPwebu2I0HoQOuYdIO6S3hLuWoZgpDpwQZMzTFxgpkyT76g==}
-    engines: {node: 20 || >=22}
     hasBin: true
 
   gopd@1.1.0:
@@ -850,10 +843,6 @@ packages:
   jackspeak@3.4.3:
     resolution: {integrity: sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==}
 
-  jackspeak@4.0.2:
-    resolution: {integrity: sha512-bZsjR/iRjl1Nk1UkjGpAzLNfQtzuijhn2g+pbZb98HQ1Gk8vM9hfbxeMBP+M2/UUdwj0RqGG3mlvk2MsAqwvEw==}
-    engines: {node: 20 || >=22}
-
   js-yaml@3.14.1:
     resolution: {integrity: sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==}
     hasBin: true
@@ -927,10 +916,6 @@ packages:
 
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
-
-  lru-cache@11.0.2:
-    resolution: {integrity: sha512-123qHRfJBmo2jXDbo/a5YOQrJoHF/GNQTLzQ5+IdK5pWpceK17yRc6ozlWd25FxvGKQbIUs91fDFkXmDHTKcyA==}
-    engines: {node: 20 || >=22}
 
   magic-string@0.30.14:
     resolution: {integrity: sha512-5c99P1WKTed11ZC0HMJOj6CDIue6F8ySu+bJL+85q1zBEIY8IklrJ1eiKC2NDRh3Ct3FcvmJPyQHb9erXMTJNw==}
@@ -1046,10 +1031,6 @@ packages:
     resolution: {integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==}
     engines: {node: '>= 0.6'}
 
-  minimatch@10.0.1:
-    resolution: {integrity: sha512-ethXTt3SGGR+95gudmqJ1eNhRO7eGEGIgYA9vnPatK4/etz2MEVDno5GMCibdMTuBMyElzIlgxMna3K94XDIDQ==}
-    engines: {node: 20 || >=22}
-
   minimatch@9.0.5:
     resolution: {integrity: sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==}
     engines: {node: '>=16 || 14 >=14.17'}
@@ -1078,6 +1059,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-fetch@3.3.2:
     resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}
@@ -1135,10 +1117,6 @@ packages:
   path-scurry@1.11.1:
     resolution: {integrity: sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==}
     engines: {node: '>=16 || 14 >=14.18'}
-
-  path-scurry@2.0.0:
-    resolution: {integrity: sha512-ypGJsmGtdXUOeM5u93TyeIEfEhM6s+ljAhrk5vAvSx8uyY/02OvrZnA0YNGUrPXfpJMgI1ODd3nwz8Npx4O4cg==}
-    engines: {node: 20 || >=22}
 
   picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
@@ -1210,11 +1188,6 @@ packages:
 
   resolve@1.22.8:
     resolution: {integrity: sha512-oKWePCxqpd6FlLvGV1VU0x7bkPmmCNolxzjMf4NczoDnQcIWrAF+cPtZn5i6n+RfD2d9i0tzpKnG6Yk168yIyw==}
-    hasBin: true
-
-  rimraf@6.0.1:
-    resolution: {integrity: sha512-9dkvaxAsk/xNXSJzMgFqqMCuFgt2+KsOFek3TMLfo8NCPfWpBmqwyNn5Y+NX56QUYfCtsyhF3ayiboEoUmJk/A==}
-    engines: {node: 20 || >=22}
     hasBin: true
 
   rollup@4.28.0:
@@ -1479,7 +1452,7 @@ packages:
 
 snapshots:
 
-  '@greenwood/cli@0.32.0':
+  '@greenwood/cli@0.33.0-alpha.0':
     dependencies:
       '@rollup/plugin-commonjs': 28.0.1(rollup@4.28.0)
       '@rollup/plugin-node-resolve': 15.3.0(rollup@4.28.0)
@@ -1509,17 +1482,17 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@greenwood/plugin-adapter-vercel@0.32.0(@greenwood/cli@0.32.0)':
+  '@greenwood/plugin-adapter-vercel@0.33.0-alpha.0(@greenwood/cli@0.33.0-alpha.0)':
     dependencies:
-      '@greenwood/cli': 0.32.0
+      '@greenwood/cli': 0.33.0-alpha.0
 
-  '@greenwood/plugin-import-raw@0.32.0(@greenwood/cli@0.32.0)':
+  '@greenwood/plugin-import-raw@0.33.0-alpha.0(@greenwood/cli@0.33.0-alpha.0)':
     dependencies:
-      '@greenwood/cli': 0.32.0
+      '@greenwood/cli': 0.33.0-alpha.0
 
-  '@greenwood/plugin-renderer-lit@0.32.0(@greenwood/cli@0.32.0)(lit@3.2.1)':
+  '@greenwood/plugin-renderer-lit@0.33.0-alpha.0(@greenwood/cli@0.33.0-alpha.0)(lit@3.2.1)':
     dependencies:
-      '@greenwood/cli': 0.32.0
+      '@greenwood/cli': 0.33.0-alpha.0
       '@lit-labs/ssr': 3.2.2
       '@lit-labs/ssr-client': 1.1.7
       lit: 3.2.1
@@ -2118,15 +2091,6 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
-  glob@11.0.0:
-    dependencies:
-      foreground-child: 3.3.0
-      jackspeak: 4.0.2
-      minimatch: 10.0.1
-      minipass: 7.1.2
-      package-json-from-dist: 1.0.1
-      path-scurry: 2.0.0
-
   gopd@1.1.0:
     dependencies:
       get-intrinsic: 1.2.4
@@ -2331,10 +2295,6 @@ snapshots:
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
 
-  jackspeak@4.0.2:
-    dependencies:
-      '@isaacs/cliui': 8.0.2
-
   js-yaml@3.14.1:
     dependencies:
       argparse: 1.0.10
@@ -2449,8 +2409,6 @@ snapshots:
   longest-streak@3.1.0: {}
 
   lru-cache@10.4.3: {}
-
-  lru-cache@11.0.2: {}
 
   magic-string@0.30.14:
     dependencies:
@@ -2686,10 +2644,6 @@ snapshots:
     dependencies:
       mime-db: 1.52.0
 
-  minimatch@10.0.1:
-    dependencies:
-      brace-expansion: 2.0.1
-
   minimatch@9.0.5:
     dependencies:
       brace-expansion: 2.0.1
@@ -2762,11 +2716,6 @@ snapshots:
   path-scurry@1.11.1:
     dependencies:
       lru-cache: 10.4.3
-      minipass: 7.1.2
-
-  path-scurry@2.0.0:
-    dependencies:
-      lru-cache: 11.0.2
       minipass: 7.1.2
 
   picomatch@2.3.1: {}
@@ -2866,11 +2815,6 @@ snapshots:
       is-core-module: 2.15.1
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
-
-  rimraf@6.0.1:
-    dependencies:
-      glob: 11.0.0
-      package-json-from-dist: 1.0.1
 
   rollup@4.28.0:
     dependencies:
