@@ -3,6 +3,20 @@ import { customElement, state } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import sheet from './modal.css' with { type: 'css' };
 
+/**
+ * An event that's fired when the modal content needs to be updated
+ */
+export class UpdateModalEvent extends Event {
+  static readonly eventName = 'update-modal';
+
+  readonly content: string;
+
+  constructor(content: string) {
+    super(UpdateModalEvent.eventName, { bubbles: true, composed: true });
+    this.content = content;
+  }
+}
+
 @customElement('app-modal')
 export class Modal extends LitElement {
 
@@ -23,10 +37,9 @@ export class Modal extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    window.addEventListener('update-modal', (event) => {
-      const customEvent = event as CustomEvent<{ content: string }>;
-      this.updateModal(customEvent.detail.content);
-    });
+    window.addEventListener('update-modal', (event: UpdateModalEvent) => {
+      this.updateModal(event.content);
+    })
   }
 
   firstUpdated() {
