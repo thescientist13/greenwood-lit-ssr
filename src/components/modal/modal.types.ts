@@ -5,4 +5,3 @@ declare global {
     'update-modal': UpdateModalEvent;
   }
 }
-
