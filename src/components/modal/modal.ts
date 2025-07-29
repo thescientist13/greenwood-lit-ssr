@@ -29,7 +29,7 @@ export class Modal extends LitElement {
   }
 
   firstUpdated() {
-    const button = this.shadowRoot.querySelector('button');
+    const button = this.shadowRoot.querySelector('wa-button');
     const dialog = this.shadowRoot.querySelector('dialog');
 
     button.addEventListener("click", () => dialog.close());
@@ -41,7 +41,7 @@ export class Modal extends LitElement {
     return html`
       <dialog>
         <h3 id="content">${unsafeHTML(content)}</h3>
-        <button autofocus>Close</button>
+        <wa-button autofocus>Close</wa-button>
       </dialog>
     `;
   }
