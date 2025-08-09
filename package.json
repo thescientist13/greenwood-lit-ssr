@@ -35,5 +35,10 @@
     "@greenwood/plugin-import-raw": "^0.33.0-alpha.5",
     "@greenwood/plugin-renderer-lit": "^0.33.0-alpha.5",
     "typescript": "^5.8.2"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@greenwood/cli": "patches/@greenwood__cli.patch"
+    }
   }
 }
