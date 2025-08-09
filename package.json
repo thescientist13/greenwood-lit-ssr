@@ -20,20 +20,20 @@
     "Lit"
   ],
   "scripts": {
-    "dev": "node --experimental-strip-types --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js develop",
-    "build": "node --experimental-strip-types --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js build",
-    "serve": "pnpm run build && node --experimental-strip-types --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/index.js serve",
+    "dev": "node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/bin.js develop",
+    "build": "node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/bin.js build",
+    "serve": "pnpm run build && node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/bin.js serve",
     "start": "pnpm run serve",
-    "lint:types": "tsc --project ./tsconfig.json"
+    "lint:types": "tsc"
   },
   "dependencies": {
     "lit": "^3.2.1"
   },
   "devDependencies": {
-    "@greenwood/cli": "^0.33.0-alpha.2",
-    "@greenwood/plugin-adapter-vercel": "^0.33.0-alpha.2",
-    "@greenwood/plugin-import-raw": "^0.33.0-alpha.2",
-    "@greenwood/plugin-renderer-lit": "^0.33.0-alpha.2",
+    "@greenwood/cli": "^0.33.0-alpha.5",
+    "@greenwood/plugin-adapter-vercel": "^0.33.0-alpha.5",
+    "@greenwood/plugin-import-raw": "^0.33.0-alpha.5",
+    "@greenwood/plugin-renderer-lit": "^0.33.0-alpha.5",
     "typescript": "^5.8.2"
   }
 }
