@@ -20,10 +20,10 @@
     "Lit"
   ],
   "scripts": {
-    "dev": "node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/bin.js develop",
-    "build": "node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/bin.js build",
-    "serve": "pnpm run build && node --import @greenwood/cli/register ./node_modules/@greenwood/cli/src/bin.js serve",
-    "start": "pnpm run serve",
+    "dev": "NODE_OPTIONS='--import @greenwood/cli/register' greenwood develop",
+    "build": "NODE_OPTIONS='--import @greenwood/cli/register' greenwood build",
+    "serve": "NODE_OPTIONS='--import @greenwood/cli/register' greenwood serve",
+    "start": "pnpm run build && pnpm run serve",
     "lint:types": "tsc"
   },
   "dependencies": {
