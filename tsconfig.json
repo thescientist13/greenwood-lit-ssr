@@ -1,18 +1,21 @@
 {
   "compilerOptions": {
+    // minimum required configuration
     "target": "es2022",
     "module": "preserve",
-    "lib": ["es2022", "DOM", "DOM.Iterable", "esnext"],
-    "allowSyntheticDefaultImports": true,
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
     "noEmit": true,
+
+    // additional recommended configuration
+    "lib": ["es2022", "DOM", "DOM.Iterable", "esnext"],
+    "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true,
+
+    // project specific configurations
     "checkJs": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
   },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.js"
-  ]
+  "exclude": ["./public/", "./greenwood/", "node_modules"],
 }
