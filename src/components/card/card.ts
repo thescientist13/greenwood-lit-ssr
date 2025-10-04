@@ -1,5 +1,5 @@
-import { LitElement, html, css, unsafeCSS } from 'lit';
-// import styles from './card.css?type=raw';
+import { LitElement, html, unsafeCSS } from 'lit';
+import styles from './card.css?type=raw';
 
 // TODO: restore decorators usage
 export class Card extends LitElement {
@@ -11,7 +11,7 @@ export class Card extends LitElement {
     thumbnail: { type: String },
   };
 
-  // TODO: static styles = [unsafeCSS(styles)];
+  static styles = [unsafeCSS(styles)];
 
   constructor() {
     super();

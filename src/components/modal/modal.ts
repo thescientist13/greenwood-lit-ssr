@@ -1,6 +1,6 @@
 import { LitElement, html, unsafeCSS } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-// import styles from './modal.css?type=raw';
+import styles from './modal.css?type=raw';
 
 // TODO: restore decorators usage
 export class Modal extends LitElement {
@@ -10,13 +10,13 @@ export class Modal extends LitElement {
     content: {},
   };
 
+  static styles = [unsafeCSS(styles)];
+
   constructor() {
     super();
 
     this.content;
   }
-
-  // TODO: static styles = [unsafeCSS(styles)];
 
   updateModal(content: string) {
     console.log(`selected item is => ${content}`);
