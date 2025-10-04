@@ -13,7 +13,7 @@
     "erasableSyntaxOnly": true,
 
     // project specific configurations
-    "checkJs": true,
+    "checkJs": false,
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
   },

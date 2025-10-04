@@ -1,15 +1,15 @@
-import { LitElement, html, css, unsafeCSS } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { LitElement, html, unsafeCSS } from 'lit';
 import styles from './card.css?type=raw';
 
-@customElement('app-card')
+// TODO: restore decorators usage
 export class Card extends LitElement {
+  title: string;
+  thumbnail: string;
 
-  @property()
-  accessor title: string;
-
-  @property()
-  accessor thumbnail: string;
+  static properties = {
+    title: { type: String },
+    thumbnail: { type: String },
+  };
 
   static styles = [unsafeCSS(styles)];
 
@@ -46,3 +46,5 @@ export class Card extends LitElement {
     `;
   }
 }
+
+customElements.define('app-card', Card);

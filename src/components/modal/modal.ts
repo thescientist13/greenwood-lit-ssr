@@ -1,15 +1,22 @@
 import { LitElement, html, unsafeCSS } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import styles from './modal.css?type=raw';
 
-@customElement('app-modal')
+// TODO: restore decorators usage
 export class Modal extends LitElement {
+  content: string;
 
-  @state()
-  accessor content: string;
+  static properties = {
+    content: {},
+  };
 
   static styles = [unsafeCSS(styles)];
+
+  constructor() {
+    super();
+
+    this.content;
+  }
 
   updateModal(content: string) {
     console.log(`selected item is => ${content}`);
@@ -18,6 +25,9 @@ export class Modal extends LitElement {
     this.content = content;
 
     dialog.showModal();
+    // TODO: figure out why `content: string` breaks reactivity 
+    // and / or why TypeScript complains if `content: string` is not there
+    this.requestUpdate();
   }
 
   connectedCallback() {
@@ -46,3 +56,5 @@ export class Modal extends LitElement {
     `;
   }
 }
+
+customElements.define('app-modal', Modal);
