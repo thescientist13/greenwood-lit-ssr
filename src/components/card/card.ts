@@ -1,5 +1,6 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { UpdateModalEvent } from '../modal/modal.ts';
 import styles from './card.css?type=raw';
 
 @customElement('app-card')
@@ -21,13 +22,9 @@ export class Card extends LitElement {
   }
 
   selectItem() {
-    const itemSelectedEvent = new CustomEvent("update-modal", {
-      detail: {
-        content: `You selected the "${this.title}"`,
-      },
-    });
+    const content =  `You selected the "${this.title}"`;
 
-    window.dispatchEvent(itemSelectedEvent);
+    window.dispatchEvent(new UpdateModalEvent(content));
   }
 
   render() {
