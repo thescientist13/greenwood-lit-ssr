@@ -4,38 +4,43 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@greenwood/cli':
+    hash: 7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821
+    path: patches/@greenwood__cli.patch
+
 importers:
 
   .:
     dependencies:
       '@awesome.me/webawesome':
-        specifier: 3.0.0-beta.3
-        version: 3.0.0-beta.3(@floating-ui/utils@0.2.12)
+        specifier: 3.0.0
+        version: 3.0.0(@floating-ui/utils@0.2.12)(@types/react@19.2.17)
       lit:
         specifier: ^3.3.3
         version: 3.3.3
     devDependencies:
       '@greenwood/cli':
         specifier: ^0.34.0
-        version: 0.34.0
+        version: 0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821)
       '@greenwood/plugin-adapter-vercel':
         specifier: ^0.34.0
-        version: 0.34.0(@greenwood/cli@0.34.0)
+        version: 0.34.0(@greenwood/cli@0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821))
       '@greenwood/plugin-renderer-lit':
         specifier: ^0.34.0
-        version: 0.34.0(@greenwood/cli@0.34.0)(lit@3.3.3)
+        version: 0.34.0(@greenwood/cli@0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821))(lit@3.3.3)
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
 
 packages:
 
-  '@awesome.me/webawesome@3.0.0-beta.3':
-    resolution: {integrity: sha512-AGUMzjGfbkZkKGMU30FJ00uFw4c/fkjtUP/ZCr4LtmqVgY/23WE6/lePOE6hapkVT2a/Nrvy35KjhGA+X4eEQQ==}
+  '@awesome.me/webawesome@3.0.0':
+    resolution: {integrity: sha512-KLxAiSV9hH+bB8OkpaZUA9zNgBu6G1cXirsE0VWmdS/jtpup1Wf1aC7yGYjPSi/61BVUqk8geA4oylt4oLdmlQ==}
     engines: {node: '>=14.17.0'}
 
-  '@ctrl/tinycolor@4.2.0':
-    resolution: {integrity: sha512-kzyuwOAQnXJNLS9PSyrk0CWk35nWJW/zl/6KvnTBMFK65gm7U1/Z5BqjxeapjZCIhQcM/DsrEmcbRwDyXyXK4A==}
+  '@ctrl/tinycolor@4.1.0':
+    resolution: {integrity: sha512-WyOx8cJQ+FQus4Mm4uPIZA64gbk3Wxh0so5Lcii0aJifqwoVOlfFtorjLE0Hen4OYyHZMXDWqMmaQemBhgxFRQ==}
     engines: {node: '>=14'}
 
   '@floating-ui/core@1.8.0':
@@ -96,6 +101,11 @@ packages:
     peerDependenciesMeta:
       '@types/node':
         optional: true
+
+  '@lit/react@1.0.8':
+    resolution: {integrity: sha512-p2+YcF+JE67SRX3mMlJ1TKCSTsgyOVdAwd/nxp3NuV1+Cb6MWALbN6nT7Ld4tpmYofcE5kcaSY1YBB9erY+6fw==}
+    peerDependencies:
+      '@types/react': 17 || 18 || 19
 
   '@lit/reactive-element@2.1.2':
     resolution: {integrity: sha512-pbCDiVMnne1lYUIaYNN5wrwQXDtHaYtg7YEFPeW+hws6U47WeFvISGUWekPGKWOP1ygrs0ef0o1VJMk1exos5A==}
@@ -336,6 +346,9 @@ packages:
   '@types/range-parser@1.2.7':
     resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
 
+  '@types/react@19.2.17':
+    resolution: {integrity: sha512-MXfmqaVPEVgkBT/aY0aGCkRWWtByiYQXo3xdQ8r5RzuFrPiRn8Gar2tQdXSUQ2GKV3bkXckek89V8wQBY2Q/Aw==}
+
   '@types/resolve@1.20.2':
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
 
@@ -457,6 +470,9 @@ packages:
   css-what@6.2.2:
     resolution: {integrity: sha512-u/O3vwbptzhMs3L1fQE82ZSLHQQfto5gyZzwteVIEyeaY5Fc7R4dapF/BvRoSYFeqfBk4m0V1Vafq5Pjv25wvA==}
     engines: {node: '>= 6'}
+
+  csstype@3.2.3:
+    resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
   data-uri-to-buffer@4.0.1:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
@@ -896,9 +912,6 @@ packages:
     resolution: {integrity: sha512-DvEy55V3DB7uknRo+4iOGT5fP1slR8wQohVdknigZPMpMstaKJQWhwiYBACJE3Ul2pTnATihhBYnRhZQHGBiRw==}
     engines: {node: '>= 0.8'}
 
-  style-observer@0.0.7:
-    resolution: {integrity: sha512-t75H3CRy+vd5q3yqyrf/De4tkz33hPQTiCcfh0NTesI5G7kJnZ227LEYTwqjKTtaFOCJvqZcYFHpJlF8bsk3bQ==}
-
   sucrase@3.35.1:
     resolution: {integrity: sha512-DhuTmvZWux4H1UOnWMB3sk0sbaCVOoQZjv8u1rDoTV0HTdGem9hkAZtl4JZy8P2z4Bg0nT+YMeOFyVr4zcG5Tw==}
     engines: {node: '>=16 || 14 >=14.17'}
@@ -998,21 +1011,22 @@ packages:
 
 snapshots:
 
-  '@awesome.me/webawesome@3.0.0-beta.3(@floating-ui/utils@0.2.12)':
+  '@awesome.me/webawesome@3.0.0(@floating-ui/utils@0.2.12)(@types/react@19.2.17)':
     dependencies:
-      '@ctrl/tinycolor': 4.2.0
+      '@ctrl/tinycolor': 4.1.0
       '@floating-ui/dom': 1.8.0
+      '@lit/react': 1.0.8(@types/react@19.2.17)
       '@shoelace-style/animations': 1.2.0
       '@shoelace-style/localize': 3.2.2
       composed-offset-position: 0.0.6(@floating-ui/utils@0.2.12)
       lit: 3.3.3
       nanoid: 5.1.16
       qr-creator: 1.0.0
-      style-observer: 0.0.7
     transitivePeerDependencies:
       - '@floating-ui/utils'
+      - '@types/react'
 
-  '@ctrl/tinycolor@4.2.0': {}
+  '@ctrl/tinycolor@4.1.0': {}
 
   '@floating-ui/core@1.8.0':
     dependencies:
@@ -1025,7 +1039,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.12': {}
 
-  '@greenwood/cli@0.34.0':
+  '@greenwood/cli@0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821)':
     dependencies:
       '@rollup/plugin-commonjs': 28.0.9(rollup@4.62.2)
       '@rollup/plugin-node-resolve': 15.3.1(rollup@4.62.2)
@@ -1047,13 +1061,13 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@greenwood/plugin-adapter-vercel@0.34.0(@greenwood/cli@0.34.0)':
+  '@greenwood/plugin-adapter-vercel@0.34.0(@greenwood/cli@0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821))':
     dependencies:
-      '@greenwood/cli': 0.34.0
+      '@greenwood/cli': 0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821)
 
-  '@greenwood/plugin-renderer-lit@0.34.0(@greenwood/cli@0.34.0)(lit@3.3.3)':
+  '@greenwood/plugin-renderer-lit@0.34.0(@greenwood/cli@0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821))(lit@3.3.3)':
     dependencies:
-      '@greenwood/cli': 0.34.0
+      '@greenwood/cli': 0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821)
       '@lit-labs/ssr': 4.1.0
       '@lit-labs/ssr-client': 1.1.8
       lit: 3.3.3
@@ -1101,6 +1115,10 @@ snapshots:
       lit-html: 3.3.3
       node-fetch: 3.3.2
       parse5: 7.3.0
+
+  '@lit/react@1.0.8(@types/react@19.2.17)':
+    dependencies:
+      '@types/react': 19.2.17
 
   '@lit/reactive-element@2.1.2':
     dependencies:
@@ -1312,6 +1330,10 @@ snapshots:
 
   '@types/range-parser@1.2.7': {}
 
+  '@types/react@19.2.17':
+    dependencies:
+      csstype: 3.2.3
+
   '@types/resolve@1.20.2': {}
 
   '@types/send@1.2.1':
@@ -1430,6 +1452,8 @@ snapshots:
       source-map-js: 1.2.1
 
   css-what@6.2.2: {}
+
+  csstype@3.2.3: {}
 
   data-uri-to-buffer@4.0.1: {}
 
@@ -1891,8 +1915,6 @@ snapshots:
   statuses@1.5.0: {}
 
   statuses@2.0.2: {}
-
-  style-observer@0.0.7: {}
 
   sucrase@3.35.1:
     dependencies:

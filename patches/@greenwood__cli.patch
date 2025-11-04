@@ -1,0 +1,13 @@
+diff --git a/src/plugins/resource/plugin-standard-css.js b/src/plugins/resource/plugin-standard-css.js
+index 18919a7149412380d4565bbc3e84c645818e2aa3..bc1bc7cd6b663faeb0d9492859d3303523ef7d28 100644
+--- a/src/plugins/resource/plugin-standard-css.js
++++ b/src/plugins/resource/plugin-standard-css.js
+@@ -40,7 +40,7 @@ function bundleCss(body, sourceUrl, compilation, workingUrl) {
+           if (value.startsWith(".") || value.indexOf("/node_modules") === 0) {
+             const resolvedUrl = value.startsWith("/node_modules")
+               ? new URL(getResolvedHrefFromPathnameShortcut(value, projectDirectory))
+-              : new URL(value, sourceUrl);
++              : new URL(value, workingUrl ?? sourceUrl);
+ 
+             const importContents = fs.readFileSync(resolvedUrl, "utf-8");
+ 
