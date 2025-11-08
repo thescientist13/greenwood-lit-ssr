@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  '@greenwood/cli':
-    hash: 7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821
-    path: patches/@greenwood__cli.patch
-
 importers:
 
   .:
@@ -22,13 +17,13 @@ importers:
     devDependencies:
       '@greenwood/cli':
         specifier: ^0.34.0
-        version: 0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821)
+        version: 0.34.0
       '@greenwood/plugin-adapter-vercel':
         specifier: ^0.34.0
-        version: 0.34.0(@greenwood/cli@0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821))
+        version: 0.34.0(@greenwood/cli@0.34.0)
       '@greenwood/plugin-renderer-lit':
         specifier: ^0.34.0
-        version: 0.34.0(@greenwood/cli@0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821))(lit@3.3.3)
+        version: 0.34.0(@greenwood/cli@0.34.0)(lit@3.3.3)
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -1039,7 +1034,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.12': {}
 
-  '@greenwood/cli@0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821)':
+  '@greenwood/cli@0.34.0':
     dependencies:
       '@rollup/plugin-commonjs': 28.0.9(rollup@4.62.2)
       '@rollup/plugin-node-resolve': 15.3.1(rollup@4.62.2)
@@ -1061,13 +1056,13 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@greenwood/plugin-adapter-vercel@0.34.0(@greenwood/cli@0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821))':
+  '@greenwood/plugin-adapter-vercel@0.34.0(@greenwood/cli@0.34.0)':
     dependencies:
-      '@greenwood/cli': 0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821)
+      '@greenwood/cli': 0.34.0
 
-  '@greenwood/plugin-renderer-lit@0.34.0(@greenwood/cli@0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821))(lit@3.3.3)':
+  '@greenwood/plugin-renderer-lit@0.34.0(@greenwood/cli@0.34.0)(lit@3.3.3)':
     dependencies:
-      '@greenwood/cli': 0.34.0(patch_hash=7d5f1b5daed86fe87064358daabb380364364b6d4d99f6d4dcb372cb295a3821)
+      '@greenwood/cli': 0.34.0
       '@lit-labs/ssr': 4.1.0
       '@lit-labs/ssr-client': 1.1.8
       lit: 3.3.3
