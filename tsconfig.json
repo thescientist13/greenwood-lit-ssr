@@ -17,7 +17,7 @@
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
 
-    // lit specific configurations
+    // Lit recommended settings for decorators
     // https://lit.dev/docs/components/decorators/#decorators-typescript
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
