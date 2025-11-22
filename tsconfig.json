@@ -16,6 +16,11 @@
     "checkJs": true,
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
+
+    // lit specific configurations
+    // https://lit.dev/docs/components/decorators/#decorators-typescript
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
   },
   "exclude": ["./public/", "./greenwood/", "node_modules"],
 }
