@@ -27,6 +27,7 @@
     "start": "pnpm run build && pnpm run serve",
     "lint:types": "tsc"
   },
+  "packageManager": "pnpm@10.16.1",
   "dependencies": {
     "lit": "^3.3.3"
   },
