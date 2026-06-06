@@ -1,7 +1,7 @@
-import { LitElement, html, unsafeCSS } from 'lit';
+import { LitElement, html } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import styles from './modal.css?type=raw';
+import sheet from './modal.css' with { type: 'css' };
 
 @customElement('app-modal')
 export class Modal extends LitElement {
@@ -9,7 +9,7 @@ export class Modal extends LitElement {
   @state()
   accessor content: string;
 
-  static styles = [unsafeCSS(styles)];
+  static styles = [sheet];
 
   updateModal(content: string) {
     console.log(`selected item is => ${content}`);
