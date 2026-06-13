@@ -1,3 +1,6 @@
 {
-  "buildCommand": "pnpm run lint:types && pnpm run build"
+  "buildCommand": "pnpm run lint:types && pnpm run build",
+  "env": {
+    "NODE_OPTIONS": "--import @lit-labs/ssr-dom-shim/register-css-hook.js"
+  }
 }
