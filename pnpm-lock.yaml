@@ -6,10 +6,10 @@ settings:
 
 patchedDependencies:
   '@greenwood/cli':
-    hash: d87841b484b6b52e26e44afdc24fe2b940b4fe19a8adbc9cdb92e210b691b38d
+    hash: 6c398f39b4e580f56995b6b569195227797097f07fe9db826a93169d1aedcfe6
     path: patches/@greenwood__cli.patch
   '@greenwood/plugin-renderer-lit':
-    hash: a070e11a174e63a2dee351bfb7d5fb078c270c9da7f14db35b9a8b767fc35040
+    hash: 57ecabb0c076625580f9ceb8a45f179d9b420d902f1d559e5cfb6a6d317c0e45
     path: patches/@greenwood__plugin-renderer-lit.patch
 
 importers:
@@ -25,13 +25,13 @@ importers:
     devDependencies:
       '@greenwood/cli':
         specifier: ^0.34.0
-        version: 0.34.0(patch_hash=d87841b484b6b52e26e44afdc24fe2b940b4fe19a8adbc9cdb92e210b691b38d)
+        version: 0.34.0(patch_hash=6c398f39b4e580f56995b6b569195227797097f07fe9db826a93169d1aedcfe6)
       '@greenwood/plugin-adapter-vercel':
         specifier: ^0.34.0
-        version: 0.34.0(@greenwood/cli@0.34.0(patch_hash=d87841b484b6b52e26e44afdc24fe2b940b4fe19a8adbc9cdb92e210b691b38d))
+        version: 0.34.0(@greenwood/cli@0.34.0(patch_hash=6c398f39b4e580f56995b6b569195227797097f07fe9db826a93169d1aedcfe6))
       '@greenwood/plugin-renderer-lit':
         specifier: ^0.34.0
-        version: 0.34.0(patch_hash=a070e11a174e63a2dee351bfb7d5fb078c270c9da7f14db35b9a8b767fc35040)(@greenwood/cli@0.34.0(patch_hash=d87841b484b6b52e26e44afdc24fe2b940b4fe19a8adbc9cdb92e210b691b38d))(lit@3.3.3)
+        version: 0.34.0(patch_hash=57ecabb0c076625580f9ceb8a45f179d9b420d902f1d559e5cfb6a6d317c0e45)(@greenwood/cli@0.34.0(patch_hash=6c398f39b4e580f56995b6b569195227797097f07fe9db826a93169d1aedcfe6))(lit@3.3.3)
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -1042,7 +1042,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.12': {}
 
-  '@greenwood/cli@0.34.0(patch_hash=d87841b484b6b52e26e44afdc24fe2b940b4fe19a8adbc9cdb92e210b691b38d)':
+  '@greenwood/cli@0.34.0(patch_hash=6c398f39b4e580f56995b6b569195227797097f07fe9db826a93169d1aedcfe6)':
     dependencies:
       '@rollup/plugin-commonjs': 28.0.9(rollup@4.62.2)
       '@rollup/plugin-node-resolve': 15.3.1(rollup@4.62.2)
@@ -1064,13 +1064,13 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@greenwood/plugin-adapter-vercel@0.34.0(@greenwood/cli@0.34.0(patch_hash=d87841b484b6b52e26e44afdc24fe2b940b4fe19a8adbc9cdb92e210b691b38d))':
+  '@greenwood/plugin-adapter-vercel@0.34.0(@greenwood/cli@0.34.0(patch_hash=6c398f39b4e580f56995b6b569195227797097f07fe9db826a93169d1aedcfe6))':
     dependencies:
-      '@greenwood/cli': 0.34.0(patch_hash=d87841b484b6b52e26e44afdc24fe2b940b4fe19a8adbc9cdb92e210b691b38d)
+      '@greenwood/cli': 0.34.0(patch_hash=6c398f39b4e580f56995b6b569195227797097f07fe9db826a93169d1aedcfe6)
 
-  '@greenwood/plugin-renderer-lit@0.34.0(patch_hash=a070e11a174e63a2dee351bfb7d5fb078c270c9da7f14db35b9a8b767fc35040)(@greenwood/cli@0.34.0(patch_hash=d87841b484b6b52e26e44afdc24fe2b940b4fe19a8adbc9cdb92e210b691b38d))(lit@3.3.3)':
+  '@greenwood/plugin-renderer-lit@0.34.0(patch_hash=57ecabb0c076625580f9ceb8a45f179d9b420d902f1d559e5cfb6a6d317c0e45)(@greenwood/cli@0.34.0(patch_hash=6c398f39b4e580f56995b6b569195227797097f07fe9db826a93169d1aedcfe6))(lit@3.3.3)':
     dependencies:
-      '@greenwood/cli': 0.34.0(patch_hash=d87841b484b6b52e26e44afdc24fe2b940b4fe19a8adbc9cdb92e210b691b38d)
+      '@greenwood/cli': 0.34.0(patch_hash=6c398f39b4e580f56995b6b569195227797097f07fe9db826a93169d1aedcfe6)
       '@lit-labs/ssr': 4.1.0
       '@lit-labs/ssr-client': 1.1.8
       lit: 3.3.3
