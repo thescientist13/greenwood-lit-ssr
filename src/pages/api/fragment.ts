@@ -15,10 +15,11 @@ export async function handler(request: Request) {
   const body = await collectResult(render(html`
     ${
       unsafeHTML(products.map((item, idx) => {
-        const { title, thumbnail } = item;
+        const { title, thumbnail, id } = item;
 
         return `
           <app-card
+            id="${id}"
             title="${offset + idx + 1}) ${title}"
             thumbnail="${thumbnail}"
           ></app-card>

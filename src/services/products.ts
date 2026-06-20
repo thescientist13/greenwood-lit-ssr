@@ -1,14 +1,21 @@
 type Product = {
   title: string,
-  thumbnail: string
+  thumbnail: string,
+  id: string;
 }
 
-async function getProducts(): Promise<[Product]> {
-  const data = (await fetch(`https://dummyjson.com/products`)
+async function getProductById(id: string): Promise<Product> {
+  return (await fetch(`https://dummyjson.com/products/${id}`)
+    .then(resp => resp.json()));
+}
+
+async function getProducts(id?: string): Promise<[Product]> {
+  const idSuffix = id ? `/${id}` : '';
+  const data = (await fetch(`https://dummyjson.com/products${idSuffix}`)
     .then(resp => resp.json()));
   const { products } = data;
 
   return products;
 }
 
-export { getProducts };
+export { getProducts, getProductById };
