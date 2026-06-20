@@ -1,2 +1,5 @@
 patchedDependencies:
   '@greenwood/plugin-renderer-lit': patches/@greenwood__plugin-renderer-lit.patch
+
+packages:
+  - '.'
