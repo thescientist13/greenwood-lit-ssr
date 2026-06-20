@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@greenwood/plugin-renderer-lit':
+    hash: 7e3fa25b5245a902ee3607c834fa98538d21580215e69ce60c8c61d841c5baa2
+    path: patches/@greenwood__plugin-renderer-lit.patch
+
 importers:
 
   .:
@@ -23,7 +28,7 @@ importers:
         version: 0.34.0-alpha.9(@greenwood/cli@0.34.0-alpha.9)
       '@greenwood/plugin-renderer-lit':
         specifier: ^0.34.0-alpha.9
-        version: 0.34.0-alpha.9(@greenwood/cli@0.34.0-alpha.9)(@types/node@22.10.1)(lit@3.3.3)
+        version: 0.34.0-alpha.9(patch_hash=7e3fa25b5245a902ee3607c834fa98538d21580215e69ce60c8c61d841c5baa2)(@greenwood/cli@0.34.0-alpha.9)(@types/node@22.10.1)(lit@3.3.3)
       typescript:
         specifier: ^5.8.2
         version: 5.8.2
@@ -1101,7 +1106,7 @@ snapshots:
       '@greenwood/cli': 0.34.0-alpha.9
       node-html-parser: 7.0.1
 
-  '@greenwood/plugin-renderer-lit@0.34.0-alpha.9(@greenwood/cli@0.34.0-alpha.9)(@types/node@22.10.1)(lit@3.3.3)':
+  '@greenwood/plugin-renderer-lit@0.34.0-alpha.9(patch_hash=7e3fa25b5245a902ee3607c834fa98538d21580215e69ce60c8c61d841c5baa2)(@greenwood/cli@0.34.0-alpha.9)(@types/node@22.10.1)(lit@3.3.3)':
     dependencies:
       '@greenwood/cli': 0.34.0-alpha.9
       '@lit-labs/ssr': 4.1.0(@types/node@22.10.1)
