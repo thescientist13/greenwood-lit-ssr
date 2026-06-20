@@ -4,7 +4,7 @@ type Product = {
   id: string;
 }
 
-async function getProductById(id: string): Promise<Product> {
+async function getProductById(id: number): Promise<Product> {
   return (await fetch(`https://dummyjson.com/products/${id}`)
     .then(resp => resp.json()));
 }

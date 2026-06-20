@@ -8,7 +8,7 @@ type Params = {
 }
 
 export async function getBody(compilation: Compilation, page: Page, request: Request, params: Params) {
-  const product = await getProductById(params.id);
+  const product = await getProductById(parseInt(params.id, 10));
   const { title, thumbnail } = product;
 
   return html`
