@@ -60,6 +60,15 @@ h2 {
   text-decoration: underline;
 }
 
+form {
+  & wa-input,
+  & wa-button {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+  }
+}
+
 wa-input {
   padding: 1rem;
   margin: 0 10px;
