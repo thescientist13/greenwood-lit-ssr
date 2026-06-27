@@ -17,8 +17,8 @@ importers:
   .:
     dependencies:
       '@awesome.me/webawesome':
-        specifier: 3.0.0
-        version: 3.0.0(@floating-ui/utils@0.2.12)(@types/react@19.2.17)
+        specifier: ^3.9.0
+        version: 3.10.0(@floating-ui/utils@0.2.12)(@types/react@19.2.17)
       lit:
         specifier: ^3.3.3
         version: 3.3.3
@@ -38,8 +38,8 @@ importers:
 
 packages:
 
-  '@awesome.me/webawesome@3.0.0':
-    resolution: {integrity: sha512-KLxAiSV9hH+bB8OkpaZUA9zNgBu6G1cXirsE0VWmdS/jtpup1Wf1aC7yGYjPSi/61BVUqk8geA4oylt4oLdmlQ==}
+  '@awesome.me/webawesome@3.10.0':
+    resolution: {integrity: sha512-QrVKGTiz9OhtIoDic7RF6o1x5ShnJI7jgxK93uoSBh3INYlUyejKYXohXqpJ2cgjIJqfo0jMSQygd1Ty96QOMA==}
     engines: {node: '>=14.17.0'}
 
   '@ctrl/tinycolor@4.1.0':
@@ -90,6 +90,9 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
+  '@konnorr/qr-creator@1.0.1':
+    resolution: {integrity: sha512-EmRR9rny1ENBtQy7TLOguO/79h1EpzXUmqIdMTGp2BW8NkZtRRPr5hmQcE+n9QXYo4T8NjcaJ14hnZg+s/+K+A==}
+
   '@lit-labs/ssr-client@1.1.8':
     resolution: {integrity: sha512-PjGh81oKsoI64m3IDjTqqjhC7dr2uC/o0jrllUb5gRAyp/RlAHxapgJrjq9kWz97faCHLQ8jUlTi6tGm+8fgyA==}
 
@@ -104,6 +107,9 @@ packages:
     peerDependenciesMeta:
       '@types/node':
         optional: true
+
+  '@lit/context@1.1.6':
+    resolution: {integrity: sha512-M26qDE6UkQbZA2mQ3RjJ3Gzd8TxP+/0obMgE5HfkfLhEEyYE3Bui4A5XHiGPjy0MUGAyxB3QgVuw2ciS0kHn6A==}
 
   '@lit/react@1.0.8':
     resolution: {integrity: sha512-p2+YcF+JE67SRX3mMlJ1TKCSTsgyOVdAwd/nxp3NuV1+Cb6MWALbN6nT7Ld4tpmYofcE5kcaSY1YBB9erY+6fw==}
@@ -728,6 +734,11 @@ packages:
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
 
+  marked@11.2.0:
+    resolution: {integrity: sha512-HR0m3bvu0jAPYiIvLUUQtdg1g6D247//lvcekpHO1WMvbwDlwSkZAX9Lw4F4YHE1T0HaaNve0tuAWuV1UJ6vtw==}
+    engines: {node: '>= 18'}
+    hasBin: true
+
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
@@ -829,9 +840,6 @@ packages:
   pirates@4.0.7:
     resolution: {integrity: sha512-TfySrs/5nm8fQJDcBDuUng3VOUKsd7S+zqvbOTiGXHfxX4wK31ard+hoNuvkicM/2YFzlpDgABOevKSsB4G/FA==}
     engines: {node: '>= 6'}
-
-  qr-creator@1.0.0:
-    resolution: {integrity: sha512-C0cqfbS1P5hfqN4NhsYsUXePlk9BO+a45bAQ3xLYjBL3bOIFzoVEjs79Fado9u9BPBD3buHi3+vY+C8tHh4qMQ==}
 
   qs@6.15.3:
     resolution: {integrity: sha512-O9gl3zCl5h5blw1KGUzQKhA5oUXSl8rwUIM5o0S3nCXMliSvy5Dzx7/DJcI+SwgICv+IneSZwhBh1oSyEHA71A==}
@@ -1014,19 +1022,24 @@ packages:
 
 snapshots:
 
-  '@awesome.me/webawesome@3.0.0(@floating-ui/utils@0.2.12)(@types/react@19.2.17)':
+  '@awesome.me/webawesome@3.10.0(@floating-ui/utils@0.2.12)(@types/react@19.2.17)':
     dependencies:
       '@ctrl/tinycolor': 4.1.0
       '@floating-ui/dom': 1.8.0
+      '@konnorr/qr-creator': 1.0.1
+      '@lit-labs/ssr': 4.1.0
+      '@lit-labs/ssr-client': 1.1.8
+      '@lit/context': 1.1.6
       '@lit/react': 1.0.8(@types/react@19.2.17)
       '@shoelace-style/animations': 1.2.0
       '@shoelace-style/localize': 3.2.2
       composed-offset-position: 0.0.6(@floating-ui/utils@0.2.12)
       lit: 3.3.3
+      marked: 11.2.0
       nanoid: 5.1.16
-      qr-creator: 1.0.0
     transitivePeerDependencies:
       - '@floating-ui/utils'
+      - '@types/node'
       - '@types/react'
 
   '@ctrl/tinycolor@4.1.0': {}
@@ -1098,6 +1111,8 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
+  '@konnorr/qr-creator@1.0.1': {}
+
   '@lit-labs/ssr-client@1.1.8':
     dependencies:
       '@lit/reactive-element': 2.1.2
@@ -1118,6 +1133,10 @@ snapshots:
       lit-html: 3.3.3
       node-fetch: 3.3.2
       parse5: 7.3.0
+
+  '@lit/context@1.1.6':
+    dependencies:
+      '@lit/reactive-element': 2.1.2
 
   '@lit/react@1.0.8(@types/react@19.2.17)':
     dependencies:
@@ -1725,6 +1744,8 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
 
+  marked@11.2.0: {}
+
   math-intrinsics@1.1.0: {}
 
   mdn-data@2.27.1: {}
@@ -1801,8 +1822,6 @@ snapshots:
   picomatch@4.0.5: {}
 
   pirates@4.0.7: {}
-
-  qr-creator@1.0.0: {}
 
   qs@6.15.3:
     dependencies:
