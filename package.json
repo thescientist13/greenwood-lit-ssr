@@ -30,10 +30,10 @@
     "lit": "^3.3.3"
   },
   "devDependencies": {
-    "@greenwood/cli": "^0.34.0-alpha.8",
-    "@greenwood/plugin-adapter-vercel": "^0.34.0-alpha.8",
-    "@greenwood/plugin-import-raw": "^0.34.0-alpha.8",
-    "@greenwood/plugin-renderer-lit": "^0.34.0-alpha.8",
+    "@greenwood/cli": "^0.34.0-alpha.9",
+    "@greenwood/plugin-adapter-vercel": "^0.34.0-alpha.9",
+    "@greenwood/plugin-import-raw": "^0.34.0-alpha.9",
+    "@greenwood/plugin-renderer-lit": "^0.34.0-alpha.9",
     "typescript": "^5.8.2"
   }
 }
