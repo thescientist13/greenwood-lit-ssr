@@ -1,5 +1,5 @@
-// Greenwood Raw plugin
-declare module "*?type=raw" {
-  const content: string;
-  export default content;
+declare module "*.css" {
+  const sheet: CSSStyleSheet;
+
+  export default sheet;
 }

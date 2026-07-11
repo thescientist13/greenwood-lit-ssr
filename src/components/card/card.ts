@@ -1,6 +1,6 @@
-import { LitElement, html, css, unsafeCSS } from 'lit';
+import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import styles from './card.css?type=raw';
+import sheet from './card.css' with { type: 'css' };
 
 @customElement('app-card')
 export class Card extends LitElement {
@@ -14,7 +14,7 @@ export class Card extends LitElement {
   @property()
   accessor id: string;
 
-  static styles = [unsafeCSS(styles)];
+  static styles = [sheet];
 
   constructor() {
     super();

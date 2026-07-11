@@ -1,3 +1,4 @@
+import "@lit-labs/ssr-dom-shim/register-css-hook.js";
 import { render } from '@lit-labs/ssr';
 import { collectResult } from '@lit-labs/ssr/lib/render-result.js'
 import { html } from 'lit';
