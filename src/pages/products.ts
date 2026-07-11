@@ -10,9 +10,11 @@ export async function getBody() {
   return html`
     ${
       products.map((product, idx) => {
-        const { title, thumbnail } = product;
+        const { title, thumbnail, id } = product;
+
         return html`
           <app-card
+            id="${id}"
             title="${idx + 1}) ${title}"
             thumbnail="${thumbnail}"
           ></app-card>

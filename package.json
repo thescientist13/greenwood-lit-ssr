@@ -19,21 +19,22 @@
     "SSR",
     "Lit"
   ],
+  "packageManager": "pnpm@10.16.1",
   "scripts": {
     "dev": "NODE_OPTIONS='--import @greenwood/cli/register' greenwood develop",
     "build": "NODE_OPTIONS='--import @greenwood/cli/register' greenwood build",
-    "serve": "NODE_OPTIONS='--import @greenwood/cli/register' greenwood serve",
+    "serve": "greenwood serve",
     "start": "pnpm run build && pnpm run serve",
     "lint:types": "tsc"
   },
   "dependencies": {
-    "lit": "^3.2.1"
+    "lit": "^3.3.3"
   },
   "devDependencies": {
-    "@greenwood/cli": "^0.33.2",
-    "@greenwood/plugin-adapter-vercel": "^0.33.2",
-    "@greenwood/plugin-import-raw": "^0.33.2",
-    "@greenwood/plugin-renderer-lit": "^0.33.2",
+    "@greenwood/cli": "^0.34.0",
+    "@greenwood/plugin-adapter-vercel": "^0.34.0",
+    "@greenwood/plugin-import-raw": "^0.34.0",
+    "@greenwood/plugin-renderer-lit": "^0.34.0",
     "typescript": "^5.8.2"
   }
 }

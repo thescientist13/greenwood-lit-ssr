@@ -11,6 +11,9 @@ export class Card extends LitElement {
   @property()
   accessor thumbnail: string;
 
+  @property()
+  accessor id: string;
+
   static styles = [unsafeCSS(styles)];
 
   constructor() {
@@ -18,6 +21,7 @@ export class Card extends LitElement {
 
     this.title;
     this.thumbnail;
+    this.id;
   }
 
   selectItem() {
@@ -31,16 +35,21 @@ export class Card extends LitElement {
   }
 
   render() {
-    const { title, thumbnail } = this;
+    const { title, thumbnail, id } = this;
 
     if(!title && !thumbnail) {
       return;
     }
 
+    const link = id
+      ? html`<a href="/product/${id}/">View Item Details</a>`
+      : '';
+
     return html`
       <div>
         <h3>${title}</h3>
         <img src="${thumbnail}" alt="${title}" loading="lazy" width="100%">
+        ${link}
         <button @click="${this.selectItem}">View Item Details</button>
       </div>
     `;

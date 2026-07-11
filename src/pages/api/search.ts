@@ -22,10 +22,11 @@ export async function handler(request: Request) {
     body = await collectResult(render(html`
       ${
         unsafeHTML(products.map((item, idx) => {
-          const { title, thumbnail } = item;
+          const { title, thumbnail, id } = item;
 
           return `
             <app-card
+              id="${id}"
               title="${idx + 1}) ${title}"
               thumbnail="${thumbnail}"
             ></app-card>
