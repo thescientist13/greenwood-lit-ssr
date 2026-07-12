@@ -10,8 +10,8 @@ export const isolation = true;
 
 export async function handler(request: Request) {
   const params = new URLSearchParams(request.url.slice(request.url.indexOf('?')));
-  const limit = params.has('limit') ? parseInt(params.get('limit'), 10) : 5;
-  const offset = params.has('offset') ? parseInt(params.get('offset'), 10) : 0;
+  const limit = params.has('limit') ? parseInt(params.get('limit') ?? '5', 10) : 5;
+  const offset = params.has('offset') ? parseInt(params.get('offset') ?? '0', 10) : 0;
   const products = (await getProducts()).slice(offset, offset + limit);
   const body = await collectResult(render(html`
     ${
