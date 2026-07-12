@@ -60,20 +60,20 @@ h2 {
   text-decoration: underline;
 }
 
-button {
-  background: var(--color-accent);
-  color: var(--color-white);
-  padding: 1rem 2rem;
-  border: 0;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
+form {
+  & wa-input,
+  & wa-button {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+  }
 }
 
-input {
+wa-input {
   padding: 1rem;
   margin: 0 10px;
   font-size: 16px;
+  display: inline-block;
 }
 
 label {

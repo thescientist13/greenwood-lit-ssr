@@ -47,7 +47,7 @@ export class Card extends LitElement {
         <h3>${title}</h3>
         <img src="${thumbnail}" alt="${title}" loading="lazy" width="100%">
         ${link}
-        <button @click="${this.selectItem}">View Item Details</button>
+        <wa-button @click="${this.selectItem}">View Item Details</wa-button>
       </div>
     `;
   }
