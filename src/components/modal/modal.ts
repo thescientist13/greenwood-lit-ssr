@@ -7,32 +7,33 @@ import sheet from './modal.css' with { type: 'css' };
 export class Modal extends LitElement {
 
   @state()
-  accessor content: string;
+  accessor content: string = '';
 
   static styles = [sheet];
 
   updateModal(content: string) {
     console.log(`selected item is => ${content}`);
-    const dialog = this.shadowRoot.querySelector('dialog');
+    const dialog = this?.shadowRoot?.querySelector('dialog');
 
     this.content = content;
 
-    dialog.showModal();
+    dialog?.showModal();
   }
 
   connectedCallback() {
     super.connectedCallback();
 
-    window.addEventListener('update-modal', (event: CustomEvent) => {
-      this.updateModal(event.detail.content);
-    })
+    window.addEventListener('update-modal', (event) => {
+      const customEvent = event as CustomEvent<{ content: string }>;
+      this.updateModal(customEvent.detail.content);
+    });
   }
 
   firstUpdated() {
-    const button = this.shadowRoot.querySelector('button');
-    const dialog = this.shadowRoot.querySelector('dialog');
+    const button = this?.shadowRoot?.querySelector('button');
+    const dialog = this?.shadowRoot?.querySelector('dialog');
 
-    button.addEventListener("click", () => dialog.close());
+    button?.addEventListener("click", () => dialog?.close());
   }
 
   render() {

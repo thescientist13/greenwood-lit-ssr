@@ -25,7 +25,7 @@
     "build": "NODE_OPTIONS='--import @greenwood/cli/register' greenwood build",
     "serve": "greenwood serve",
     "start": "pnpm run build && pnpm run serve",
-    "lint:types": "tsc"
+    "check": "tsc"
   },
   "dependencies": {
     "lit": "^3.3.3"
@@ -34,6 +34,6 @@
     "@greenwood/cli": "^0.34.0",
     "@greenwood/plugin-adapter-vercel": "^0.34.0",
     "@greenwood/plugin-renderer-lit": "^0.34.0",
-    "typescript": "^5.8.2"
+    "typescript": "^6.0.3"
   }
 }

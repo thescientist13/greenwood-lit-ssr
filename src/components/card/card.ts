@@ -6,13 +6,13 @@ import sheet from './card.css' with { type: 'css' };
 export class Card extends LitElement {
 
   @property()
-  accessor title: string;
+  accessor title: string = '';
 
   @property()
-  accessor thumbnail: string;
+  accessor thumbnail: string = '';
 
   @property()
-  accessor id: string;
+  accessor id: string = '';
 
   static styles = [sheet];
 
