@@ -1,6 +1,0 @@
-packages:
-  - .
-
-patchedDependencies:
-  '@greenwood/cli': patches/@greenwood__cli.patch
-  '@greenwood/plugin-renderer-lit': patches/@greenwood__plugin-renderer-lit.patch
