@@ -13,32 +13,32 @@ importers:
         version: 3.3.3
     devDependencies:
       '@greenwood/cli':
-        specifier: ^0.34.0
-        version: 0.34.0
+        specifier: ^0.35.0-alpha.0
+        version: 0.35.0-alpha.0
       '@greenwood/plugin-adapter-vercel':
-        specifier: ^0.34.0
-        version: 0.34.0(@greenwood/cli@0.34.0)
+        specifier: ^0.35.0-alpha.0
+        version: 0.35.0-alpha.0(@greenwood/cli@0.35.0-alpha.0)
       '@greenwood/plugin-renderer-lit':
-        specifier: ^0.34.0
-        version: 0.34.0(@greenwood/cli@0.34.0)(lit@3.3.3)
+        specifier: ^0.35.0-alpha.0
+        version: 0.35.0-alpha.0(@greenwood/cli@0.35.0-alpha.0)(lit@3.3.3)
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
 
 packages:
 
-  '@greenwood/cli@0.34.0':
-    resolution: {integrity: sha512-yPJLRpdHMlhhRSLpfxe5E+1toLEXKzypYamW8y7CNS2GlPzfY4PIGbGZEjEaVQZTVx36hYaTZY91W/qASg7vbA==}
-    engines: {node: '>=22.18.0'}
+  '@greenwood/cli@0.35.0-alpha.0':
+    resolution: {integrity: sha512-E2KL/AxVlkvJt3xqLl7GlyAffeV8C5YsN95CsOEfsDkJOlDP5ZLdWoAXs7XynhqKz+jCg0MxFB3N74xkHJU3lw==}
+    engines: {node: '>=24.12.0'}
     hasBin: true
 
-  '@greenwood/plugin-adapter-vercel@0.34.0':
-    resolution: {integrity: sha512-RPLBR1GxXcuAyKssgSnNORLHMjqrZxv3HQq7cIeA65qVtt9uRbSque2kXE+bc4BUMZ5U7PsDSE+z27pxHq/ZFA==}
+  '@greenwood/plugin-adapter-vercel@0.35.0-alpha.0':
+    resolution: {integrity: sha512-L6Q/jMQy0i7FzcrvzSSVDmNdKWb4OEOi7Om9KcT7x8By37l5aTeIDn+e9QIwUgy6yTekaVUJJGja+uXvnISjEw==}
     peerDependencies:
       '@greenwood/cli': ^0.34.0
 
-  '@greenwood/plugin-renderer-lit@0.34.0':
-    resolution: {integrity: sha512-04DvCCJxNYMAQZr7K+NT6DeiBASsgEkg1uiyGKsx91Hm4uELMxYW7pMBqqTIB+bNYhS6hItovHbrvJxziJiDSA==}
+  '@greenwood/plugin-renderer-lit@0.35.0-alpha.0':
+    resolution: {integrity: sha512-taOEOdWHckUpGS5aLoNDMK7aXD/NWp8flOrwMFNoxqiQPkM/8cXqMcXzHXn+YPsx+9eHvJTHsCIrcqEdxwFuAg==}
     peerDependencies:
       '@greenwood/cli': ^0.34.0
       lit: ^3.3.3
@@ -921,9 +921,6 @@ packages:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
 
-  urlpattern-polyfill@10.1.0:
-    resolution: {integrity: sha512-IGjKp/o0NL3Bso1PymYURCJxMPNAf/ILOpendP9f5B6e1rTJgdgiOvgfoT8VxCAdY+Wisb9uhGaJJf3yZ2V9nw==}
-
   vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
@@ -956,7 +953,7 @@ packages:
 
 snapshots:
 
-  '@greenwood/cli@0.34.0':
+  '@greenwood/cli@0.35.0-alpha.0':
     dependencies:
       '@rollup/plugin-commonjs': 28.0.9(rollup@4.62.2)
       '@rollup/plugin-node-resolve': 15.3.1(rollup@4.62.2)
@@ -972,19 +969,18 @@ snapshots:
       livereload: 0.9.3
       node-html-parser: 7.1.0
       rollup: 4.62.2
-      urlpattern-polyfill: 10.1.0
       wc-compiler: 0.22.2
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
 
-  '@greenwood/plugin-adapter-vercel@0.34.0(@greenwood/cli@0.34.0)':
+  '@greenwood/plugin-adapter-vercel@0.35.0-alpha.0(@greenwood/cli@0.35.0-alpha.0)':
     dependencies:
-      '@greenwood/cli': 0.34.0
+      '@greenwood/cli': 0.35.0-alpha.0
 
-  '@greenwood/plugin-renderer-lit@0.34.0(@greenwood/cli@0.34.0)(lit@3.3.3)':
+  '@greenwood/plugin-renderer-lit@0.35.0-alpha.0(@greenwood/cli@0.35.0-alpha.0)(lit@3.3.3)':
     dependencies:
-      '@greenwood/cli': 0.34.0
+      '@greenwood/cli': 0.35.0-alpha.0
       '@lit-labs/ssr': 4.1.0
       '@lit-labs/ssr-client': 1.1.8
       lit: 3.3.3
@@ -1871,8 +1867,6 @@ snapshots:
   undici-types@8.3.0: {}
 
   unpipe@1.0.0: {}
-
-  urlpattern-polyfill@10.1.0: {}
 
   vary@1.1.2: {}
 
