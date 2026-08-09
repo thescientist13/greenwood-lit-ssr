@@ -11,9 +11,7 @@ const config: Config = {
   },
   plugins: [
     greenwoodPluginRendererLit(),
-    greenwoodPluginAdapterVercel({
-      runtime: 'nodejs22.x'
-    })
+    greenwoodPluginAdapterVercel()
   ]
 }
 
