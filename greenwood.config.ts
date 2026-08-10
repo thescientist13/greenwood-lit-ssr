@@ -4,11 +4,12 @@ import { greenwoodPluginRendererLit } from '@greenwood/plugin-renderer-lit';
 
 const config: Config = {
   useTsc: true,
+  // TODO: make this compatible with CSS Module Scripts in spectrum.ts
   // enable this polyfill until there is Safari support for CSS Module Scripts
   // https://github.com/ProjectEvergreen/greenwood/discussions/1275
-  polyfills: {
-    importAttributes: ['css']
-  },
+  // polyfills: {
+  //   importAttributes: ['css']
+  // },
   plugins: [
     greenwoodPluginRendererLit(),
     greenwoodPluginAdapterVercel({
