@@ -15,9 +15,9 @@
               'content-type': 'application/x-www-form-urlencoded'
             })
           }).then(resp => resp.text());
-          const fragment = Document.parseHTMLUnsafe(html);
 
-          document.getElementById('search-products-output').innerHTML = fragment.body.innerHTML;
+          // preserve Lit SSR comments
+          document.getElementById('search-products-output').setHTMLUnsafe(html);
         });
       });
     </script>
