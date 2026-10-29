@@ -8,6 +8,9 @@ patchedDependencies:
   '@greenwood/cli@0.35.0-alpha.3':
     hash: c49a97bf2bd0cd1ea87c2f0c9a71521d60c7a0f6fa1fef091e22cabce52a815a
     path: patches/@greenwood__cli@0.35.0-alpha.3.patch
+  '@greenwood/plugin-renderer-lit@0.35.0-alpha.3':
+    hash: 8ec098e29f860fa5982f425f06952908c7e0907be8572cb9ea1ca34269588a04
+    path: patches/@greenwood__plugin-renderer-lit@0.35.0-alpha.3.patch
 
 importers:
 
@@ -25,7 +28,7 @@ importers:
         version: 0.35.0-alpha.3(@greenwood/cli@0.35.0-alpha.3(patch_hash=c49a97bf2bd0cd1ea87c2f0c9a71521d60c7a0f6fa1fef091e22cabce52a815a))
       '@greenwood/plugin-renderer-lit':
         specifier: ^0.35.0-alpha.3
-        version: 0.35.0-alpha.3(@greenwood/cli@0.35.0-alpha.3(patch_hash=c49a97bf2bd0cd1ea87c2f0c9a71521d60c7a0f6fa1fef091e22cabce52a815a))(lit@3.3.3)
+        version: 0.35.0-alpha.3(patch_hash=8ec098e29f860fa5982f425f06952908c7e0907be8572cb9ea1ca34269588a04)(@greenwood/cli@0.35.0-alpha.3(patch_hash=c49a97bf2bd0cd1ea87c2f0c9a71521d60c7a0f6fa1fef091e22cabce52a815a))(lit@3.3.3)
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -988,7 +991,7 @@ snapshots:
     dependencies:
       '@greenwood/cli': 0.35.0-alpha.3(patch_hash=c49a97bf2bd0cd1ea87c2f0c9a71521d60c7a0f6fa1fef091e22cabce52a815a)
 
-  '@greenwood/plugin-renderer-lit@0.35.0-alpha.3(@greenwood/cli@0.35.0-alpha.3(patch_hash=c49a97bf2bd0cd1ea87c2f0c9a71521d60c7a0f6fa1fef091e22cabce52a815a))(lit@3.3.3)':
+  '@greenwood/plugin-renderer-lit@0.35.0-alpha.3(patch_hash=8ec098e29f860fa5982f425f06952908c7e0907be8572cb9ea1ca34269588a04)(@greenwood/cli@0.35.0-alpha.3(patch_hash=c49a97bf2bd0cd1ea87c2f0c9a71521d60c7a0f6fa1fef091e22cabce52a815a))(lit@3.3.3)':
     dependencies:
       '@greenwood/cli': 0.35.0-alpha.3(patch_hash=c49a97bf2bd0cd1ea87c2f0c9a71521d60c7a0f6fa1fef091e22cabce52a815a)
       '@lit-labs/ssr': 4.1.0

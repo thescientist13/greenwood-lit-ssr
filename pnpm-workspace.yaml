@@ -3,3 +3,4 @@ packages:
 
 patchedDependencies:
   '@greenwood/cli@0.35.0-alpha.3': patches/@greenwood__cli@0.35.0-alpha.3.patch
+  '@greenwood/plugin-renderer-lit@0.35.0-alpha.3': patches/@greenwood__plugin-renderer-lit@0.35.0-alpha.3.patch

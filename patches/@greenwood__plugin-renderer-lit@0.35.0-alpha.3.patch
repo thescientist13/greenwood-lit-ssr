@@ -1,0 +1,17 @@
+diff --git a/src/index.js b/src/index.js
+index da53647b77fa8e70f5a267ec6be7f8ddc00f15f1..3678b63ba33d7f2ffe0863b56ebcedc5f72de952 100755
+--- a/src/index.js
++++ b/src/index.js
+@@ -15,9 +15,11 @@ class LitHydrationResource {
+ 
+     const matchingRoute = getMatchingPageByRoute(this.compilation, pathname);
+ 
++    // Static HTML pages can fetch SSR fragments after loading. They need the same
++    // hydration support as SSR pages, before any Lit component definitions load.
+     return (
+       matchingRoute &&
+-      ((matchingRoute.isSSR && matchingRoute.hydration) ||
++      (!matchingRoute.isSSR || matchingRoute.hydration ||
+         shouldPrerender(matchingRoute, this.compilation.config))
+     );
+   }
