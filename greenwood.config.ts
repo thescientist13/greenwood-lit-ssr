@@ -4,6 +4,7 @@ import { greenwoodPluginRendererLit } from '@greenwood/plugin-renderer-lit';
 
 const config: Config = {
   useTsc: true,
+  isolation: true,
   // enable this polyfill until there is Safari support for CSS Module Scripts
   // https://github.com/ProjectEvergreen/greenwood/discussions/1275
   polyfills: {
