@@ -1,0 +1,17 @@
+diff --git a/src/plugins/resource/plugin-standard-javascript.js b/src/plugins/resource/plugin-standard-javascript.js
+index aba20ef6d40239f5d992b4b9bd286073c91e312e..8d5899df2d6c88cb4836c77c23074ac3c9ef6154 100644
+--- a/src/plugins/resource/plugin-standard-javascript.js
++++ b/src/plugins/resource/plugin-standard-javascript.js
+@@ -83,6 +83,12 @@ class StandardJavaScriptResource {
+           edits.push({ start: node.source.end, end: closeBrace + 1, replacement: "" });
+         },
+         ImportExpression(node) {
++          // Expression specifiers are evaluated at runtime. Preserve both the
++          // expression and its import attributes instead of editing them as a string.
++          if (node.source.type !== "Literal" || typeof node.source.value !== "string") {
++            return;
++          }
++
+           if (node.options?.type !== "ObjectExpression") {
+             return;
+           }
